@@ -4,6 +4,9 @@ const router = express.Router();
 const dummyExerciseData = require('../modules/dummyExerciseData');
 const phaseData = require('../modules/phaseData');
 
+// 'dailyWorkout' is the workout that will be sent to the user
+// after all filters have been applied
+
 // 'workoutTemplates' represents all templates that 
 // correspond with the user's days_per_week value
 // // 'selectedTemplate' represents the selected template 
@@ -46,7 +49,6 @@ router.get('/', (req, res) => {
   pool.query(queryText, [days_per_week])
     .then((result) => {
       res.send(result.rows);
-
       workoutTemplates = result.rows;
 
       switch (day) {
@@ -66,13 +68,57 @@ router.get('/', (req, res) => {
           console.log('Unable to assign workout');
       }
       console.log('User workout is', selectedTemplate);
-      setDailyWorkout(selectedTemplate);
+      selectExercises(selectedTemplate);
     })
     .catch((error) => {
+      console.log('error', error);
+      
       res.sendStatus(500);
     })
 })
 // #endregion ====
+
+function selectExercises(obj) {
+
+  const targetMuscles = Object.values(obj);
+
+  let e_ones = [];
+  let e_twos = [];
+  let e_threes = [];
+  let e_fours = [];
+  let e_fives = [];
+  let e_sixes = [];
+  let e_sevens = [];
+  let e_eights = [];
+  let e_nines = [];
+  let e_tens = [];
+  let e_elevens = [];
+
+  for (let i=0; i<dummyExerciseData.length; i++) {
+    for (let j=0; j<targetMuscles.length; j++) {
+      if (dummyExerciseData[i].target === targetMuscles[j]) {
+        console.log(`target muscles (${targetMuscles[j]}) + dummy data`, dummyExerciseData[i]);
+      }
+    }
+  }
+
+  
+}
+
+// 'getRandomExercise' randomly selects on exercise from 
+// the given array and returns it as an object to be added
+// to the workout for that day
+function getRandomExercise(arr) {
+  // get random index value
+  const randomIndex = Math.floor(Math.random() * arr.length);
+
+  // get random exercise
+  const exercise = arr[randomIndex];
+
+  dailyWorkout.push(exercise);
+
+  return item;
+}
 
 /**
  * POST route template
