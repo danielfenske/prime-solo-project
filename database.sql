@@ -74,3 +74,12 @@ INSERT INTO "users_equipment" ("user_id", "equipment_id")
 VALUES 
 (2, 1), (2, 2), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 12), (2, 13), (2, 14),
 (3, 1), (3, 2), (3, 3), (3, 5), (3, 7), (3, 8), (3, 10), (3, 14);
+
+-- test table relationships 
+SELECT ("user_preferences"."name"), count("equipment"."name") AS equipment_available
+
+FROM "user_preferences" 
+JOIN "users_equipment" ON "users_equipment"."user_id" = "user_preferences"."user_id"
+JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+
+GROUP BY "user_preferences"."name";
