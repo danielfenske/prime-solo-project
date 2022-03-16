@@ -3,7 +3,9 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const dummyExerciseData = require('../modules/dummyExerciseData');
 const phaseData = require('../modules/phaseData');
-const { default: axios } = require('axios');
+const {
+  default: axios
+} = require('axios');
 
 // 'dailyWorkout' is the workout that will be sent to the user
 // after all filters have been applied
@@ -34,27 +36,47 @@ router.get('/preferences/:id', (req, res) => {
 // to the day the user is on in their week (ex: working out twice a week, on second day)
 router.get('/', async (req, res) => {
   const id = req.user.id
-  
+
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for
     const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE id=$1;`, [id])
     const daysPerWeek = daysQuery.rows[0].days_per_week;
     console.log('daysPerWeek', daysPerWeek);
 
+
     // selects all eligible templates based off of user's daysPerWeek value
     const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek])
     const workoutTemplates = templatesQuery.rows;
-    console.log('workoutTemplates', workoutTemplates);  
+    console.log('workoutTemplates', workoutTemplates);
 
-    // grabs exercise data from ExerciseDB database
-    const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
-      headers: {
-        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-        'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
-      }
-    })
-    const allExercises = exerciseAPIQuery;
+
+    // selects array of equipment available to the user
+    const equipmentQuery = await pool.query(
+      `SELECT array_agg("equipment"."name") AS equipment_available
+      FROM "users_equipment" 
+      JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+      JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+      
+      WHERE "users_equipment"."user_id" = $1
+      GROUP BY "users_equipment"."user_id";`, [id]
+    )
+    const equipmentAvailable = equipmentQuery.rows;
+    console.log('equipmentAvailable', equipmentAvailable[0].equipment_available);
     
+    // // grabs exercise data from ExerciseDB database
+    // const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
+    //   headers: {
+    //     'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+    //     'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
+    //   }
+    // })
+    const allExercises = dummyExerciseData;
+
+    const dailyWorkout = buildDailyWorkout(daysPerWeek, workoutTemplates, equipmentAvailable, allExercises);
+
+    res.send(dailyWorkout)
+  } else {
+    res.sendStatus(403);
   }
 
   // let phase = 'endurance'; // req.body.phase
@@ -91,6 +113,14 @@ router.get('/', async (req, res) => {
   //   })
 })
 
+// buildDailyWorkout is the parent function that ultimately returns 
+// the daily workout for a given user. Several helper functions are
+// called within it to filter through the exercises and narrow them 
+// down to one single workout
+const buildDailyWorkout = (daysPerWeek, workoutTemplates, equipmentAvailable, allExercises) => {
+  
+}
+
 
 router.get('/equipment/:id', (req, res) => {
   let id = req.params.id;
@@ -103,7 +133,7 @@ router.get('/equipment/:id', (req, res) => {
   JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
   
   WHERE "users_equipment"."user_id" = $1
-  GROUP BY "users_equipment"."user_id";`
+  GROUP BY "users_equipment"."user_id";`;
 
   pool.query(queryText, [id])
     .then((result) => {
@@ -139,11 +169,6 @@ let selectUserTemplate = (day, workoutTemplates) => {
 
   return selectedTemplate;
 }
-
-let buildWorkout = (exerciseArray) => {
-
-}
-
 
 
 
@@ -214,7 +239,7 @@ let groupExercises = (obj, arrOne, arrTwo) => {
           case exercises[5]:
             e_fours.push(arrOne[i]);
             break;
-          case exercises[6]:           
+          case exercises[6]:
             e_fives.push(arrOne[i]);
             break;
           case exercises[7]:
