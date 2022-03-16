@@ -8,11 +8,23 @@ const phaseData = require('../modules/phaseData');
 // after all filters have been applied
 let dailyWorkout = [];
 
+let dummyEquipmentData = [
+  "barbell",
+  "body weight",
+  "bosu ball",
+  "dumbbell",
+  "ez barbell",
+  "kettlebell",
+  "medicine ball",
+  "weighted"
+];
+
 // #region ==== GET ROUTES ====
 // get user preferences 
 router.get('/preferences/:id', (req, res) => {
   let id = req.params.id;
 
+  // selects all user preferences associated with user id
   let queryText = `SELECT * FROM "user_preferences" WHERE id = $1;`
 
   pool.query(queryText, [id])
@@ -30,15 +42,15 @@ router.get('/preferences/:id', (req, res) => {
     })
 });
 
+
 // get workout request first starts with grabbing all eligible
 // templates from the database and selecting one template that corresponds
 // to the day the user is on in their week (ex: working out twice a week, on second day)
 router.get('/', (req, res) => {
-  console.log('req.body', req.body);
 
   let phase = 'endurance'; // req.body.phase
-  let days_per_week = 2; //req.body.days_per_week
-  let day = 1; //req.body.day
+  let days_per_week = 4; //req.body.days_per_week
+  let day = 4; //req.body.day
 
   let queryText = `SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`;
 
@@ -47,8 +59,8 @@ router.get('/', (req, res) => {
 
       // 'workoutTemplates' represents all templates that 
       // correspond with the user's days_per_week value
-        // 'selectedTemplate' represents the selected template 
-        // that corresponds with the day the user is on
+      // 'selectedTemplate' represents the selected template 
+      // that corresponds with the day the user is on
       let workoutTemplates = result.rows;
       let selectedTemplate;
 
@@ -72,7 +84,7 @@ router.get('/', (req, res) => {
       // after selected template and array of exercises taken from 
       // pulled from exerciseDB is sent to groupExercises function 
       // to find matches between the two groups
-      groupExercises(selectedTemplate, dummyExerciseData);
+      groupExercises(selectedTemplate, dummyExerciseData, dummyEquipmentData);
       res.send(dailyWorkout);
 
       dailyWorkout = [];
@@ -83,9 +95,36 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     })
 })
+
+
+router.get('/equipment/:id', (req, res) => {
+  let id = req.params.id;
+
+  // selects all equipment available associated with user id
+  let queryText = `SELECT array_agg("equipment"."name") AS equipment_available
+
+  FROM "users_equipment" 
+  JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+  JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+  
+  WHERE "users_equipment"."user_id" = $1
+  GROUP BY "users_equipment"."user_id";`
+
+  pool.query(queryText, [id])
+    .then((result) => {
+      res.send(result.rows[0].equipment_available);
+    })
+    .catch((error) => {
+      console.log('error', error);
+      
+      res.sendStatus(500);
+    })
+});
 // #endregion ====
 
-function groupExercises(obj, array) {
+
+// #region ==== HELPER FUNCTIONS ====
+function groupExercises(obj, arrOne, arrTwo) {
 
   const exercises = Object.values(obj);
 
@@ -112,46 +151,46 @@ function groupExercises(obj, array) {
   //   }
   // }
 
-  for (let i = 0; i < array.length; i++) {
-    switch (array[i].target) {
+  for (let i = 0; i < arrOne.length; i++) {
+    switch (arrOne[i].target) {
       case exercises[2]:
-        e_ones.push(array[i]);
+        e_ones.push(arrOne[i]);
         break;
       case exercises[3]:
-        e_twos.push(array[i]);
+        e_twos.push(arrOne[i]);
         break;
       case exercises[4]:
-        e_threes.push(array[i]);
+        e_threes.push(arrOne[i]);
         break;
       case exercises[5]:
-        e_fours.push(array[i]);
+        e_fours.push(arrOne[i]);
         break;
       case exercises[6]:
-        e_fives.push(array[i]);
+        e_fives.push(arrOne[i]);
         break;
       case exercises[7]:
-        e_sixes.push(array[i]);
+        e_sixes.push(arrOne[i]);
         break;
       case exercises[8]:
-        e_sevens.push(array[i]);
+        e_sevens.push(arrOne[i]);
         break;
       case exercises[9]:
-        e_eights.push(array[i]);
+        e_eights.push(arrOne[i]);
         break;
       case exercises[10]:
-        e_nines.push(array[i]);
+        e_nines.push(arrOne[i]);
         break;
       case exercises[11]:
-        e_tens.push(array[i]);
+        e_tens.push(arrOne[i]);
         break;
       case exercises[12]:
-        e_elevens.push(array[i]);
+        e_elevens.push(arrOne[i]);
         break;
     }
   }
 
-  eligibleExercises = [
-    [e_ones],
+  let eligibleExercises = [
+    e_ones,
     e_twos,
     e_threes,
     e_fours,
@@ -162,12 +201,14 @@ function groupExercises(obj, array) {
     e_nines,
     e_tens,
     e_elevens,
-  ]
+  ];
 
-  for (let i=0; i<eligibleExercises.length; i++) {
+
+
+  for (let i = 0; i < eligibleExercises.length; i++) {
     getRandomExercise(eligibleExercises[i]);
   }
-  
+
   // ==== #region LOGS/TESTING ====
   // notes: if multiple values exist, all
   // subsequent arrays will not have exercises
@@ -184,6 +225,8 @@ function groupExercises(obj, array) {
   // console.log('e_tens ', e_tens );
   // console.log('e_elevens', e_elevens);
   // === #endregion
+
+  console.log('arrTwo', arrTwo);
 }
 
 // 'getRandomExercise' randomly selects on exercise from 
@@ -202,6 +245,7 @@ function getRandomExercise(arr) {
 
   return;
 }
+// #endregion ====
 
 /**
  * POST route template

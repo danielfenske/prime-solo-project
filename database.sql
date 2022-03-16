@@ -83,3 +83,19 @@ JOIN "users_equipment" ON "users_equipment"."user_id" = "user_preferences"."user
 JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
 
 GROUP BY "user_preferences"."name";
+
+-- queryText for grabbing all preferences by specific id
+SELECT * FROM "user_preferences" WHERE id = 2;
+
+-- grab workout template dependant on #/days day
+SELECT * FROM "full_body_workouts" WHERE "days_per_week" = 2;
+
+-- select all equipment associated with one user
+SELECT array_agg("equipment"."name") AS equipment_available
+
+  FROM "users_equipment" 
+  JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+  JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+  
+  WHERE "users_equipment"."user_id" = 2
+  GROUP BY "users_equipment"."user_id";
