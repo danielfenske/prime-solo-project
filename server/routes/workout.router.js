@@ -9,13 +9,25 @@ const phaseData = require('../modules/phaseData');
 let dailyWorkout = [];
 
 let dummyEquipmentData = [
+  // "barbell",
+  // "body weight",
+  // "bosu ball",
+  // "dumbbell",
+  // "ez barbell",
+  // "kettlebell",
+  // "medicine ball",
+  // "weighted"
   "barbell",
   "body weight",
-  "bosu ball",
+  "cable",
   "dumbbell",
+  "elliptical machine",
   "ez barbell",
   "kettlebell",
+  "leverage machine",
   "medicine ball",
+  "stationary bike",
+  "stepmill machine",
   "weighted"
 ];
 
@@ -49,8 +61,8 @@ router.get('/preferences/:id', (req, res) => {
 router.get('/', (req, res) => {
 
   let phase = 'endurance'; // req.body.phase
-  let days_per_week = 4; //req.body.days_per_week
-  let day = 4; //req.body.day
+  let days_per_week = 1; //req.body.days_per_week
+  let day = 1; //req.body.day
 
   let queryText = `SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`;
 
@@ -116,7 +128,7 @@ router.get('/equipment/:id', (req, res) => {
     })
     .catch((error) => {
       console.log('error', error);
-      
+
       res.sendStatus(500);
     })
 });
@@ -151,41 +163,97 @@ function groupExercises(obj, arrOne, arrTwo) {
   //   }
   // }
 
+  // for (let i = 0; i < arrOne.length; i++) {
+  //   for (let j = 0; j < arrTwo.length; j++) {
+  //     if (arrOne[i].equipment === arrTwo[j]) {
+  //       console.log(`match! equipment (${arrTwo[j]}), exercise`, arrOne[i]);
+  //     } else {
+  //       console.log(`NOT GOOD here: equipment (${arrTwo[j]}), exercise`, arrOne[i]);
+  //     }
+  //   }
+  // }
+
+  // for (let i = 0; i < arrOne.length; i++) {
+  //   switch (arrOne[i].target) {
+  //     case exercises[2]:
+  //       e_ones.push(arrOne[i]);
+  //       break;
+  //     case exercises[3]:
+  //       e_twos.push(arrOne[i]);
+  //       break;
+  //     case exercises[4]:
+  //       e_threes.push(arrOne[i]);
+  //       break;
+  //     case exercises[5]:
+  //       e_fours.push(arrOne[i]);
+  //       break;
+  //     case exercises[6]:
+  //       e_fives.push(arrOne[i]);
+  //       break;
+  //     case exercises[7]:
+  //       e_sixes.push(arrOne[i]);
+  //       break;
+  //     case exercises[8]:
+  //       e_sevens.push(arrOne[i]);
+  //       break;
+  //     case exercises[9]:
+  //       e_eights.push(arrOne[i]);
+  //       break;
+  //     case exercises[10]:
+  //       e_nines.push(arrOne[i]);
+  //       break;
+  //     case exercises[11]:
+  //       e_tens.push(arrOne[i]);
+  //       break;
+  //     case exercises[12]:
+  //       e_elevens.push(arrOne[i]);
+  //       break;
+  //   }
+  // }
+
+  console.log('exercises[6]', exercises[6]);
+  
+
   for (let i = 0; i < arrOne.length; i++) {
-    switch (arrOne[i].target) {
-      case exercises[2]:
-        e_ones.push(arrOne[i]);
-        break;
-      case exercises[3]:
-        e_twos.push(arrOne[i]);
-        break;
-      case exercises[4]:
-        e_threes.push(arrOne[i]);
-        break;
-      case exercises[5]:
-        e_fours.push(arrOne[i]);
-        break;
-      case exercises[6]:
-        e_fives.push(arrOne[i]);
-        break;
-      case exercises[7]:
-        e_sixes.push(arrOne[i]);
-        break;
-      case exercises[8]:
-        e_sevens.push(arrOne[i]);
-        break;
-      case exercises[9]:
-        e_eights.push(arrOne[i]);
-        break;
-      case exercises[10]:
-        e_nines.push(arrOne[i]);
-        break;
-      case exercises[11]:
-        e_tens.push(arrOne[i]);
-        break;
-      case exercises[12]:
-        e_elevens.push(arrOne[i]);
-        break;
+
+    for (let j = 0; j < arrTwo.length; j++) {
+      if (arrOne[i].equipment === arrTwo[j]) {
+        switch (arrOne[i].target) {
+          // case exercises[2]:
+            // e_ones.push(arrOne[i]);
+            // break;
+          // case exercises[3]:
+          //   e_twos.push(arrOne[i]);
+          //   break;
+          // case exercises[4]:
+          //   e_threes.push(arrOne[i]);
+          //   break;
+          // case exercises[5]:
+          //   e_fours.push(arrOne[i]);
+          //   break;
+          // case exercises[6]:           
+          //   e_fives.push(arrOne[i]);
+          //   break;
+          // case exercises[7]:
+          //   e_sixes.push(arrOne[i]);
+          //   break;
+          // case exercises[8]:
+          //   e_sevens.push(arrOne[i]);
+          //   break;
+          // case exercises[9]:
+          //   e_eights.push(arrOne[i]);
+          //   break;
+          // case exercises[10]:
+          //   e_nines.push(arrOne[i]);
+          //   break;
+          // case exercises[11]:
+          //   e_tens.push(arrOne[i]);
+          //   break;
+          case exercises[12]:
+            e_elevens.push(arrOne[i]);
+            break;
+        }
+      }
     }
   }
 
@@ -202,8 +270,6 @@ function groupExercises(obj, arrOne, arrTwo) {
     e_tens,
     e_elevens,
   ];
-
-
 
   for (let i = 0; i < eligibleExercises.length; i++) {
     getRandomExercise(eligibleExercises[i]);
