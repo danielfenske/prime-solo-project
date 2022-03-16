@@ -8,24 +8,6 @@ const {
 } = require('axios');
 
 // #region ==== GET ROUTES ====
-// get user preferences 
-router.get('/preferences/:id', (req, res) => {
-  let id = req.params.id;
-
-  // selects all user preferences associated with user id
-  let queryText = `SELECT * FROM "user_preferences" WHERE id = $1;`
-
-  pool.query(queryText, [id])
-    .then((result) => {
-      let preferences = result.rows;
-
-      res.send(preferences);
-    })
-    .catch((error) => {
-      res.sendStatus(500);
-    })
-});
-
 // get workout request first starts with grabbing all eligible
 // templates from the database and selecting one template that corresponds
 // to the day the user is on in their week (ex: working out twice a week, on second day)
