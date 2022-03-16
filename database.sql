@@ -56,7 +56,7 @@ CREATE TABLE "full_body_workouts" (
 CREATE TABLE "exercise_history" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INTEGER REFERENCES "user" NOT NULL UNIQUE,
-	"exercise_name" VARCHAR (255),
+	"exercise_id" INTEGER NOT NULL,
 	"date_completed" TIMESTAMP NOT NULL 
 );
 
