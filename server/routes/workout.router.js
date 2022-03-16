@@ -34,10 +34,10 @@ router.get('/preferences/:id', (req, res) => {
 router.get('/', (req, res) => {
 
   let phase = 'endurance'; // req.body.phase
-  let days_per_week = 1; //req.body.days_per_week
-  let day = 1; //req.body.day
+  let days_per_week = 4; //req.body.days_per_week
+  let day = 4; //req.body.day
   console.log('req.body.equipment', req.body.equipment);
-  let dummyEquipmentData = req.body.equipment;
+  let equipment = req.body.equipment;
 
   let queryText = `SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`;
 
@@ -49,29 +49,13 @@ router.get('/', (req, res) => {
       // 'selectedTemplate' represents the selected template 
       // that corresponds with the day the user is on
       let workoutTemplates = result.rows;
-      let selectedTemplate;
-
-      switch (day) {
-        case 1:
-          selectedTemplate = workoutTemplates[0];
-          break;
-        case 2:
-          selectedTemplate = workoutTemplates[1];
-          break;
-        case 3:
-          selectedTemplate = workoutTemplates[2]
-          break;
-        case 4:
-          selectedTemplate = workoutTemplates[3];
-          break;
-        default:
-          console.log('Unable to assign workout');
-      }
+      let selectedTemplate = selectUserTemplate(day, workoutTemplates);
+      console.log('selectedTemplate', selectedTemplate);
 
       // after selected template and array of exercises taken from 
       // pulled from exerciseDB is sent to groupExercises function 
       // to find matches between the two groups
-      groupExercises(selectedTemplate, dummyExerciseData, dummyEquipmentData);
+      groupExercises(selectedTemplate, dummyExerciseData, equipment);
       res.send(dailyWorkout);
 
       dailyWorkout = [];
@@ -111,11 +95,30 @@ router.get('/equipment/:id', (req, res) => {
 
 
 // #region ==== HELPER FUNCTIONS ====
-function groupExercises(obj, arrOne, arrTwo) {
+let selectUserTemplate = (day, workoutTemplates) => {
+  switch (day) {
+    case 1:
+      selectedTemplate = workoutTemplates[0];
+      break;
+    case 2:
+      selectedTemplate = workoutTemplates[1];
+      break;
+    case 3:
+      selectedTemplate = workoutTemplates[2]
+      break;
+    case 4:
+      selectedTemplate = workoutTemplates[3];
+      break;
+    default:
+      console.log('Unable to assign workout');
+  }
+
+  return selectedTemplate;
+}
+
+let groupExercises = (obj, arrOne, arrTwo) => {
 
   const exercises = Object.values(obj);
-
-  console.log('exercises', exercises);
 
   let e_ones = [];
   let e_twos = [];
@@ -238,7 +241,7 @@ function groupExercises(obj, arrOne, arrTwo) {
 // 'getRandomExercise' randomly selects on exercise from 
 // the given array and returns it as an object to be added
 // to the workout for that day
-function getRandomExercise(arr) {
+let getRandomExercise = (arr) => {
 
   // get random index value
   const randomIndex = Math.floor(Math.random() * arr.length);
