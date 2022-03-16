@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
   const id = req.user.id
   const dayOfWeek = Number(req.body.dayOfWeek);
   // console.log('dayOfWeek', dayOfWeek);
-  
+
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for
     const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE id=$1;`, [id])
@@ -62,9 +62,9 @@ router.get('/', async (req, res) => {
       WHERE "users_equipment"."user_id" = $1
       GROUP BY "users_equipment"."user_id";`, [id]
     )
-    const equipmentAvailable = equipmentQuery.rows;
+    const equipmentAvailable = equipmentQuery.rows[0].equipment_available;
     // console.log('equipmentAvailable', equipmentAvailable[0].equipment_available);
-    
+
     // // grabs exercise data from ExerciseDB database
     // const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
     //   headers: {
@@ -73,7 +73,7 @@ router.get('/', async (req, res) => {
     //   }
     // })
     const allExercises = dummyExerciseData;
-    
+
     // initiates all buildDailyWorkout function and sends all data grabbed before as 
     // necessary values for determine dailyWorkout
     const dailyWorkout = buildDailyWorkout(dayOfWeek, workoutTemplates, equipmentAvailable, allExercises);
@@ -122,9 +122,14 @@ router.get('/', async (req, res) => {
 // called within it to filter through the exercises and narrow them 
 // down to one single workout
 const buildDailyWorkout = async (dayOfWeek, workoutTemplates, equipmentAvailable, allExercises) => {
-    
+
+  // calls 'selectTemplate' function and assigns return value to variable
   let selectedTemplate = selectTemplate(dayOfWeek, workoutTemplates);
+
+  // returns all exercises that include equipment available to user
+  let equipmentMatches = filterEquipment(allExercises, equipmentAvailable);
   
+  let newExercises = filterHistory()
 }
 
 
@@ -155,7 +160,7 @@ router.get('/equipment/:id', (req, res) => {
 
 
 // #region ==== HELPER FUNCTIONS ====
-let selectTemplate = (dayOfWeek, workoutTemplates) => {
+const selectTemplate = (dayOfWeek, workoutTemplates) => {
   let selectedTemplate = 0;
   switch (dayOfWeek) {
     case 1:
@@ -175,6 +180,21 @@ let selectTemplate = (dayOfWeek, workoutTemplates) => {
   }
 
   return selectedTemplate;
+}
+
+const filterEquipment = (allExercises, equipmentAvailable) => {
+
+  let equipmentMatches = [];
+
+  for (let i = 0; i < allExercises.length; i++) {
+    for (let j = 0; j < equipmentAvailable.length; j++) {
+      if (allExercises[i].equipment === equipmentAvailable[j]) {
+        equipmentMatches.push(allExercises[i]);
+      }
+    }
+  }
+
+  return equipmentMatches;
 }
 
 
