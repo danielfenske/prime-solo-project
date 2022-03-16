@@ -8,8 +8,6 @@ const phaseData = require('../modules/phaseData');
 // after all filters have been applied
 let dailyWorkout = [];
 
-let eligibleExercises = [];
-
 // #region ==== GET ROUTES ====
 // get user preferences 
 router.get('/preferences/:id', (req, res) => {
@@ -71,8 +69,13 @@ router.get('/', (req, res) => {
           console.log('Unable to assign workout');
       }
 
+      // after selected template and array of exercises taken from 
+      // pulled from exerciseDB is sent to groupExercises function 
+      // to find matches between the two groups
       groupExercises(selectedTemplate, dummyExerciseData);
       res.send(dailyWorkout);
+
+      dailyWorkout = [];
     })
     .catch((error) => {
       console.log('error', error);
@@ -147,31 +150,24 @@ function groupExercises(obj, array) {
     }
   }
 
-  // eligibleExercises = [
-  //   e_ones,
-  //   e_twos,
-  //   e_threes,
-  //   e_fours,
-  //   e_fives,
-  //   e_sixes,
-  //   e_sevens,
-  //   e_eights,
-  //   e_nines,
-  //   e_tens,
-  //   e_elevens,
-  // ]
+  eligibleExercises = [
+    [e_ones],
+    e_twos,
+    e_threes,
+    e_fours,
+    e_fives,
+    e_sixes,
+    e_sevens,
+    e_eights,
+    e_nines,
+    e_tens,
+    e_elevens,
+  ]
 
-  getRandomExercises(e_ones);
-  getRandomExercises(e_twos);
-  getRandomExercises(e_threes);
-  getRandomExercises(e_fours);
-  getRandomExercises(e_fives);
-  getRandomExercises(e_sixes);
-  getRandomExercises(e_sevens);
-  getRandomExercises(e_eights);
-  getRandomExercises(e_nines);
-  getRandomExercises(e_tens);
-  getRandomExercises(e_elevens);
+  for (let i=0; i<eligibleExercises.length; i++) {
+    getRandomExercise(eligibleExercises[i]);
+  }
+  
   // ==== #region LOGS/TESTING ====
   // notes: if multiple values exist, all
   // subsequent arrays will not have exercises
@@ -193,7 +189,7 @@ function groupExercises(obj, array) {
 // 'getRandomExercise' randomly selects on exercise from 
 // the given array and returns it as an object to be added
 // to the workout for that day
-function getRandomExercises(arr) {
+function getRandomExercise(arr) {
 
   // get random index value
   const randomIndex = Math.floor(Math.random() * arr.length);
