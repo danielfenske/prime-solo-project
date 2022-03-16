@@ -36,18 +36,20 @@ router.get('/preferences/:id', (req, res) => {
 // to the day the user is on in their week (ex: working out twice a week, on second day)
 router.get('/', async (req, res) => {
   const id = req.user.id
-
+  const dayOfWeek = Number(req.body.dayOfWeek);
+  // console.log('dayOfWeek', dayOfWeek);
+  
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for
     const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE id=$1;`, [id])
     const daysPerWeek = daysQuery.rows[0].days_per_week;
-    console.log('daysPerWeek', daysPerWeek);
+    // console.log('daysPerWeek', daysPerWeek);
 
 
     // selects all eligible templates based off of user's daysPerWeek value
     const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek])
     const workoutTemplates = templatesQuery.rows;
-    console.log('workoutTemplates', workoutTemplates);
+    // console.log('workoutTemplates', workoutTemplates);
 
 
     // selects array of equipment available to the user
@@ -61,7 +63,7 @@ router.get('/', async (req, res) => {
       GROUP BY "users_equipment"."user_id";`, [id]
     )
     const equipmentAvailable = equipmentQuery.rows;
-    console.log('equipmentAvailable', equipmentAvailable[0].equipment_available);
+    // console.log('equipmentAvailable', equipmentAvailable[0].equipment_available);
     
     // // grabs exercise data from ExerciseDB database
     // const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
@@ -71,8 +73,10 @@ router.get('/', async (req, res) => {
     //   }
     // })
     const allExercises = dummyExerciseData;
-
-    const dailyWorkout = buildDailyWorkout(daysPerWeek, workoutTemplates, equipmentAvailable, allExercises);
+    
+    // initiates all buildDailyWorkout function and sends all data grabbed before as 
+    // necessary values for determine dailyWorkout
+    const dailyWorkout = buildDailyWorkout(dayOfWeek, workoutTemplates, equipmentAvailable, allExercises);
 
     res.send(dailyWorkout)
   } else {
@@ -117,7 +121,9 @@ router.get('/', async (req, res) => {
 // the daily workout for a given user. Several helper functions are
 // called within it to filter through the exercises and narrow them 
 // down to one single workout
-const buildDailyWorkout = (daysPerWeek, workoutTemplates, equipmentAvailable, allExercises) => {
+const buildDailyWorkout = async (dayOfWeek, workoutTemplates, equipmentAvailable, allExercises) => {
+    
+  let selectedTemplate = selectTemplate(dayOfWeek, workoutTemplates);
   
 }
 
@@ -149,8 +155,9 @@ router.get('/equipment/:id', (req, res) => {
 
 
 // #region ==== HELPER FUNCTIONS ====
-let selectUserTemplate = (day, workoutTemplates) => {
-  switch (day) {
+let selectTemplate = (dayOfWeek, workoutTemplates) => {
+  let selectedTemplate = 0;
+  switch (dayOfWeek) {
     case 1:
       selectedTemplate = workoutTemplates[0];
       break;
