@@ -8,29 +8,6 @@ const phaseData = require('../modules/phaseData');
 // after all filters have been applied
 let dailyWorkout = [];
 
-let dummyEquipmentData = [
-  // "barbell",
-  // "body weight",
-  // "bosu ball",
-  // "dumbbell",
-  // "ez barbell",
-  // "kettlebell",
-  // "medicine ball",
-  // "weighted"
-  "barbell",
-  "body weight",
-  "cable",
-  "dumbbell",
-  "elliptical machine",
-  "ez barbell",
-  "kettlebell",
-  "leverage machine",
-  "medicine ball",
-  "stationary bike",
-  "stepmill machine",
-  "weighted"
-];
-
 // #region ==== GET ROUTES ====
 // get user preferences 
 router.get('/preferences/:id', (req, res) => {
@@ -41,13 +18,9 @@ router.get('/preferences/:id', (req, res) => {
 
   pool.query(queryText, [id])
     .then((result) => {
-      res.send(result.rows);
-
       let preferences = result.rows;
 
-      console.log('preferences', preferences);
-      console.log('phaseData', phaseData);
-
+      res.send(preferences);
     })
     .catch((error) => {
       res.sendStatus(500);
@@ -63,6 +36,8 @@ router.get('/', (req, res) => {
   let phase = 'endurance'; // req.body.phase
   let days_per_week = 1; //req.body.days_per_week
   let day = 1; //req.body.day
+  console.log('req.body.equipment', req.body.equipment);
+  let dummyEquipmentData = req.body.equipment;
 
   let queryText = `SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`;
 
@@ -154,101 +129,85 @@ function groupExercises(obj, arrOne, arrTwo) {
   let e_tens = [];
   let e_elevens = [];
 
-  // for (let i = 0; i < dummyExerciseData.length; i++) {
-
-  //   for (let j = 0; j < exercises.length; j++) {
-  //     if (dummyExerciseData[i].target === exercises[j]) {
-  //       eligibleExercises.push(dummyExerciseData[i]);
-  //     }
-  //   }
-  // }
 
   // for (let i = 0; i < arrOne.length; i++) {
+
   //   for (let j = 0; j < arrTwo.length; j++) {
   //     if (arrOne[i].equipment === arrTwo[j]) {
-  //       console.log(`match! equipment (${arrTwo[j]}), exercise`, arrOne[i]);
-  //     } else {
-  //       console.log(`NOT GOOD here: equipment (${arrTwo[j]}), exercise`, arrOne[i]);
+  //       switch (arrOne[i].target) {
+  //         case exercises[2]:
+  //           e_ones.push(arrOne[i]);
+  //           break;
+  //         case exercises[3]:
+  //           e_twos.push(arrOne[i]);
+  //           break;
+  //         case exercises[4]:
+  //           e_threes.push(arrOne[i]);
+  //           break;
+  //         case exercises[5]:
+  //           e_fours.push(arrOne[i]);
+  //           break;
+  //         case exercises[6]:           
+  //           e_fives.push(arrOne[i]);
+  //           break;
+  //         case exercises[7]:
+  //           e_sixes.push(arrOne[i]);
+  //           break;
+  //         case exercises[8]:
+  //           e_sevens.push(arrOne[i]);
+  //           break;
+  //         case exercises[9]:
+  //           e_eights.push(arrOne[i]);
+  //           break;
+  //         case exercises[10]:
+  //           e_nines.push(arrOne[i]);
+  //           break;
+  //         case exercises[11]:
+  //           e_tens.push(arrOne[i]);
+  //           break;
+  //         case exercises[12]:
+  //           e_elevens.push(arrOne[i]);
+  //           break;
+  //       }
   //     }
   //   }
   // }
-
-  // for (let i = 0; i < arrOne.length; i++) {
-  //   switch (arrOne[i].target) {
-  //     case exercises[2]:
-  //       e_ones.push(arrOne[i]);
-  //       break;
-  //     case exercises[3]:
-  //       e_twos.push(arrOne[i]);
-  //       break;
-  //     case exercises[4]:
-  //       e_threes.push(arrOne[i]);
-  //       break;
-  //     case exercises[5]:
-  //       e_fours.push(arrOne[i]);
-  //       break;
-  //     case exercises[6]:
-  //       e_fives.push(arrOne[i]);
-  //       break;
-  //     case exercises[7]:
-  //       e_sixes.push(arrOne[i]);
-  //       break;
-  //     case exercises[8]:
-  //       e_sevens.push(arrOne[i]);
-  //       break;
-  //     case exercises[9]:
-  //       e_eights.push(arrOne[i]);
-  //       break;
-  //     case exercises[10]:
-  //       e_nines.push(arrOne[i]);
-  //       break;
-  //     case exercises[11]:
-  //       e_tens.push(arrOne[i]);
-  //       break;
-  //     case exercises[12]:
-  //       e_elevens.push(arrOne[i]);
-  //       break;
-  //   }
-  // }
-
-  console.log('exercises[6]', exercises[6]);
-  
 
   for (let i = 0; i < arrOne.length; i++) {
 
     for (let j = 0; j < arrTwo.length; j++) {
       if (arrOne[i].equipment === arrTwo[j]) {
         switch (arrOne[i].target) {
-          // case exercises[2]:
-            // e_ones.push(arrOne[i]);
-            // break;
-          // case exercises[3]:
-          //   e_twos.push(arrOne[i]);
-          //   break;
-          // case exercises[4]:
-          //   e_threes.push(arrOne[i]);
-          //   break;
-          // case exercises[5]:
-          //   e_fours.push(arrOne[i]);
-          //   break;
-          // case exercises[6]:           
-          //   e_fives.push(arrOne[i]);
-          //   break;
-          // case exercises[7]:
-          //   e_sixes.push(arrOne[i]);
-          //   break;
-          // case exercises[8]:
-          //   e_sevens.push(arrOne[i]);
-          //   break;
-          // case exercises[9]:
-          //   e_eights.push(arrOne[i]);
-          //   break;
-          // case exercises[10]:
-          //   e_nines.push(arrOne[i]);
-          //   break;
-          // case exercises[11]:
-          //   e_tens.push(arrOne[i]);
-          //   break;
+          case exercises[2]:
+            e_ones.push(arrOne[i]);
+            break;
+          case exercises[3]:
+            e_twos.push(arrOne[i]);
+            break;
+          case exercises[4]:
+            e_threes.push(arrOne[i]);
+            break;
+          case exercises[5]:
+            e_fours.push(arrOne[i]);
+            break;
+          case exercises[6]:           
+            e_fives.push(arrOne[i]);
+            break;
+          case exercises[7]:
+            e_sixes.push(arrOne[i]);
+            break;
+          case exercises[8]:
+            e_sevens.push(arrOne[i]);
+            break;
+          case exercises[9]:
+            e_eights.push(arrOne[i]);
+            break;
+          case exercises[10]:
+            e_nines.push(arrOne[i]);
+            break;
+          case exercises[11]:
+            e_tens.push(arrOne[i]);
+            break;
           case exercises[12]:
             e_elevens.push(arrOne[i]);
             break;
@@ -274,25 +233,6 @@ function groupExercises(obj, arrOne, arrTwo) {
   for (let i = 0; i < eligibleExercises.length; i++) {
     getRandomExercise(eligibleExercises[i]);
   }
-
-  // ==== #region LOGS/TESTING ====
-  // notes: if multiple values exist, all
-  // subsequent arrays will not have exercises
-  // pushed to them
-  // console.log('e_ones', e_ones);
-  // console.log('e_twos', e_twos);
-  // console.log('e_threes ', e_threes );
-  // console.log('e_fours', e_fours);
-  // console.log('e_fives', e_fives);
-  // console.log('e_sixes', e_sixes);
-  // console.log('e_sevens ', e_sevens );
-  // console.log('e_eights ', e_eights );
-  // console.log('e_nines', e_nines);
-  // console.log('e_tens ', e_tens );
-  // console.log('e_elevens', e_elevens);
-  // === #endregion
-
-  console.log('arrTwo', arrTwo);
 }
 
 // 'getRandomExercise' randomly selects on exercise from 
