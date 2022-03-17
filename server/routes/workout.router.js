@@ -61,14 +61,14 @@ router.get('/', async (req, res) => {
     const equipmentAvailable = equipmentQuery.rows[0].equipment_available;
 
     // grabs exercise data from ExerciseDB database
-    const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
-      headers: {
-        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-        'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
-      }
-    })
-    const allExercises = exerciseAPIQuery.data;
-    // const allExercises = dummyExerciseData;
+    // const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
+    //   headers: {
+    //     'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+    //     'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
+    //   }
+    // })
+    // const allExercises = exerciseAPIQuery.data;
+    const allExercises = dummyExerciseData;
 
     // initiates all buildDailyWorkout function and sends all data grabbed before as 
     // necessary values for determine dailyWorkout
@@ -208,61 +208,27 @@ const filterEquipment = (newExercises, equipmentAvailable) => {
 
 
 const filterExercises = (equipmentMatches, targetValuesList) => {
-  let templateMatches = {
-    e_ones: [],
-    e_twos: [],
-    e_threes: [],
-    e_fours: [],
-    e_fives: [],
-    e_sixes: [],
-    e_sevens: [],
-    e_eights: [],
-    e_nines: [],
-    e_tens: [],
-    e_elevens: []
-  }
 
-  for (let i = 0; i < equipmentMatches.length; i++) {
-    switch (equipmentMatches[i].target) {
-      case targetValuesList[0]:
-        templateMatches.e_ones.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[1]:
-        templateMatches.e_twos.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[2]:
-        templateMatches.e_threes.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[3]:
-        templateMatches.e_fours.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[4]:
-        templateMatches.e_fives.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[5]:
-        templateMatches.e_sixes.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[6]:
-        templateMatches.e_sevens.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[7]:
-        templateMatches.e_eights.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[8]:
-        templateMatches.e_nines.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[9]:
-        templateMatches.e_tens.push(equipmentMatches[i]);
-        break;
-      case targetValuesList[10]:
-        templateMatches.e_elevens.push(equipmentMatches[i]);
-        break;
-    }
+  let templateMatches = {
+    e_ones: equipmentMatches.filter(exercise => exercise.target === targetValuesList[0]),
+    e_twos: equipmentMatches.filter(exercise => exercise.target === targetValuesList[1]),
+    e_threes: equipmentMatches.filter(exercise => exercise.target === targetValuesList[2]),
+    e_fours: equipmentMatches.filter(exercise => exercise.target === targetValuesList[3]),
+    e_fives: equipmentMatches.filter(exercise => exercise.target === targetValuesList[4]),
+    e_sixes: equipmentMatches.filter(exercise => exercise.target === targetValuesList[5]),
+    e_sevens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[6]),
+    e_eights: equipmentMatches.filter(exercise => exercise.target === targetValuesList[7]),
+    e_nines: equipmentMatches.filter(exercise => exercise.target === targetValuesList[8]),
+    e_tens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[9]),
+    e_elevens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[10])
   }
 
   return templateMatches;
 }
 
+// 'selectExercises' randomly selects on exercise from 
+// the given array and returns it as an object to be added
+// to the user's daily workout
 let selectExercises = (templateMatches) => {
   let dailyWorkout = [];
 
@@ -282,22 +248,6 @@ let selectExercises = (templateMatches) => {
   }
 
   return dailyWorkout;
-}
-
-// 'getRandomExercise' randomly selects on exercise from 
-// the given array and returns it as an object to be added
-// to the user's daily workout
-let getRandomExercise = (exerciseArray) => {
-  console.log('exerciseArray', exerciseArray);
-
-
-  // get random index value
-  const randomIndex = Math.floor(Math.random() * arr.length);
-
-  // get random exercise
-  const exercise = arr[randomIndex];
-
-  return exercise;
 }
 // #endregion ====
 
