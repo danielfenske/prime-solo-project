@@ -21,6 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // QuickLift components 
 import HomeView from '../HomeView/HomeView';
+import WorkoutView from '../WorkoutView/WorkoutView';
 
 
 import './App.css';
@@ -61,6 +62,10 @@ function App() {
             path="/user"
           >
             <HomeView />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/workout" exact>
+            <WorkoutView/>
           </ProtectedRoute>
 
           <ProtectedRoute
