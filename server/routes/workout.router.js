@@ -13,10 +13,17 @@ const buildDailyWorkout = require('../modules/buildDailyWorkout');
 // get workout request first starts with grabbing all eligible
 // templates from the database and selecting one template that corresponds
 // to the day the user is on in their week (ex: working out twice a week, on second day)
-router.get('/', async (req, res) => {
+router.get('/:dayOfWeek/:phase', async (req, res) => {
   const id = req.user.id
-  const dayOfWeek = Number(req.body.dayOfWeek);
+  const dayOfWeek = Number(req.params.dayOfWeek);
+  const phase = req.params.phase;
+
+  console.log('req.params', req.params);
+  
+  // console.log('req.body', req);
   // console.log('dayOfWeek', dayOfWeek);
+  // console.log('phase', phase);
+  
 
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for

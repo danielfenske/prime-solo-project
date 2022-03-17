@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function HomeView() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -9,15 +9,18 @@ function HomeView() {
   const [phase, setPhase] = useState('endurance');
   const [dayOfWeek, setDayOfWeek] = useState(1);
 
+  // initialize useDispatch to connect with SAGA
+  const dispatch = useDispatch();
+
   let handleSubmit = () => {
     console.log('in handleSubmit');
     event.preventDefault();
-    let userDailyInfo = {
+    let dailyInfo = {
       phase: phase,
       dayOfWeek: Number(dayOfWeek)
     }
 
-    console.log(userDailyInfo);
+    dispatch({type: 'SET_DAILY_INFO', payload: dailyInfo});
   }
 
   return (
