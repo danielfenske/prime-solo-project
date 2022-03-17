@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -6,21 +7,31 @@ function HomeView() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
+  // holds form values 
   const [phase, setPhase] = useState('endurance');
   const [dayOfWeek, setDayOfWeek] = useState(1);
 
   // initialize useDispatch to connect with SAGA
   const dispatch = useDispatch();
+  // initialize useHistory to move user to next screen
+  const history = useHistory();
 
+
+  // handleSubmit grabs form information, sends it to 
+  // saga, and pushes user to workout view
   let handleSubmit = () => {
-    console.log('in handleSubmit');
+    // eliminate page reload on submit
     event.preventDefault();
     let dailyInfo = {
       phase: phase,
       dayOfWeek: Number(dayOfWeek)
     }
 
+    // dailyInfo will be used in get request made to server
     dispatch({type: 'SET_DAILY_INFO', payload: dailyInfo});
+
+    // send user to page that displays workout
+    history.push('/workout');
   }
 
   return (

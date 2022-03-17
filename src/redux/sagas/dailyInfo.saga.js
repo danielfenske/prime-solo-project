@@ -7,8 +7,12 @@ function* getDailyWorkout(action) {
       let dayOfWeek = action.payload.dayOfWeek;
       let phase = action.payload.phase;
       
+      // GET request grabs dailyWorkout from server and sends user values as params
       const response = yield axios.get(`/api/workout/${dayOfWeek}/${phase}`);
-      console.log('response', response.data);
+      
+      // sends response to be stored in redux state
+      yield put ({ type: 'SET_DAILY_WORKOUT', payload: response.data});
+      
     } catch {
       console.log('Error GETTING workout');
     }
