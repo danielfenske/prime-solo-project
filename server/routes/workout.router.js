@@ -39,8 +39,8 @@ router.get('/', async (req, res) => {
       WHERE "exercise_history"."user_id" = $1
       GROUP BY "exercise_history"."user_id";`, [id]
     )
-    
-    let exerciseHistory;    
+
+    let exerciseHistory;
     if (historyQuery.rows[0]) {
       exerciseHistory = historyQuery.rows[0].exercise_id;
     } else {
@@ -80,30 +80,6 @@ router.get('/', async (req, res) => {
     res.sendStatus(403);
   }
 })
-
-router.get('/equipment/:id', (req, res) => {
-  let id = req.params.id;
-
-  // selects all equipment available associated with user id
-  let queryText = `SELECT array_agg("equipment"."name") AS equipment_available
-
-  FROM "users_equipment" 
-  JOIN "user" ON "users_equipment"."user_id" = "user"."id"
-  JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
-  
-  WHERE "users_equipment"."user_id" = $1
-  GROUP BY "users_equipment"."user_id";`;
-
-  pool.query(queryText, [id])
-    .then((result) => {
-      res.send(result.rows[0].equipment_available);
-    })
-    .catch((error) => {
-      console.log('error', error);
-
-      res.sendStatus(500);
-    })
-});
 // #endregion ====
 
 
@@ -243,7 +219,7 @@ let selectExercises = (templateMatches) => {
 
     // get random exercise
     const exercise = exerciseArray[randomIndex];
-  
+
     dailyWorkout.push(exercise);
   }
 
