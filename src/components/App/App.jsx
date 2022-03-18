@@ -27,6 +27,7 @@ import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
 import MaxesFormView from '../MaxesFormView/MaxesFormView';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 import './App.css';
 
@@ -72,6 +73,10 @@ function App() {
 
           <Route path="/signup/maxes">
             <MaxesFormView/>
+          </Route>
+
+          <Route path="/signup/review">
+            <ReviewForm/>
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

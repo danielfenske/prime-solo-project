@@ -4,30 +4,21 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // import children components
 import MaxesForm from '../MaxesForm/MaxesForm';
+import UserMaxes from '../UserMaxes/UserMaxes';
 
 function MaxesFormView() {
 
-    // const [exercise, setExercise] = useState('');
-    // const [weight, setWeight] = useState('');
-    // const [reps, setReps] = useState('');
-
-    const userMaxes = useSelector((store) => (store.userMaxes));
-
-    console.log(userMaxes);
-
-    const dispatch = useDispatch();
     const history = useHistory();
-
-    // const handleAdd = () => {
-    //     console.log('in handleAdd');
-
-    //     dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps)} });
-    // }
 
     const handleSubmit = () => {
         console.log('in handleSubmit');
        
+        history.push('/signup/review');
     }
+
+    // useEffect(() => {
+    //     dispatch({type: 'FETCH_USER_MAXES'});
+    //   }, []);
 
     const handleBackButton = () => {
         history.push('/signup/equipment');
@@ -37,7 +28,8 @@ function MaxesFormView() {
         <div className="appContainer">
             <h1 className="headerText">Track your progress!</h1>
             <MaxesForm/>
-            <button onClick={handleSubmit}>Submit</button>
+            <UserMaxes/>
+            <button onClick={handleSubmit}>Review</button>
             <button onClick={handleBackButton}>Back</button>
         </div>
     )

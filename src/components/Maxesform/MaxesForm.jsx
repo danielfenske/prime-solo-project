@@ -8,6 +8,8 @@ function MaxesForm() {
     const [weight, setWeight] = useState('');
     const [reps, setReps] = useState('');
 
+    const dispatch = useDispatch();
+
     const handleAdd = () => {
         console.log('in handleAdd');
 
