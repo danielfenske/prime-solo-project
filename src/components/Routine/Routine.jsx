@@ -32,21 +32,35 @@ function Routine() {
 
             <form onSubmit={handleNextButton}>
 
-                <h1 className="subHeaderText">Days per week:</h1>
+                {/* <h1 className="subHeaderText">Days per week:</h1>
                 <input
                     type="number"
                     value={daysPerWeek}
                     required
                     onChange={(event) => setDaysPerWeek(event.target.value)}
-                />
+                /> */}
+
+                <h1 className="subHeaderText">Days per week:</h1>
+                <select
+                    name="daysPerWeek"
+                    value={daysPerWeek}
+                    onChange={(event) => setDaysPerWeek(event.target.value)}
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
 
                 <h1 className="subHeaderText">Enter routine:</h1>
-                <input
-                    type="text"
+                <select
+                    name="routine"
                     value={routine}
-                    required
                     onChange={(event) => setRoutine(event.target.value)}
-                />
+                >
+                    <option value="full_body">full body</option>
+                    <option value="split">split</option>
+                </select>
 
                 <button type="submit">Next</button>
             </form>
