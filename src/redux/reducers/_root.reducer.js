@@ -7,6 +7,7 @@ import dailyWorkout from './dailyWorkout.reducer';
 import userProfile from './userProfile.reducer';
 import newUserForm from './newUserForm.reducer';
 import equipment from './equipment.reducer';
+import userMaxes from './userMaxes.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   userProfile, // holds all data related to user
   newUserForm, // holds all data for new users
   equipment, // holds equipment arrays for user and DB
+  userMaxes, // holds user's exercise maxes
 });
 
 export default rootReducer;

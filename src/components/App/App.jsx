@@ -26,7 +26,7 @@ import ProfileView from '../ProfileView/ProfileView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
-import MaxesForm from '../Maxesform/MaxesForm';
+import MaxesFormView from '../MaxesFormView/MaxesFormView';
 
 import './App.css';
 
@@ -38,6 +38,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_USER_PROFILE'});
+    dispatch({type: 'FETCH_USER_MAXES'});
   }, [dispatch]);
 
   return (
@@ -70,7 +71,7 @@ function App() {
           </Route>
 
           <Route path="/signup/maxes">
-            <MaxesForm/>
+            <MaxesFormView/>
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
