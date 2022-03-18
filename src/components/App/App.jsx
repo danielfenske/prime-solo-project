@@ -23,9 +23,11 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
 import ProfileView from '../ProfileView/ProfileView';
+import MaxesView from '../MaxesView/MaxesView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 import './App.css';
 
@@ -37,6 +39,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_USER_PROFILE'});
+    dispatch({type: 'FETCH_USER_MAXES'});
   }, [dispatch]);
 
   return (
@@ -66,6 +69,14 @@ function App() {
 
           <Route path="/signup/equipment" exact>
             <EquipmentForm/>
+          </Route>
+
+          <Route path="/maxes">
+            <MaxesView/>
+          </Route>
+
+          <Route path="/signup/review">
+            <ReviewForm/>
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

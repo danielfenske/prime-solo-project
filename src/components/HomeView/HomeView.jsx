@@ -30,7 +30,7 @@ function HomeView() {
 
   // handleSubmit grabs form information, sends it to 
   // saga, and pushes user to workout view
-  let handleSubmit = () => {
+  const handleSubmit = () => {
     // eliminate page reload on submit
     event.preventDefault();
     let dailyInfo = {
@@ -52,7 +52,7 @@ function HomeView() {
       <LogOutButton className="btn" /> */}
 
       {/* QuickLift HomeView */}
-      <h1 className="headerText">Welcome back, {user.username}!</h1>
+      <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
       <form onSubmit={handleSubmit}>
         <h1 className="subHeaderText">Select phase:</h1>
         <select

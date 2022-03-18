@@ -44,7 +44,7 @@ function RoutineForm() {
                     <option value="4">4</option>
                 </select>
 
-                <h1 className="subHeaderText">Enter routine:</h1>
+                <h1 className="subHeaderText">Select routine:</h1>
                 <select
                     name="routine"
                     value={routine}

@@ -7,6 +7,8 @@ import userSaga from './user.saga';
 import dailyInfoSaga from './dailyInfo.saga';
 import userProfileSaga from './userProfile.saga';
 import userSignupSaga from './userSignup.saga';
+import userMaxesSaga from './userMaxes.saga';
+import equipmentListSaga from './equipmentList.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -24,5 +26,7 @@ export default function* rootSaga() {
     dailyInfoSaga(),
     userProfileSaga(),
     userSignupSaga(),
+    userMaxesSaga(),
+    equipmentListSaga(),
   ]);
 }
