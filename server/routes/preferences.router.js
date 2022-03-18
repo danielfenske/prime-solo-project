@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
 
         pool.query(queryText, [id])
             .then((result) => {
-                let preferences = result.rows;
+                let preferences = result.rows;                
 
-                res.send(preferences);
+                res.send(preferences[0]);
             })
             .catch((error) => {
                 res.sendStatus(500);
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get('/equipment/', (req, res) => {
+router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
     if (req.isAuthenticated()) {

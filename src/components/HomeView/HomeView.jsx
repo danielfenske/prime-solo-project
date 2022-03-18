@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 
+// import DaySelector
+import DaySelector from '../DaySelector/DaySelector';
+
 function HomeView() {
+
+  // bring in state stored in redux for all data related to profile
+  const userPreferences = useSelector((store) => (store.userProfile.userPreferences));
+
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
@@ -16,6 +23,10 @@ function HomeView() {
   // initialize useHistory to move user to next screen
   const history = useHistory();
 
+  // grab user profile information on page load
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER_PROFILE' });
+}, []);
 
   // handleSubmit grabs form information, sends it to 
   // saga, and pushes user to workout view
@@ -28,7 +39,7 @@ function HomeView() {
     }
 
     // dailyInfo will be used in get request made to server
-    dispatch({type: 'SET_DAILY_INFO', payload: dailyInfo});
+    dispatch({ type: 'SET_DAILY_INFO', payload: dailyInfo });
 
     // send user to page that displays workout
     history.push('/workout');
@@ -43,7 +54,7 @@ function HomeView() {
       {/* QuickLift HomeView */}
       <h1 className="headerText">Welcome back, {user.username}!</h1>
       <form onSubmit={handleSubmit}>
-      <h1 className="subHeaderText">Select phase:</h1>
+        <h1 className="subHeaderText">Select phase:</h1>
         <select
           name="phase"
           value={phase}
@@ -62,10 +73,9 @@ function HomeView() {
           value={dayOfWeek}
           onChange={(event) => setDayOfWeek(event.target.value)}
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          <DaySelector 
+            daysPerWeek={userPreferences.days_per_week}
+          />
         </select>
 
         <button type="submit">Get Workout</button>
