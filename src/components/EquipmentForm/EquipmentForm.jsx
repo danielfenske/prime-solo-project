@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function EquipmentForm() {
 
-    const [equipmentList, setEquipmentList] = useState([]);
+    const [userEquipmentList, setUserEquipmentList] = useState([]);
+
+    const equipmentList = useSelector((store) => (store.equipmentList));
+
+    // initialize useDispatch to connect with SAGA
+    const dispatch = useDispatch();
 
     // const handleCheckBoxChange = (event) => {
     //     if (event.target.checked === true) {
     //         setEquipmentList([...equipmentList, (event.target.value)]);
     //     }
     // }
-
-    console.log(equipmentList);
 
     // sends all values taken from form to be stored in reducer
     const handleNextButton = () => {
@@ -28,6 +31,12 @@ function EquipmentForm() {
         history.push('/signup/routine');
     }
 
+    // grab user profile information on page load
+    useEffect(() => {
+        dispatch({ type: 'FETCH_EQUIPMENT_LIST' });
+    }, []);
+
+
     return (
         <div className="appContainer">
             <h1 className="headerText">What equipment is available to you?</h1>
@@ -35,7 +44,7 @@ function EquipmentForm() {
 
             <form on Submit={handleNextButton}>
                 <div>
-                    <input type="checkbox" value="barbell" name="barbell"/>
+                    <input type="checkbox" value="barbell" name="barbell" />
                     <label for="barbell">Barbell</label>
                 </div>
                 <div>
@@ -94,7 +103,7 @@ function EquipmentForm() {
 
                 <div className="equipmentContainer">
                     {
-                        
+
                     }
                 </div>
 
