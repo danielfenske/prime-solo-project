@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function Metrics() {
 
@@ -10,28 +11,32 @@ function Metrics() {
 
     // initialize useDispatch to connect with SAGA
     const dispatch = useDispatch();
+    // initialize useHistory to move user to next screen
+    const history = useHistory();
 
 
     // sends all values taken from form to be stored in reducer
-    const handleSubmit = () => {
+    const handleNextButton = () => {
         event.preventDefault();
         console.log('in handleSubmit');
 
         let metrics = {
-            name: name, 
-            age: age, 
-            weight: weight, 
-            height, height
+            name: name,
+            age: Number(age),
+            weight: Number(weight),
+            height: Number(height)
         }
 
-        dispatch({type: 'SET_NEW_USER', payload: metrics});
+        dispatch({ type: 'ADD_METRICS', payload: metrics });
+
+        history.push('/signup/routine');
     }
 
     return (
         <div className="appContainer">
             <h1 className="headerText">Tell us a little more about you.</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleNextButton}>
                 <h1 className="subHeaderText">Enter name:</h1>
                 <input
                     type="text"

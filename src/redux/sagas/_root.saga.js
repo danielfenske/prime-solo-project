@@ -6,6 +6,7 @@ import userSaga from './user.saga';
 // QuickLift SAGAS
 import dailyInfoSaga from './dailyInfo.saga';
 import userProfileSaga from './userProfile.saga';
+import userSignupSaga from './userSignup.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     // QuickLift SAGAS
     dailyInfoSaga(),
     userProfileSaga(),
+    userSignupSaga(),
   ]);
 }

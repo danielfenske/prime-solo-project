@@ -24,7 +24,7 @@ import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
 import ProfileView from '../ProfileView/ProfileView';
 import Metrics from '../Metrics/Metrics';
-
+import Routine from '../Routine/Routine';
 
 import './App.css';
 
@@ -57,6 +57,10 @@ function App() {
 
           <Route path="/signup/metrics" exact>
             <Metrics/>
+          </Route>
+
+          <Route path="/signup/routine" exact>
+            <Routine/>
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
