@@ -13,11 +13,11 @@ function* userProfileSaga() {
       yield put ({ type: 'SET_USER_PREFERENCES', payload: preferencesResponse.data});
       yield put ({ type: 'SET_USER_EQUIPMENT', payload: equipmentResponse.data});
       
-    } catch {
-      console.log('Error GETTING profile');
+    } catch (error) {
+      console.log('Error GETTING profile', error);
     }
   }
-  
+
   function* dailyInfoSaga() {
     yield takeLatest('FETCH_USER_PROFILE', userProfileSaga);
   }

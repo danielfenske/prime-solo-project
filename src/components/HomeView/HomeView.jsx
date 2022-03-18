@@ -30,7 +30,7 @@ function HomeView() {
 
   // handleSubmit grabs form information, sends it to 
   // saga, and pushes user to workout view
-  let handleSubmit = () => {
+  const handleSubmit = () => {
     // eliminate page reload on submit
     event.preventDefault();
     let dailyInfo = {
