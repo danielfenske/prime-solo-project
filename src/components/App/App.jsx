@@ -23,10 +23,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
 import ProfileView from '../ProfileView/ProfileView';
+import MaxesView from '../MaxesView/MaxesView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
-import MaxesFormView from '../MaxesFormView/MaxesFormView';
 import ReviewForm from '../ReviewForm/ReviewForm';
 
 import './App.css';
@@ -71,8 +71,8 @@ function App() {
             <EquipmentForm/>
           </Route>
 
-          <Route path="/signup/maxes">
-            <MaxesFormView/>
+          <Route path="/maxes">
+            <MaxesView/>
           </Route>
 
           <Route path="/signup/review">

@@ -8,29 +8,18 @@ import UserMaxes from '../UserMaxes/UserMaxes';
 
 function MaxesFormView() {
 
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = () => {
-        console.log('in handleSubmit');
-       
-        history.push('/signup/review');
-    }
-
-    // useEffect(() => {
-    //     dispatch({type: 'FETCH_USER_MAXES'});
-    //   }, []);
-
-    const handleBackButton = () => {
-        history.push('/signup/equipment');
-    }
+    useEffect(() => {
+        dispatch({type: 'FETCH_USER_MAXES'});
+      }, []);
 
     return (
         <div className="appContainer">
             <h1 className="headerText">Track your progress!</h1>
             <MaxesForm/>
             <UserMaxes/>
-            <button onClick={handleSubmit}>Review</button>
-            <button onClick={handleBackButton}>Back</button>
         </div>
     )
 }

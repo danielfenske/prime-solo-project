@@ -1,4 +1,6 @@
-function newUserForm(state={}, action) {
+import { combineReducers } from "redux";
+
+function newUserPreferences(state={}, action) {
     switch(action.type) {
         case 'ADD_METRICS':
             const name = action.payload.name;
@@ -14,4 +16,18 @@ function newUserForm(state={}, action) {
     return state;
 }
 
-export default newUserForm;
+const newUserEquipmentList = (state=['body weight'], action) => {
+    if (action.type === 'ADD_EQUIPMENT') {
+        return [...state, action.payload];
+    } else if (action.type === 'REMOVE_EQUIPMENT') {
+        let newState = state.filter(equipment => equipment !== action.payload);
+        return newState; 
+    }
+    return state;
+}
+
+
+export default combineReducers({
+    newUserPreferences,
+    newUserEquipmentList,
+});

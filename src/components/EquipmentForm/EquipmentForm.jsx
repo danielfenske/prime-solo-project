@@ -6,11 +6,7 @@ import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
 function EquipmentForm() {
 
-    const equipmentList = useSelector((store) => (store.equipment.equipmentList));
-
-    const userEquipmentList = useSelector((store) => (store.equipment.userEquipmentList));
-
-    console.log(userEquipmentList);
+    const equipmentList = useSelector((store) => (store.equipmentList));
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,7 +17,7 @@ function EquipmentForm() {
 
         alert(`Are you sure you want to move on? The exercises you checked will reflect the workouts you're given.`)
 
-        history.push('/signup/maxes');
+        history.push('/signup/review');
     }
 
     const handleBackButton = () => {
