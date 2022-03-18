@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function Routine() {
+function RoutineForm() {
 
     const [daysPerWeek, setDaysPerWeek] = useState('');
     const [routine, setRoutine] = useState('');
@@ -31,15 +31,7 @@ function Routine() {
             <h1 className="headerText">What's your go-to routine?</h1>
 
             <form onSubmit={handleNextButton}>
-
-                {/* <h1 className="subHeaderText">Days per week:</h1>
-                <input
-                    type="number"
-                    value={daysPerWeek}
-                    required
-                    onChange={(event) => setDaysPerWeek(event.target.value)}
-                /> */}
-
+                
                 <h1 className="subHeaderText">Days per week:</h1>
                 <select
                     name="daysPerWeek"
@@ -69,4 +61,4 @@ function Routine() {
     )
 }
 
-export default Routine;
+export default RoutineForm;

@@ -23,8 +23,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
 import ProfileView from '../ProfileView/ProfileView';
-import Metrics from '../Metrics/Metrics';
-import Routine from '../Routine/Routine';
+import MetricsForm from '../MetricsForm/MetricsForm';
+import RoutineForm from '../RoutineForm/RoutineForm';
 
 import './App.css';
 
@@ -56,11 +56,11 @@ function App() {
           </Route>
 
           <Route path="/signup/metrics" exact>
-            <Metrics/>
+            <MetricsForm/>
           </Route>
 
           <Route path="/signup/routine" exact>
-            <Routine/>
+            <RoutineForm/>
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

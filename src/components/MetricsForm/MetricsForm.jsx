@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function Metrics() {
+function MetricsForm() {
 
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -74,4 +74,4 @@ function Metrics() {
     )
 }
 
-export default Metrics;
+export default MetricsForm;
