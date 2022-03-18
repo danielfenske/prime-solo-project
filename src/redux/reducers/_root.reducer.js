@@ -5,6 +5,7 @@ import user from './user.reducer';
 // QuickLift reducers
 import dailyWorkout from './dailyWorkout.reducer';
 import userProfile from './userProfile.reducer';
+import newUserForm from './newUserForm.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   dailyWorkout, // holds dailyWorkout array
   userProfile, // holds all data related to user
+  newUserForm, // holds all data for new users
 });
 
 export default rootReducer;
