@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 // QuickLift components 
 import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
+import ProfileView from '../ProfileView/ProfileView';
 
 
 import './App.css';
@@ -66,6 +67,10 @@ function App() {
 
           <ProtectedRoute path="/workout" exact>
             <WorkoutView/>
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/profile" exact>
+            <ProfileView/>
           </ProtectedRoute>
 
           <ProtectedRoute
