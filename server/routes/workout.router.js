@@ -70,14 +70,14 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     const equipmentAvailable = equipmentQuery.rows[0].equipment_available;
 
     // grabs exercise data from ExerciseDB database
-    // const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
-    //   headers: {
-    //     'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-    //     'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
-    //   }
-    // })
-    // const allExercises = exerciseAPIQuery.data;
-    const allExercises = dummyExerciseData;
+    const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises`, {
+      headers: {
+        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+        'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
+      }
+    })
+    const allExercises = exerciseAPIQuery.data;
+    // const allExercises = dummyExerciseData;
 
     // initiates all buildDailyWorkout function and sends all data grabbed before as 
     // necessary values for determine dailyWorkout
