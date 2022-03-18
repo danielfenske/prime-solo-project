@@ -1,4 +1,4 @@
-function Equipment({equipment}) {
+function ProfileEquipment({equipment}) {
     return(
         <>
             <p>{equipment}</p>
@@ -6,4 +6,4 @@ function Equipment({equipment}) {
     )
 }
 
-export default Equipment;
+export default ProfileEquipment;
