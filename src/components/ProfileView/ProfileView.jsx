@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // import equipment component
-import Equipment from '../Equipment/Equipment';
+import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
 
 function ProfileView() {
 
@@ -39,7 +39,7 @@ function ProfileView() {
                 {
                     userEquipment && (userEquipment.map((equipment, index) => {
                         return (
-                            <Equipment
+                            <ProfileEquipment
                                 key={index}
                                 equipment={equipment}
                             />

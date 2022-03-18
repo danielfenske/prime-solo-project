@@ -1,9 +1,7 @@
 import { combineReducers } from "redux";
 
 const userPreferences = (state={}, action) => {
-    if (action.type === 'SET_USER_PREFERENCES') {
-        console.log('action.payload', action.payload);
-        
+    if (action.type === 'SET_USER_PREFERENCES') {        
         return action.payload;
     } 
     return state;
