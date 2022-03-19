@@ -29,7 +29,7 @@ function MetricsForm() {
 
         dispatch({ type: 'ADD_METRICS', payload: metrics });
 
-        history.push('/signup/routine');
+        history.push('/routine');
     }
 
     return (

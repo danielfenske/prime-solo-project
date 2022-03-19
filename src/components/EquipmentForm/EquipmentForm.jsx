@@ -17,11 +17,11 @@ function EquipmentForm() {
 
         alert(`Are you sure you want to move on? The exercises you checked will reflect the workouts you're given.`)
 
-        history.push('/signup/review');
+        history.push('/maxes');
     }
 
     const handleBackButton = () => {
-        history.push('/signup/routine');
+        history.push('/routine');
     }
 
     // grab user profile information on page load

@@ -12,14 +12,31 @@ function MaxesFormView() {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({type: 'FETCH_USER_MAXES'});
-      }, []);
+        dispatch({ type: 'FETCH_USER_MAXES' });
+    }, []);
+
+    // sends all values taken from form to be stored in reducer
+    const handleSubmitButton = () => {
+        event.preventDefault();
+        console.log('in handleSubmitButton');
+
+        dispatch({ type: 'ADD_ROUTINE', payload: { daysPerWeek: Number(daysPerWeek), routine: routine } });
+
+        history.push('/equipment');
+    }
+
+    const handleBackButton = () => {
+        history.push('/equipment');
+    }
 
     return (
         <div className="appContainer">
             <h1 className="headerText">Track your progress!</h1>
-            <MaxesForm/>
-            <UserMaxes/>
+            <MaxesForm />
+            <UserMaxes />
+
+            <button onClick={handleSubmitButton}>Get to work</button>
+            <button onClick={handleBackButton}>Back</button>
         </div>
     )
 }
