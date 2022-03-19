@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
+import Nav from '../Nav/Nav';
 
 // import DaySelector
 import DaySelector from '../DaySelector/DaySelector';
@@ -44,11 +45,6 @@ function HomeView() {
 
   return (
     <div className="appContainer">
-      {/* <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" /> */}
-
-      {/* QuickLift HomeView */}
       <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
       <form onSubmit={handleSubmit}>
         <h1 className="subHeaderText">Select phase:</h1>
@@ -77,6 +73,7 @@ function HomeView() {
 
         <button type="submit">Get Workout</button>
       </form>
+      <Nav/>
     </div>
   );
 }

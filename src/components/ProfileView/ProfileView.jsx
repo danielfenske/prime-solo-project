@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import equipment component
 import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
 import UserMaxes from '../UserMaxes/UserMaxes';
+import Nav from '../Nav/Nav';
 
 function ProfileView() {
 
@@ -18,7 +19,8 @@ function ProfileView() {
 
     // grab user profile information on page load
     useEffect(() => {
-        dispatch({ type: 'FETCH_USER_PROFILE' });
+        dispatch({ type: 'FETCH_USER_PREFERENCES' });
+        dispatch({type: 'FETCH_USER_EQUIPMENT_LIST'});
     }, []);
 
     return (
@@ -50,6 +52,7 @@ function ProfileView() {
             </div>
 
             <UserMaxes/>
+            <Nav/>
         </div>
     )
 }
