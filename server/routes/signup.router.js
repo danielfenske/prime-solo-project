@@ -11,12 +11,10 @@ router.get('/equipment', (req, res) => {
 
     if (req.isAuthenticated()) {
         // selects all equipment listed in DB
-        // let queryText = `SELECT array_agg("equipment"."name") AS "equipment_list" FROM "equipment";`;
         let queryText = `SELECT "equipment"."id", "equipment"."name" from "equipment";`;
 
         pool.query(queryText)
             .then((result) => {
-                // res.send(result.rows[0].equipment_list);
                 res.send(result.rows);
             })
             .catch((error) => {
@@ -40,7 +38,7 @@ router.post('/equipment/:id', (req, res) => {
 
     if (req.isAuthenticated()) {
         let queryText =
-            `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
+        `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
         VALUES ($1, $2);`
 
         pool.query(queryText, [userId, equipmentId])
@@ -54,16 +52,12 @@ router.post('/equipment/:id', (req, res) => {
                 res.sendStatus(500);
             })
     }
-
 });
 
-router.delete('/equipment/', (req, res) => {
+router.delete('/equipment/:id', (req, res) => {
     let userId = req.user.id;
-    let equipmentId = req.body.id;
+    let equipmentId = req.params.id;
 
-    console.log('userId', userId);
-    console.log('equipmentId', equipmentId);
-    
     if (req.isAuthenticated()) {
         let queryText =
             `DELETE FROM "users_equipment" 

@@ -8,24 +8,26 @@ function EquipmentItem({ equipment }) {
         console.log('in handleClickChange', event.target.checked);
 
         if (event.target.checked === true) {
-            dispatch({type: 'ADD_EQUIPMENT', payload: event.target.value});
+            console.log('event.target.value', event.target.value);
+            dispatch({type: 'POST_EQUIPMENT', payload: event.target.value});
         } else {
-            dispatch({type: 'REMOVE_EQUIPMENT', payload: event.target.value});
+            console.log('event.target.value', event.target.value);
+            dispatch({type: 'DELETE_EQUIPMENT', payload: event.target.value});
         }
     }
 
     if (equipment !== 'body weight') {
         return (
             <div className='=equipmentContainer'>
-                <input type="checkbox" value={equipment} name={equipment} onClick={handleCheckboxChange}/>
-                <label for={equipment}>{equipment}</label>
+                <input type="checkbox" value={equipment.id} name={equipment.name} onClick={handleCheckboxChange}/>
+                <label for={equipment.name}>{equipment.name}</label>
             </div>
         )
     } else {
         return (
             <div className='=equipmentContainer'>
-                <input type="checkbox" value={equipment} name={equipment} checked />
-                <label for={equipment}>{equipment}</label>
+                <input type="checkbox" value={equipment.id} name={equipment.name} checked />
+                <label for={equipment.name}>{equipment.name}</label>
             </div>
         )
     }

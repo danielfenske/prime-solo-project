@@ -37,10 +37,10 @@ function EquipmentForm() {
 
             <form onSubmit={handleNextButton}>
                 {
-                   equipmentList && equipmentList.map((equipment, index) => {
+                   equipmentList && equipmentList.map((equipment) => {
                        return (
                            <EquipmentItem
-                                key={index}
+                                key={equipment.id}
                                 equipment={equipment}
                             />
                        )
