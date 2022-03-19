@@ -12,7 +12,7 @@ function* postUserForm(action) {
   
   function* userSignupSaga() {
     yield takeLatest('POST_USER_PREFERENCES', postUserForm);
-    yield takeLatest('POST_EQUIPMENT_LIST', postUserForm);
+    // yield takeLatest('POST_EQUIPMENT_LIST', postUserForm);
   }
   
   export default userSignupSaga;
