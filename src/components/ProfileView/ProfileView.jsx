@@ -10,8 +10,8 @@ import UserMaxes from '../UserMaxes/UserMaxes';
 function ProfileView() {
 
     // bring in state stored in redux for all data related to profile
-    const userPreferences = useSelector((store) => (store.userProfile.userPreferences));
-    const userEquipment = useSelector((store) => (store.userProfile.userEquipment));
+    const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
+    const userEquipment = useSelector((store) => (store.equipment.userEquipmentList));
 
     // initialize useDispatch to connect with SAGA
     const dispatch = useDispatch();
