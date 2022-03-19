@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Nav from '../Nav/Nav';
 
 // import Exercise component
 import Exercise from '../Exercise/Exercise';
@@ -24,6 +24,7 @@ function WorkoutView() {
                     />
                 );
             })) : <p>Loading</p>}
+            <Nav/>
         </div>
     )
 }
