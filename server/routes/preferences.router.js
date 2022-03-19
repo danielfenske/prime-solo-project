@@ -27,6 +27,29 @@ router.get('/', (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    let id = req.user.id;
+    let name = req.body.name;
+    let weight = req.body.weight;
+    let height = req.body.height;
+    let age = req.body.age;
+    let days_per_week = req.body.days_per_week;
+    let routine = req.body.routine;
+
+    if (req.isAuthenticated()) {
+
+        await pool.query(`INSERT INTO "user_preferences" ("user_id", "name", "weight", "height", "age", "days_per_week", "routine")
+        VALUES ($1, $2, $3, $4, $5, $6, $7);`,
+        [id, name, weight, height, age, days_per_week, routine]);
+
+        await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
+
+        res.sendStatus(201);
+    } else {
+        res.sendStatus(403);
+    }
+})
+
 router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
