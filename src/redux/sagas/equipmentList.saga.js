@@ -25,6 +25,9 @@ function* postEquipmentList(action) {
   try {
     const equipmentId = action.payload;
 
+    // DELETE newUser equipment id from DB to eliminate duplicate values
+    yield axios.delete(`api/signup/equipment/${equipmentId}`);
+
     // POST newUser equipment id to DB
     yield axios.post(`api/signup/equipment/${equipmentId}`);
 
@@ -37,9 +40,6 @@ function* postEquipmentList(action) {
 function* deleteEquipmentList(action) {
   try {
     const equipmentId = action.payload;
-
-    console.log('equipmentId', equipmentId);
-    
 
     // DELETE newUser equipment id from DB
     yield axios.delete(`api/signup/equipment/${equipmentId}`);

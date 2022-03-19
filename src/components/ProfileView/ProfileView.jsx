@@ -37,10 +37,10 @@ function ProfileView() {
             <div className="equipmentContainer">
                 <h1 className="subHeaderText">EQUIPMENT</h1>
                 {
-                    userEquipment && (userEquipment.map((equipment, index) => {
+                    userEquipment && (userEquipment.map((equipment) => {
                         return (
                             <ProfileEquipment
-                                key={index}
+                                key={equipment.id}
                                 equipment={equipment}
                             />
                         )

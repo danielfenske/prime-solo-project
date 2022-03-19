@@ -33,9 +33,6 @@ router.post('/equipment/:id', (req, res) => {
     let userId = req.user.id;
     let equipmentId = req.params.id;
 
-    console.log('userId', userId);
-    console.log('equipmentId', equipmentId);
-
     if (req.isAuthenticated()) {
         let queryText =
         `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
@@ -56,7 +53,7 @@ router.post('/equipment/:id', (req, res) => {
 
 router.delete('/equipment/:id', (req, res) => {
     let userId = req.user.id;
-    let equipmentId = req.params.id;
+    let equipmentId = req.params.id;    
 
     if (req.isAuthenticated()) {
         let queryText =

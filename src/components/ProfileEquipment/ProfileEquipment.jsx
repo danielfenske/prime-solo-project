@@ -1,7 +1,7 @@
 function ProfileEquipment({equipment}) {
     return(
         <>
-            <p>{equipment}</p>
+            <p>{equipment.name}</p>
         </>
     )
 }
