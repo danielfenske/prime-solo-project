@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // import equipment component
 import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
+import UserMaxes from '../UserMaxes/UserMaxes';
 
 function ProfileView() {
 
@@ -37,16 +38,18 @@ function ProfileView() {
             <div className="equipmentContainer">
                 <h1 className="subHeaderText">EQUIPMENT</h1>
                 {
-                    userEquipment && (userEquipment.map((equipment, index) => {
+                    userEquipment && (userEquipment.map((equipment) => {
                         return (
                             <ProfileEquipment
-                                key={index}
+                                key={equipment.id}
                                 equipment={equipment}
                             />
                         )
                     }))
                 }
             </div>
+
+            <UserMaxes/>
         </div>
     )
 }

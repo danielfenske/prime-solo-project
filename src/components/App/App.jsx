@@ -38,7 +38,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_USER_PROFILE'});
+    dispatch({ type: 'FETCH_USER_PREFERENCES'});
+    dispatch({type: 'FETCH_USER_EQUIPMENT_LIST'});
     dispatch({type: 'FETCH_USER_MAXES'});
   }, [dispatch]);
 
@@ -59,15 +60,15 @@ function App() {
             <AboutPage />
           </Route>
 
-          <Route path="/signup/metrics" exact>
+          <Route path="/metrics" exact>
             <MetricsForm/>
           </Route>
 
-          <Route path="/signup/routine" exact>
+          <Route path="/routine" exact>
             <RoutineForm/>
           </Route>
 
-          <Route path="/signup/equipment" exact>
+          <Route path="/equipment" exact>
             <EquipmentForm/>
           </Route>
 
@@ -75,7 +76,7 @@ function App() {
             <MaxesView/>
           </Route>
 
-          <Route path="/signup/review">
+          <Route path="/review">
             <ReviewForm/>
           </Route>
 

@@ -14,6 +14,7 @@ function MaxesForm() {
         console.log('in handleAdd');
 
         dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps)} });
+        dispatch({ type: 'FETCH_USER_MAXES' });
     }
 
     return (

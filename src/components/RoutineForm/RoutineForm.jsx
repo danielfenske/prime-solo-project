@@ -15,15 +15,15 @@ function RoutineForm() {
     // sends all values taken from form to be stored in reducer
     const handleNextButton = () => {
         event.preventDefault();
-        console.log('in handleSubmit');
+        console.log('in handleNextButton');
 
         dispatch({ type: 'ADD_ROUTINE', payload: { daysPerWeek: Number(daysPerWeek), routine: routine } });
 
-        history.push('/signup/equipment');
+        history.push('/equipment');
     }
 
     const handleBackButton = () => {
-        history.push('/signup/metrics');
+        history.push('/metrics');
     }
 
     return (

@@ -14,7 +14,6 @@ function ReviewForm() {
     const handleSubmit = () => {
         console.log('in handleSubmit');
 
-        dispatch({type: 'POST_USER_PREFERENCES', payload: newUserPreferences});
         dispatch({type: 'POST_EQUIPMENT_LIST', payload: newUserEquipmentList});
     }
 

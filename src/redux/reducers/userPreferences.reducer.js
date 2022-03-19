@@ -1,5 +1,12 @@
 import { combineReducers } from "redux";
 
+const userPreferences = (state={}, action) => {
+    if (action.type === 'SET_USER_PREFERENCES') {        
+        return action.payload;
+    } 
+    return state;
+}
+
 function newUserPreferences(state={}, action) {
     switch(action.type) {
         case 'ADD_METRICS':
@@ -16,18 +23,7 @@ function newUserPreferences(state={}, action) {
     return state;
 }
 
-const newUserEquipmentList = (state=['body weight'], action) => {
-    if (action.type === 'ADD_EQUIPMENT') {
-        return [...state, action.payload];
-    } else if (action.type === 'REMOVE_EQUIPMENT') {
-        let newState = state.filter(equipment => equipment !== action.payload);
-        return newState; 
-    }
-    return state;
-}
-
-
 export default combineReducers({
+    userPreferences,
     newUserPreferences,
-    newUserEquipmentList,
 });

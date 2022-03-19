@@ -6,7 +6,7 @@ import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
 function EquipmentForm() {
 
-    const equipmentList = useSelector((store) => (store.equipmentList));
+    const equipmentList = useSelector((store) => (store.equipment.equipmentList));
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -17,11 +17,11 @@ function EquipmentForm() {
 
         alert(`Are you sure you want to move on? The exercises you checked will reflect the workouts you're given.`)
 
-        history.push('/signup/review');
+        history.push('/maxes');
     }
 
     const handleBackButton = () => {
-        history.push('/signup/routine');
+        history.push('/routine');
     }
 
     // grab user profile information on page load
@@ -37,10 +37,10 @@ function EquipmentForm() {
 
             <form onSubmit={handleNextButton}>
                 {
-                   equipmentList && equipmentList.map((equipment, index) => {
+                   equipmentList && equipmentList.map((equipment) => {
                        return (
                            <EquipmentItem
-                                key={index}
+                                key={equipment.id}
                                 equipment={equipment}
                             />
                        )

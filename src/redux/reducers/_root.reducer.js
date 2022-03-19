@@ -4,9 +4,8 @@ import user from './user.reducer';
 
 // QuickLift reducers
 import dailyWorkout from './dailyWorkout.reducer';
-import userProfile from './userProfile.reducer';
-import newUserForm from './newUserForm.reducer';
-import equipmentList from './equipment.reducer';
+import userPreferences from './userPreferences.reducer';
+import equipment from './equipment.reducer';
 import userMaxes from './userMaxes.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -19,9 +18,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   dailyWorkout, // holds dailyWorkout array
-  userProfile, // holds all data related to user
-  newUserForm, // holds all data for new users
-  equipmentList, // holds equipment arrays for user and DB
+  userPreferences, // holds all data related to user
+  equipment, // holds equipment arrays for user and DB
   userMaxes, // holds user's exercise maxes
 });
 

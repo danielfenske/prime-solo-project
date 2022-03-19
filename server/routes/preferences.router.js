@@ -31,19 +31,18 @@ router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
     if (req.isAuthenticated()) {
-        // selects all equipment available associated with user id
-        let queryText = `SELECT array_agg("equipment"."name") AS equipment_available
-  
-      FROM "users_equipment" 
-      JOIN "user" ON "users_equipment"."user_id" = "user"."id"
-      JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
       
-      WHERE "users_equipment"."user_id" = $1
-      GROUP BY "users_equipment"."user_id";`;
+    let queryText = `SELECT "equipment"."id", "equipment"."name"
+  
+    FROM "users_equipment" 
+    JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+    JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+    
+    WHERE "users_equipment"."user_id" = $1;`;
 
         pool.query(queryText, [id])
             .then((result) => {
-                res.send(result.rows[0].equipment_available);
+                res.send(result.rows);
             })
             .catch((error) => {
                 console.log('error', error);
