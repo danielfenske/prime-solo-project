@@ -9,10 +9,7 @@ import DaySelector from '../DaySelector/DaySelector';
 function HomeView() {
 
   // bring in state stored in redux for all data related to profile
-  const userPreferences = useSelector((store) => (store.userProfile.userPreferences));
-
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+  const userPreferences = useSelector((store) => (store.userPreferences));
 
   // holds form values 
   const [phase, setPhase] = useState('endurance');
@@ -25,7 +22,7 @@ function HomeView() {
 
   // grab user profile information on page load
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER_PROFILE' });
+    dispatch({ type: 'FETCH_USER_PREFERENCES' });
 }, []);
 
   // handleSubmit grabs form information, sends it to 
@@ -39,7 +36,7 @@ function HomeView() {
     }
 
     // dailyInfo will be used in get request made to server
-    dispatch({ type: 'SET_DAILY_INFO', payload: dailyInfo });
+    dispatch({ type: 'FETCH_DAILY_WORKOUT', payload: dailyInfo });
 
     // send user to page that displays workout
     history.push('/workout');

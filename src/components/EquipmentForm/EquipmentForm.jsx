@@ -6,7 +6,7 @@ import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
 function EquipmentForm() {
 
-    const equipmentList = useSelector((store) => (store.equipmentList));
+    const equipmentList = useSelector((store) => (store.equipment.equipmentList));
 
     const dispatch = useDispatch();
     const history = useHistory();

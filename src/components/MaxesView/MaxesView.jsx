@@ -11,6 +11,8 @@ function MaxesFormView() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
+
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_MAXES' });
     }, []);
@@ -20,7 +22,7 @@ function MaxesFormView() {
         event.preventDefault();
         console.log('in handleSubmitButton');
 
-        dispatch({ type: 'ADD_ROUTINE', payload: { daysPerWeek: Number(daysPerWeek), routine: routine } });
+        dispatch({type: 'POST_USER_PREFERENCES', payload: newUserPreferences});
 
         history.push('/equipment');
     }
@@ -32,10 +34,11 @@ function MaxesFormView() {
     return (
         <div className="appContainer">
             <h1 className="headerText">Track your progress!</h1>
+            <p>(optional)</p>
             <MaxesForm />
             <UserMaxes />
 
-            <button onClick={handleSubmitButton}>Get to work</button>
+            <button onClick={handleSubmitButton}>Submit</button>
             <button onClick={handleBackButton}>Back</button>
         </div>
     )

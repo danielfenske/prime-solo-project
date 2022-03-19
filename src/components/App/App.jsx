@@ -38,7 +38,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_USER_PROFILE'});
+    dispatch({ type: 'FETCH_USER_PREFERENCES'});
+    dispatch({type: 'FETCH_USER_EQUIPMENT_LIST'});
     dispatch({type: 'FETCH_USER_MAXES'});
   }, [dispatch]);
 

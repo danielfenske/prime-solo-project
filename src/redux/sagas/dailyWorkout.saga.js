@@ -4,6 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_USER" actions
 function* getDailyWorkout(action) {
     try {
+
       let dayOfWeek = action.payload.dayOfWeek;
       let phase = action.payload.phase;
       
@@ -18,8 +19,8 @@ function* getDailyWorkout(action) {
     }
   }
   
-  function* dailyInfoSaga() {
-    yield takeLatest('SET_DAILY_INFO', getDailyWorkout);
+  function* dailyWorkoutSaga() {
+    yield takeLatest('FETCH_DAILY_WORKOUT', getDailyWorkout);
   }
   
-  export default dailyInfoSaga;
+  export default dailyWorkoutSaga;

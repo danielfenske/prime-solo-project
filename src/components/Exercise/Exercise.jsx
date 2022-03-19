@@ -30,7 +30,6 @@ function Exercise({ exercise }) {
         console.log('in handleSwap');
     }
 
-    console.log(exercise);
     return (
         <>
             <div className="exerciseHeader">
@@ -39,7 +38,7 @@ function Exercise({ exercise }) {
             </div>
 
             <div className="exerciseBody">
-                <Checkbox/>
+                <Checkbox />
                 <p>3 x 12-15</p>
                 <button type="button" onClick={handleSwap}>Swap</button>
             </div>
@@ -51,7 +50,7 @@ function Exercise({ exercise }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <img src={exercise.gifUrl} alt="exercise gif" width="300"/>
+                    <img src={exercise.gifUrl} alt="exercise gif" width="300" />
                 </Box>
             </Modal>
         </>

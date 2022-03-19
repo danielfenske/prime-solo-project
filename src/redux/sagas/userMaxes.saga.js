@@ -1,10 +1,26 @@
 import axios from 'axios';
-import { put,takeLatest } from 'redux-saga/effects';
+import { put,takeLatest} from 'redux-saga/effects';
 
-function* addUserMax(action) {
+
+function* getUserMaxes() {
+    try {
+        // GET requests grabs user maxes
+        const maxesResponse = yield axios.get(`/api/preferences/maxes`);
+
+        // sends response to be stored in redux state
+        yield put({type: 'SET_USER_MAXES', payload: maxesResponse.data})
+
+    } catch (error) {
+        console.log('Error GETTING maxes', error);
+    }
+}
+
+function* postUserMax(action) {
     try {
         yield axios.post(`/api/preferences/maxes`, action.payload);
-        yield put({type: 'FETCH_MAXES'});
+        yield put({
+            type: 'FETCH_MAXES'
+        });
     } catch (error) {
         console.log('Error POSTING max', error);
 
@@ -21,7 +37,8 @@ function* deleteUserMax(action) {
 }
 
 function* userMaxesSaga() {
-    yield takeLatest('ADD_MAX', addUserMax);
+    yield takeLatest('FETCH_USER_MAXES', getUserMaxes);
+    yield takeLatest('ADD_MAX', postUserMax);
     // yield takeLatest('DELETE_MAX'.deleteUserMax);
 }
 

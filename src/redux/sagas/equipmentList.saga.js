@@ -1,27 +1,28 @@
 import axios from 'axios';
-import {
-  put,
-  takeLatest
-} from 'redux-saga/effects';
+import { put,takeLatest} from 'redux-saga/effects';
 
-function* getEquipmentList(action) {
-
+function* getEquipmentList() {
   try {
     // GET equipment list stored in database
-    const response = yield axios.get(`api/signup/equipment`);
+    const equipmentResponse = yield axios.get(`api/signup/equipment`);
 
     // sends response to be stored in redux state
-    yield put({
-      type: 'SET_EQUIPMENT_LIST',
-      payload: response.data
-    });
+    yield put({type: 'SET_EQUIPMENT_LIST', payload: equipmentResponse.data});
 
   } catch (error) {
     console.log('error GETTING workout', error);
   }
 }
 
-function* postEquipmentList(action) {
+function* getUserEquipmentList(action) {
+  // GET request grabs array of all equipment related to user
+  const userEquipmentResponse = yield axios.get(`/api/preferences/equipment`);
+
+  // sends list to be stored in reducer
+  yield put ({ type: 'SET_USER_EQUIPMENT', payload: userEquipmentResponse.data});
+}
+
+function* postEquipment (action) {
   try {
     const equipmentId = action.payload;
 
@@ -37,7 +38,7 @@ function* postEquipmentList(action) {
   }
 }
 
-function* deleteEquipmentList(action) {
+function* deleteEquipment(action) {
   try {
     const equipmentId = action.payload;
 
@@ -52,8 +53,9 @@ function* deleteEquipmentList(action) {
 
 function* equipmentListSaga() {
   yield takeLatest('FETCH_EQUIPMENT_LIST', getEquipmentList);
-  yield takeLatest('POST_EQUIPMENT', postEquipmentList);
-  yield takeLatest('DELETE_EQUIPMENT', deleteEquipmentList);
+  yield takeLatest('FETCH_USER_EQUIPMENT_LIST', getUserEquipmentList);
+  yield takeLatest('POST_EQUIPMENT', postEquipment);
+  yield takeLatest('DELETE_EQUIPMENT', deleteEquipment);
 }
 
 export default equipmentListSaga;

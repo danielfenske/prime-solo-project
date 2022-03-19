@@ -4,9 +4,8 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 
 // QuickLift SAGAS
-import dailyInfoSaga from './dailyInfo.saga';
-import userProfileSaga from './userProfile.saga';
-import userSignupSaga from './userSignup.saga';
+import dailyWorkoutSaga from './dailyWorkout.saga';
+import userPreferencesSaga from './userPreferences.saga';
 import userMaxesSaga from './userMaxes.saga';
 import equipmentListSaga from './equipmentList.saga';
 
@@ -23,9 +22,8 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     // QuickLift SAGAS
-    dailyInfoSaga(),
-    userProfileSaga(),
-    userSignupSaga(),
+    dailyWorkoutSaga(),
+    userPreferencesSaga(),
     userMaxesSaga(),
     equipmentListSaga(),
   ]);
