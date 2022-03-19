@@ -35,9 +35,12 @@ router.post('/equipment/:id', (req, res) => {
     let userId = req.user.id;
     let equipmentId = req.params.id;
 
+    console.log('userId', userId);
+    console.log('equipmentId', equipmentId);
+
     if (req.isAuthenticated()) {
-        let queryText = 
-        `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
+        let queryText =
+            `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
         VALUES ($1, $2);`
 
         pool.query(queryText, [userId, equipmentId])
@@ -46,12 +49,38 @@ router.post('/equipment/:id', (req, res) => {
             })
             .catch((error) => {
                 console.log('error', error);
-                
-                
+
+
                 res.sendStatus(500);
             })
     }
+
+});
+
+router.delete('/equipment/', (req, res) => {
+    let userId = req.user.id;
+    let equipmentId = req.body.id;
+
+    console.log('userId', userId);
+    console.log('equipmentId', equipmentId);
     
+    if (req.isAuthenticated()) {
+        let queryText =
+            `DELETE FROM "users_equipment" 
+            WHERE "users_equipment"."user_id" = $1
+            AND "users_equipment"."equipment_id" = $2;`
+
+        pool.query(queryText, [userId, equipmentId])
+            .then((result) => {
+                res.sendStatus(200);
+            })
+            .catch((error) => {
+                console.log('error', error);
+
+
+                res.sendStatus(500);
+            })
+    }
 })
 
 module.exports = router;
