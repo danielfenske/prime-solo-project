@@ -10,8 +10,8 @@ import DaySelector from '../DaySelector/DaySelector';
 function HomeView() {
 
   // bring in state stored in redux for all data related to profile
-  const userPreferences = useSelector((store) => (store.userPreferences));
-
+  const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
+  
   // holds form values 
   const [phase, setPhase] = useState('endurance');
   const [dayOfWeek, setDayOfWeek] = useState(1);
@@ -23,8 +23,8 @@ function HomeView() {
 
   // grab user profile information on page load
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER_PREFERENCES' });
-}, []);
+    dispatch({type: 'FETCH_USER_PREFERENCES'});
+  }, []);
 
   // handleSubmit grabs form information, sends it to 
   // saga, and pushes user to workout view

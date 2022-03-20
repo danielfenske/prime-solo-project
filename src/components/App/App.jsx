@@ -35,6 +35,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({type: 'FETCH_USER_PREFERENCES'});
   }, [dispatch]);
 
   return (
@@ -45,57 +46,66 @@ function App() {
           <Redirect exact from="/" to="home" />
 
           <Route exact path="/login">
-            { user.id ?
-                <Redirect to="/home" />
-                :
-                <LoginPage /> }
+            {user.id ?
+              <Redirect to="/home" />
+              :
+              <LoginPage />}
           </Route>
 
           <Route exact path="/registration">
-          { user.id ?
-                <Redirect to="/home" />
-                :
-                <RegisterPage /> }
+            {user.id ?
+              <Redirect to="/home" />
+              :
+              <RegisterPage />}
           </Route>
 
 
           {/* NEW USER VIEWS */}
           <ProtectedRoute exact path="/metrics">
-            <MetricsForm/>
+            {user.form_complete ?
+              <Redirect to="/home" />
+              :
+              <MetricsForm />}
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/routine">
-            <RoutineForm/>
+            {user.form_complete ?
+              <Redirect to="/home" />
+              :
+              <RoutineForm />}
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/equipment">
-            <EquipmentForm/>
+            {user.form_complete ?
+              <Redirect to="/home" />
+              :
+              <EquipmentForm />}
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/maxes">
-            <MaxesView/>
+            <MaxesView />
           </ProtectedRoute>
 
           {/* EXISTING USER VIEWS */}
           <ProtectedRoute exact path="/home">
-            { user.form_complete ?
-                <HomeView />
-                :
-                <Redirect to="/metrics" /> }
+            {user.form_complete ?
+              <HomeView />
+              :
+              <Redirect to="/metrics" />}
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/workout">
-            { user.form_complete ?
-                <WorkoutView />
-                :
-                <Redirect to="/metrics" /> }
+            {user.form_complete ?
+              <WorkoutView />
+              :
+              <Redirect to="/metrics" />}
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/profile">
-            { user.form_complete ?
-                <ProfileView />
-                :
-                <Redirect to="/metrics" /> }
+            {user.form_complete ?
+              <ProfileView />
+              :
+              <Redirect to="/metrics" />}
           </ProtectedRoute>
         </Switch>
       </div>

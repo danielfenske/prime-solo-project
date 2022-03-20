@@ -16,10 +16,14 @@ function* getUserPreferences() {
 }
 
 function* postUserPreferences(action) {
-  try {      
+  try {
+
+    const newUserPreferences = action.payload;
     
-  } catch {
-    console.log('Error POSTING user preferences');
+    yield axios.post(`api/preferences`, newUserPreferences);
+
+  } catch (error) {
+    console.log('Error POSTING user preferences', error);
   }
 }
   

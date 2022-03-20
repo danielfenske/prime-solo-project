@@ -19,18 +19,12 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
   const phase = req.params.phase;
 
   console.log('req.params', req.params);
-  
-  // console.log('req.body', req);
-  // console.log('dayOfWeek', dayOfWeek);
-  // console.log('phase', phase);
-  
 
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for
-    const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE id=$1;`, [id])
+    const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE "user_id"=$1;`, [id])
     const daysPerWeek = daysQuery.rows[0].days_per_week;
     // console.log('daysPerWeek', daysPerWeek);
-
 
     // selects all eligible templates based off of user's daysPerWeek value
     const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek])
@@ -90,12 +84,5 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
   }
 })
 // #endregion ====
-
-/**
- * POST route template
- */
-// router.post('/', (req, res) => {
-//   // POST route code here
-// });
 
 module.exports = router;
