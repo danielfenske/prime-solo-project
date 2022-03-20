@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated()) {
         // selects all user preferences associated with user id
-        let queryText = `SELECT * FROM "user_preferences" WHERE id = $1;`
+        let queryText = `SELECT * FROM "user_preferences" WHERE "user_id" = $1;`
 
         pool.query(queryText, [id])
             .then((result) => {
