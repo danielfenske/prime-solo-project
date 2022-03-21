@@ -25,7 +25,8 @@ function MaxesFormView() {
         console.log('in handleSubmitButton');
 
         dispatch({ type: 'POST_USER_PREFERENCES', payload: newUserPreferences });
-        history.push("/home");
+        dispatch({type: 'FETCH_USER_PREFERENCES'});
+        history.push("/received");
     }
 
     const handleBackButton = () => {

@@ -21,6 +21,9 @@ function* postUserPreferences(action) {
     const newUserPreferences = action.payload;
     
     yield axios.post(`api/preferences`, newUserPreferences);
+    yield put({
+      type: 'FETCH_USER_PREFERENCES'
+  });
 
   } catch (error) {
     console.log('Error POSTING user preferences', error);
