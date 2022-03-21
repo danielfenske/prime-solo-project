@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.scss';
 import { useSelector } from 'react-redux';
+import Logo from './quicklift-logo.png'; 
 
 // icon imports
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
@@ -14,8 +15,8 @@ function Nav() {
 
   return (
     <div className="navBar">
-      <Link to="/home">
-        <img src="../../../public/images/Quicklift-logo.png" />
+      <Link className="navLink" to="/home">
+        <img src={Logo} className="navLogo"/>
       </Link>
 
       <Link className="navLink" to="/workout">

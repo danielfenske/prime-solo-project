@@ -13,4 +13,8 @@
         @include sansSerif(42px, bold, $white);  
         letter-spacing: 3px;
     }
+    .loginLogo {
+        height: 150px;
+        width: auto;
+    }
 }

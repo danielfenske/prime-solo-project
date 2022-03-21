@@ -12,5 +12,9 @@
     .navLink {
         margin: 5vw;
         color: $lightGrey;
+        .navLogo {
+            height: 36px;
+            width: auto;
+        }
     }
 }
