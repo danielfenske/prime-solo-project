@@ -46,10 +46,12 @@ function HomeView() {
     <>
       <div className="appContainer homeContainer">
         <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
-        <DailyInfoForm
+        { userPreferences &&
+          <DailyInfoForm
           daysPerWeek={userPreferences.days_per_week}
           handleOpen={handleOpen}
-        />
+          />
+        }
         <Modal
           open={open}
           onClose={handleClose}

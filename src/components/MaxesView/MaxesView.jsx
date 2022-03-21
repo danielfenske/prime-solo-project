@@ -33,22 +33,24 @@ function MaxesFormView() {
     }
 
     return (
-        <div className="appContainer">
-            <h1 className="headerText">Track your progress!</h1>
-            {   user.form_complete === false && <p>(optional)</p>}
-            <MaxesForm />
-            <UserMaxes />
-            {   user.form_complete === false && 
-                <>
-                    <button onClick={handleSubmitButton}>Submit</button>
-                    <button onClick={handleBackButton}>Back</button>
-                </>
-            }
+        <>
+            <div className="appContainer">
+                <h1 className="headerText">Track your progress!</h1>
+                {user.form_complete === false && <p>(optional)</p>}
+                <MaxesForm />
+                <UserMaxes />
+                {user.form_complete === false &&
+                    <>
+                        <button onClick={handleSubmitButton}>Submit</button>
+                        <button onClick={handleBackButton}>Back</button>
+                    </>
+                }
+            </div>
             {
                 user.form_complete &&
-                <Nav/>
+                <Nav />
             }
-        </div>
+        </>
     )
 }
 

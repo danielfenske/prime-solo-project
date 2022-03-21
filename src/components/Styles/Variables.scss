@@ -6,7 +6,7 @@ $lightGrey: #b8b8b8;
 $darkGrey: #615f5f;
 $white: rgb(255, 255, 255);
 
-$fontFamily: 'Cabin', sans-serif;
+$fontFamily: "Cabin", sans-serif;
 $headerText: 32px;
 $subHeaderText: 24px;
 $bodyText: 18px;
@@ -73,18 +73,17 @@ $bodyText: 18px;
 }
 
 @mixin flexColumn($gap) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: $gap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: $gap;
 }
 
 @mixin flexRow($gap) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: $gap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: $gap;
 }
-

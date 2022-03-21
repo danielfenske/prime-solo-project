@@ -25,6 +25,7 @@ function ProfileView() {
     }, []);
 
     return (
+        <>
         <div className="appContainer">
             <h1 className="headerText">{userPreferences.name}</h1>
             <h1 className="subHeaderText">{userPreferences.days_per_week}</h1>
@@ -54,8 +55,9 @@ function ProfileView() {
 
             <UserMaxes/>
             <LogOutButton/>
-            <Nav/>
         </div>
+        <Nav/>
+        </>
     )
 }
 

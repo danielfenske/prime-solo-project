@@ -58,7 +58,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             value={dayOfWeek}
                             onChange={(event) => setDayOfWeek(event.target.value)}
                         >
-                            <MenuItem value='1'>1</MenuItem>
+                            <MenuItem value='1'>one</MenuItem>
                         </Select>
                     </FormControl>
                     <button type="submit">Get Workout</button>
@@ -86,8 +86,8 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             value={dayOfWeek}
                             onChange={(event) => setDayOfWeek(event.target.value)}
                         >
-                            <MenuItem value='1'>1</MenuItem>
-                            <MenuItem value='2'>2</MenuItem>
+                            <MenuItem value='1'>one</MenuItem>
+                            <MenuItem value='2'>two</MenuItem>
                         </Select>
                     </FormControl>
                     <button type="submit">Get Workout</button>
@@ -115,9 +115,9 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             value={dayOfWeek}
                             onChange={(event) => setDayOfWeek(event.target.value)}
                         >
-                            <MenuItem value='1'>1</MenuItem>
-                            <MenuItem value='2'>2</MenuItem>
-                            <MenuItem value='3'>3</MenuItem>
+                            <MenuItem value='1'>one</MenuItem>
+                            <MenuItem value='2'>two</MenuItem>
+                            <MenuItem value='3'>three</MenuItem>
                         </Select>
                     </FormControl>
                     <button type="submit">Get Workout</button>
@@ -145,10 +145,38 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             value={dayOfWeek}
                             onChange={(event) => setDayOfWeek(event.target.value)}
                         >
-                            <MenuItem value='1'>1</MenuItem>
-                            <MenuItem value='2'>2</MenuItem>
-                            <MenuItem value='3'>3</MenuItem>
-                            <MenuItem value='4'>4</MenuItem>
+                            <MenuItem value='1'>one</MenuItem>
+                            <MenuItem value='2'>two</MenuItem>
+                            <MenuItem value='3'>three</MenuItem>
+                            <MenuItem value='4'>four</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <button type="submit">Get Workout</button>
+                </form>
+            )
+        default:
+            return (
+                <form onSubmit={handleSubmit}>
+                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                    <FormControl fullWidth>
+                        <Select
+                            value={phase}
+                            onChange={(event) => setPhase(event.target.value)}
+                        >
+                            <MenuItem value="endurance">endurance</MenuItem>
+                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
+                            <MenuItem value="strength">strength</MenuItem>
+                            <MenuItem value="power">power</MenuItem>
+                            <MenuItem value="maintenance">maintenance</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <h1 className="subHeaderText">What day of the week are you on?</h1>
+                    <FormControl fullWidth>
+                        <Select
+                            value={dayOfWeek}
+                            onChange={(event) => setDayOfWeek(event.target.value)}
+                        >
+                            <MenuItem value='1'>one</MenuItem>
                         </Select>
                     </FormControl>
                     <button type="submit">Get Workout</button>
