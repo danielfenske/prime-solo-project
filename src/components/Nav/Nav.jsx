@@ -27,7 +27,7 @@ function Nav() {
         <StackedLineChartOutlinedIcon fontSize="large" />
       </Link>
 
-      <Link className="navLink" to="/maxes">
+      <Link className="navLink" to="/profile">
         <PersonIcon fontSize="large" />
       </Link>
     </div>
