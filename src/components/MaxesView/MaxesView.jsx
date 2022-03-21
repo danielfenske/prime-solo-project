@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Nav from '../Nav/Nav';
 
 // import children components
 import MaxesForm from '../MaxesForm/MaxesForm';
@@ -34,14 +35,18 @@ function MaxesFormView() {
     return (
         <div className="appContainer">
             <h1 className="headerText">Track your progress!</h1>
-            { user.form_complete === false && <p>(optional)</p>}
+            {   user.form_complete === false && <p>(optional)</p>}
             <MaxesForm />
             <UserMaxes />
-            { user.form_complete === false && 
+            {   user.form_complete === false && 
                 <>
                     <button onClick={handleSubmitButton}>Submit</button>
                     <button onClick={handleBackButton}>Back</button>
                 </>
+            }
+            {
+                user.form_complete &&
+                <Nav/>
             }
         </div>
     )

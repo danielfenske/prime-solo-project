@@ -3,27 +3,16 @@ import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 
+import './LoginPage.scss';
+
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div className="appContainer">
+    <div className="loginContainer appContainer">
+      <img src="../../../public/images/Quicklift-logo.png" alt="QuickLift logo"/>
+      <h1 className="headerText">QuickLift</h1>
       <LoginForm />
-      <div>
-        <p>
-          new user?
-        </p>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          create account
-        </button>
-      </div>
-      <Footer />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 
+import './LoginForm.scss';
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,41 +27,41 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <div className="formContainer">
+    <form onSubmit={login}>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
           <input
+            placeholder="enter username"
+            autocomplete="off"
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
+  
           <input
+            placeholder="enter password"
+            autocomplete="off"
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
+        {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
+        <button type="submit">LOGIN</button>
     </form>
+    <div>
+    <p>new user?<button className="createActBtn" type="button" onClick={() => {history.push('/registration');}}>
+      create account
+    </button></p>
+  </div>
+  </div>
   );
 }
 

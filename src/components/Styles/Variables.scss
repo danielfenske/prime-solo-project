@@ -4,3 +4,84 @@ $secondaryColor: #ffcb4c;
 $lightGrey: #b8b8b8;
 $darkGrey: #615f5f;
 $white: rgb(248, 223, 223);
+
+$fontFamily: 'Cabin', sans-serif;
+$headerText: 32px;
+$subHeaderText: 26px;
+$bodyText: 18px;
+
+@mixin sansSerif($size, $weight, $color) {
+  font-family: "Cabin", sans-serif;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+}
+
+@mixin buttonFilled($textColor, $backgroundColor) {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  margin: 10px;
+  padding: 12px 24px;
+  border-radius: 25px;
+
+  color: $textColor;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: $backgroundColor;
+
+  &:hover {
+    transition: all 150ms linear;
+    opacity: 0.85;
+  }
+  &:active {
+    transform: all 150ms linear;
+    opacity: 0.75;
+  }
+  &:focus {
+    outline: 1px solid $backgroundColor;
+    outline-offset: -4px;
+  }
+}
+
+@mixin buttonText($textColor) {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  color: $textColor;
+  text-transform: lowercase;
+  text-decoration: underline;
+}
+
+@mixin flexColumn($gap) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin flexRow($gap) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: $gap;
+}
+

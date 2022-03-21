@@ -24,7 +24,7 @@ import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
 import ReviewForm from '../ReviewForm/ReviewForm';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();

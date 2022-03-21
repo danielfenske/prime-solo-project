@@ -1,0 +1,24 @@
+@import "../Styles/Variables.scss";
+
+.formContainer {
+  @include flexColumn(10px);
+
+  form {
+    @include flexColumn(0px);
+    button {
+      @include buttonFilled($white, $primaryColor);
+    }
+    input {
+      padding: 10px 28px;
+      margin: 8px 0px;
+      box-sizing: border-box;
+    }
+  }
+  p {
+    @include sansSerif($bodyText, normal, $white);
+  }
+  .createActBtn {
+    @include buttonText($primaryColor);
+    letter-spacing: normal;
+  }
+}

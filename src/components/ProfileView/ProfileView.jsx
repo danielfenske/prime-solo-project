@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import equipment component
 import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
 import UserMaxes from '../UserMaxes/UserMaxes';
+import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
 
 function ProfileView() {
@@ -52,6 +53,7 @@ function ProfileView() {
             </div>
 
             <UserMaxes/>
+            <LogOutButton/>
             <Nav/>
         </div>
     )
