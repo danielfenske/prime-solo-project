@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 import './LoginForm.scss';
 
@@ -9,6 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -30,9 +32,9 @@ function LoginForm() {
     <div className="formContainer">
     <form onSubmit={login}>
       {errors.loginMessage && (
-        <h3 className="alert" role="alert">
+        <p className="alert" role="alert">
           {errors.loginMessage}
-        </h3>
+        </p>
       )}
           <input
             placeholder="enter username"
@@ -53,7 +55,6 @@ function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
         <button type="submit">LOGIN</button>
     </form>
     <div>

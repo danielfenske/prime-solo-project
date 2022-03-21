@@ -29,3 +29,10 @@ button {
 .subHeaderText {
     @include sansSerif($subHeaderText, medium, black);
 }
+
+.alert {
+    @include sansSerif($bodyText, normal, $white);
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 50px;
+}
