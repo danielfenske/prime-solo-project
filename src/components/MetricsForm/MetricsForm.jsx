@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import './MetricsForm.scss';
 
 function MetricsForm() {
+    const user = useSelector(store => store.user);
 
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -34,8 +36,11 @@ function MetricsForm() {
 
     return (
         <div className="appContainer">
+            <div className="formContainer">
+            <div className="progressBar">
+                <div className="metricsBar"></div>
+            </div>
             <h1 className="headerText">Tell us a little more about you.</h1>
-
             <form onSubmit={handleNextButton}>
                 <h1 className="subHeaderText">Enter name:</h1>
                 <input
@@ -70,6 +75,7 @@ function MetricsForm() {
                 />
                 <button type="submit">Next</button>
             </form>
+            </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
 import UserMaxes from '../UserMaxes/UserMaxes';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
+import './ProfileView.scss';
 
 function ProfileView() {
 
@@ -27,7 +28,7 @@ function ProfileView() {
     return (
         <>
         <div className="appContainer">
-            <h1 className="headerText">{userPreferences.name}</h1>
+            {/* <h1 className="headerText">{userPreferences.name}</h1>
             <h1 className="subHeaderText">{userPreferences.days_per_week}</h1>
             <p>{userPreferences.weight}</p>
             <p>{userPreferences.height}</p>
@@ -53,7 +54,7 @@ function ProfileView() {
                 }
             </div>
 
-            <UserMaxes/>
+            <UserMaxes/> */}
             <LogOutButton/>
         </div>
         <Nav/>
