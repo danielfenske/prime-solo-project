@@ -36,7 +36,7 @@ function LoginForm() {
       )}
           <input
             placeholder="enter username"
-            autocomplete="off"
+            autoComplete="off"
             type="text"
             name="username"
             required
@@ -46,7 +46,7 @@ function LoginForm() {
   
           <input
             placeholder="enter password"
-            autocomplete="off"
+            autoComplete="off"
             type="password"
             name="password"
             required

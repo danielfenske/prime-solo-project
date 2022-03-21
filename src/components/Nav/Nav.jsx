@@ -10,23 +10,24 @@ import StackedLineChartOutlinedIcon from '@mui/icons-material/StackedLineChartOu
 import PersonIcon from '@mui/icons-material/Person';
 
 function Nav() {
+  const user = useSelector((store) => store.user);
 
   return (
     <div className="navBar">
       <Link to="/home">
-        <img src="../public/images/login-background.jpg"/>
+        <img src="../../../public/images/Quicklift-logo.png" />
       </Link>
 
       <Link className="navLink" to="/workout">
-        <FitnessCenterIcon fontSize="medium" />
+        <FitnessCenterIcon fontSize="large" />
       </Link>
 
       <Link className="navLink" to="/maxes">
-        <StackedLineChartOutlinedIcon fontsize="large" />
+        <StackedLineChartOutlinedIcon fontSize="large" />
       </Link>
 
-      <Link className="navLink" to="/profile">
-        <PersonIcon fontsize="large" />
+      <Link className="navLink" to="/maxes">
+        <PersonIcon fontSize="large" />
       </Link>
     </div>
   );

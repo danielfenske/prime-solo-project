@@ -1,0 +1,9 @@
+@import "../Styles/Variables.scss";
+
+.homeContainer {
+    @include flexColumn(50px);
+    text-align: center;
+    form {
+        @include flexColumn(25px);
+    }
+}

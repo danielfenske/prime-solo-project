@@ -9,8 +9,8 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <div className="loginContainer appContainer">
-      <img src="../../../public/images/Quicklift-logo.png" alt="QuickLift logo"/>
+    <div className="loginContainer">
+      <img src="../../../public/images/login-background.jpg"/>
       <h1 className="headerText">QuickLift</h1>
       <LoginForm />
     </div>

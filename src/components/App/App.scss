@@ -9,3 +9,23 @@
 button {
     @include buttonFilled($white, $primaryColor);
 }
+
+.appContainer {
+    padding: 50px;
+}
+
+.customSelect {
+    select{
+        display: none;
+    }
+    position: relative;
+    font-family: $fontFamily;
+}
+
+.headerText {
+    @include sansSerif($headerText, bold, black);
+}
+
+.subHeaderText {
+    @include sansSerif($subHeaderText, medium, black);
+}
