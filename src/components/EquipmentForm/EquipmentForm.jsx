@@ -39,9 +39,9 @@ function EquipmentForm() {
                     <div className="equipmentBar"></div>
                 </div>
                 <h1 className="headerText">What equipment's at your gym?</h1>
+                <h1 className="subHeaderText">Select all that apply.</h1>
             </div>
             <form className="formBody">
-                <h1 className="subHeaderText">Select all that apply.</h1>
                 <div className="equipmentBody">
                     {
                         equipmentList && equipmentList.map((equipment) => {

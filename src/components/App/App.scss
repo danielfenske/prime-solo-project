@@ -15,17 +15,18 @@
 .formContainer {
   @include flexColumn(30px);
   justify-content: space-between;
-//   padding: 20px;
 
   .formHeader {
     @include flexColumn(10px);
     justify-content: space-between;
     text-align: center;
+    width: 100%;
   }
 
   .formBody {
     @include flexColumn(15px);
     height: 50vh;
+    width: 75%;
   }
 
   .formFooter {
