@@ -20,6 +20,7 @@ function EquipmentItem({ equipment }) {
             <div className='=equipmentContainer'>
                 <input type="checkbox" value={equipment.id} name={equipment.name} onClick={handleCheckboxChange}/>
                 <label for={equipment.name}>{equipment.name}</label>
+                <img src={equipment.img_url}/>
             </div>
         )
 }
