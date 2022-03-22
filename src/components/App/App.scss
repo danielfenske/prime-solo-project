@@ -1,75 +1,80 @@
 @import "../Styles/Variables.scss";
 
-// ALL 
+// ALL
 * {
-    margin: 0;
-    padding: 0;
-    font-family: $fontFamily;
+  margin: 0;
+  padding: 0;
+  font-family: $fontFamily;
 }
 
 // SHARED CONTAINERS
 .appContainer {
-    padding: 50px 40px;
-    height: 100%;
+  padding: 40px;
 }
 
 .formContainer {
-    @include flexColumn(20px);
-    align-content: space-between;
+  @include flexColumn(20px);
+  justify-content: space-between;
+//   padding: 20px;
 
-    .formHeader {
-        @include flexColumn(10px);
-        justify-content: space-between;
-        text-align: center;
-    }
+  .formHeader {
+    @include flexColumn(10px);
+    justify-content: space-between;
+    text-align: center;
+  }
 
-    .formBody {
-        @include flexColumn(20px);
-    }
+  .formBody {
+    @include flexColumn(15px);
+    height: 50vh;
+  }
 
-    .formFooter {
-        @include flexColumn(10px);
-        justify-content: space-between;
-    }
+  .formFooter {
+    @include flexColumn(10px);
+    background-color: $white;
+    justify-content: space-between;
+  }
 }
 
 // COMPONENTS
 .primaryButton {
-    @include buttonFilled($white, $primaryColor);
+  @include buttonFilled($white, $primaryColor);
+}
+
+.backButton {
+  @include buttonText($primaryColor);
 }
 
 .submitButton {
-    @include buttonFilled($white, $darkGrey);
+  @include buttonFilled($white, $darkGrey);
 }
 
 .progressBar {
-    background-color: $lightGrey;
-    width: 85%;
-    height: 2vw;
+  background-color: $lightGrey;
+  width: 85%;
+  height: 2vw;
 }
-
 
 // FONT STYLING
 .headerText {
-    @include sansSerif($headerText, bold, black);
-    padding: 10px;
+  @include sansSerif($headerText, bold, black);
+  padding: 10px;
 }
 
 .subHeaderText {
-    @include sansSerif($subHeaderText, medium, black);
-    padding: 10px;
+  @include sansSerif($subHeaderText, medium, black);
+  padding: 10px;
 }
 
 .alert {
-    @include sansSerif($bodyText, normal, $white);
-    text-align: center;
-    padding: 10px 50px;
+  @include sansSerif($bodyText, normal, $white);
+  text-align: center;
+  padding: 10px 50px;
 }
 
 .customSelect {
-    select{
-        display: none;
-    }
-    position: relative;
-    font-family: $fontFamily;
+  select {
+    display: none;
+  }
+  position: relative;
+  font-family: $fontFamily;
 }

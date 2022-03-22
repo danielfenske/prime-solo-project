@@ -42,21 +42,23 @@ function EquipmentForm() {
             </div>
             <form className="formBody">
                 <h1 className="subHeaderText">Select all that apply.</h1>
-                {
-                    equipmentList && equipmentList.map((equipment) => {
-                        return (
-                            <EquipmentItem
-                                key={equipment.id}
-                                equipment={equipment}
-                            />
-                        )
-                    })
-                }
-                <button type="submit">Next</button>
+                <div className="equipmentBody">
+                    {
+                        equipmentList && equipmentList.map((equipment) => {
+                            return (
+                                <EquipmentItem
+                                    key={equipment.id}
+                                    equipment={equipment}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </form>
+
             <div className="formFooter">
                 <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
-                <button onClick={handleBackButton}>Back</button>
+                <button className="backButton" onClick={handleBackButton}>Back</button>
             </div>
         </div>
     )

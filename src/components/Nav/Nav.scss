@@ -10,7 +10,7 @@
     bottom: 0;
     width: 100vw;
     .navLink {
-        @include flexRow(5px);
+        @include flexColumn(5px);
         padding: 2vw;
         color: $lightGrey;
         text-decoration: none;
