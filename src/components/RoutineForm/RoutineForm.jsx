@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+// SASS/MUI imports
+import './RoutineForm.scss';
+import { FormControl, Select, MenuItem } from '@mui/material';
+
 function RoutineForm() {
 
     const [daysPerWeek, setDaysPerWeek] = useState(3);
@@ -27,36 +31,48 @@ function RoutineForm() {
     }
 
     return (
-        <div className="appContainer">
-            <h1 className="headerText">What's your go-to routine?</h1>
+        <div className="appContainer formContainer">
 
-            <form onSubmit={handleNextButton}>
-                
-                <h1 className="subHeaderText">Days per week:</h1>
-                <select
-                    name="daysPerWeek"
-                    value={daysPerWeek}
-                    onChange={(event) => setDaysPerWeek(event.target.value)}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
+            <div className="formHeader">
+                <div className="progressBar">
+                    <div className="routineBar"></div>
+                </div>
+                <h1 className="headerText">What's your go-to routine?</h1>
+            </div>
 
-                <h1 className="subHeaderText">Select routine:</h1>
-                <select
-                    name="routine"
-                    value={routine}
-                    onChange={(event) => setRoutine(event.target.value)}
-                >
-                    <option value="full_body">full body</option>
-                    <option value="split">split</option>
-                </select>
+            <form className="formBody">
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Days per week:</h1>
+                    <Select
+                        name="daysPerWeek"
+                        value={daysPerWeek}
+                        onChange={(event) => setDaysPerWeek(event.target.value)}
+                    >
+                        <MenuItem value="1">1</MenuItem>
+                        <MenuItem value="2">2</MenuItem>
+                        <MenuItem value="3">3</MenuItem>
+                        <MenuItem value="4">4</MenuItem>
+                    </Select>
+                </FormControl>
 
-                <button type="submit">Next</button>
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Select routine:</h1>
+                    <Select
+                        name="routine"
+                        value={routine}
+                        onChange={(event) => setRoutine(event.target.value)}
+                    >
+                        <MenuItem value="full_body">full body</MenuItem>
+                        <MenuItem value="split">split</MenuItem>
+                    </Select>
+                </FormControl>
             </form>
-            <button onClick={handleBackButton}>Back</button>
+
+            <div className="formFooter">
+                <button  className="primaryButton" onClick={handleNextButton}>Next</button>
+                <button className="backButton" onClick={handleBackButton}>Back</button>
+            </div>
+
         </div>
     )
 }

@@ -4,9 +4,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
-// MUI/SCSS imports
+// SASS/MUI imports
 import './HomeView.scss';
-import { FormControl, MenuItem, Select, Modal, Box } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 
 // import DaySelector
 import DailyInfoForm from '../DailyInfoForm/DailyInfoForm';

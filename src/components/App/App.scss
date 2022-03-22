@@ -10,11 +10,12 @@
 // SHARED CONTAINERS
 .appContainer {
     padding: 50px 40px;
+    height: 100%;
 }
 
 .formContainer {
-    @include flexColumn(15px);
-    align-content: space-around;
+    @include flexColumn(20px);
+    align-content: space-between;
 
     .formHeader {
         @include flexColumn(10px);
@@ -56,7 +57,7 @@
 
 .subHeaderText {
     @include sansSerif($subHeaderText, medium, black);
-    padding: 5px;
+    padding: 10px;
 }
 
 .alert {

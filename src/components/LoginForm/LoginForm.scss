@@ -20,5 +20,6 @@
   .createActBtn {
     @include buttonText($primaryColor);
     letter-spacing: normal;
+    text-transform: lowercase;
   }
 }
