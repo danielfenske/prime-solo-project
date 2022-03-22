@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
 // import Exercise component
-import Exercise from '../Exercise/Exercise';
+import Exercise from './Exercise/Exercise';
 
 // import CSS
 import './WorkoutView.css';
