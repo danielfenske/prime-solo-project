@@ -7,9 +7,9 @@ $darkGrey: #615f5f;
 $white: rgb(255, 255, 255);
 
 $fontFamily: "Cabin", sans-serif;
-$headerText: 32px;
-$subHeaderText: 24px;
-$bodyText: 18px;
+$headerText: 26px;
+$subHeaderText: 18px;
+$bodyText: 16px;
 
 // MIXINS //
 @mixin sansSerif($size, $weight, $color) {

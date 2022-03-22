@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+// SASS/MUI IMPORTS
 import './MetricsForm.scss';
+import { TextField, FormControl } from '@mui/material';
 
 function MetricsForm() {
-    const user = useSelector(store => store.user);
-
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [weight, setWeight] = useState('');
@@ -22,61 +22,87 @@ function MetricsForm() {
         event.preventDefault();
         console.log('in handleSubmit');
 
-        let metrics = {
-            name: name,
-            age: Number(age),
-            weight: Number(weight),
-            height: Number(height)
+        if (name === '' || age === '' || weight === '' || height === '') {
+            alert('Please fill out all form fields');
+        } else {
+            let metrics = {
+                name: name,
+                age: Number(age),
+                weight: Number(weight),
+                height: Number(height)
+            }
+
+            dispatch({ type: 'ADD_METRICS', payload: metrics });
+
+            history.push('/routine');
         }
-
-        dispatch({ type: 'ADD_METRICS', payload: metrics });
-
-        history.push('/routine');
     }
 
     return (
-        <div className="appContainer">
-            <div className="formContainer">
-            <div className="progressBar">
-                <div className="metricsBar"></div>
+        <div className="appContainer formContainer">
+
+            <div className="formHeader">
+                <div className="progressBar">
+                    <div className="metricsBar"></div>
+                </div>
+                <h1 className="headerText">Tell us a little more about you.</h1>
             </div>
-            <h1 className="headerText">Tell us a little more about you.</h1>
-            <form onSubmit={handleNextButton}>
-                <h1 className="subHeaderText">Enter name:</h1>
-                <input
-                    type="text"
-                    value={name}
-                    required
-                    onChange={(event) => setName(event.target.value)}
-                />
 
-                <h1 className="subHeaderText">Enter age:</h1>
-                <input
-                    type="number"
-                    value={age}
-                    required
-                    onChange={(event) => setAge(event.target.value)}
-                />
+            <form className="formBody">
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Enter name:</h1>
+                    <TextField
+                        autoComplete="off"
+                        variant="outlined"
+                        type="text"
+                        value={name}
+                        required
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                </FormControl>
 
-                <h1 className="subHeaderText">Enter weight (lbs):</h1>
-                <input
-                    type="number"
-                    value={weight}
-                    required
-                    onChange={(event) => setWeight(event.target.value)}
-                />
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Enter age:</h1>
+                    <TextField
+                        autoComplete="off"
+                        variant="outlined"
+                        type="number"
+                        value={age}
+                        required
+                        onChange={(event) => setAge(event.target.value)}
+                    />
+                </FormControl>
 
-                <h1 className="subHeaderText">Enter height (inches):</h1>
-                <input
-                    type="number"
-                    value={height}
-                    required
-                    onChange={(event) => setHeight(event.target.value)}
-                />
-                <button type="submit">Next</button>
+
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Enter weight (lbs):</h1>
+                    <TextField
+                        autoComplete="off"
+                        variant="outlined"
+                        type="number"
+                        value={weight}
+                        required
+                        onChange={(event) => setWeight(event.target.value)}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <h1 className="subHeaderText">Enter height (inches):</h1>
+                    <TextField
+                        autoComplete="off"
+                        variant="outlined"
+                        type="number"
+                        value={height}
+                        required
+                        onChange={(event) => setHeight(event.target.value)}
+                    />
+                </FormControl>
             </form>
+
+            <div className="formFooter">
+                <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
             </div>
-        </div>
+        </div >
     )
 }
 

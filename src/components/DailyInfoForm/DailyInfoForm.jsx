@@ -22,6 +22,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
     const handleSubmit = () => {
         // eliminate page reload on submit
         event.preventDefault();
+        
         let dailyInfo = {
             phase: phase,
             dayOfWeek: Number(dayOfWeek)
@@ -36,151 +37,140 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
 
 
     switch (daysPerWeek) {
-        case 1:
+        case 4:
             return (
-                <form onSubmit={handleSubmit}>
-                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={phase}
-                            onChange={(event) => setPhase(event.target.value)}
-                        >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <h1 className="subHeaderText">What day of the week are you on?</h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={dayOfWeek}
-                            onChange={(event) => setDayOfWeek(event.target.value)}
-                        >
-                            <MenuItem value='1'>one</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <button type="submit">Get Workout</button>
-                </form>
-            )
-        case 2:
-            return (
-                <form onSubmit={handleSubmit}>
-                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={phase}
-                            onChange={(event) => setPhase(event.target.value)}
-                        >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <h1 className="subHeaderText">What day of the week are you on?</h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={dayOfWeek}
-                            onChange={(event) => setDayOfWeek(event.target.value)}
-                        >
-                            <MenuItem value='1'>one</MenuItem>
-                            <MenuItem value='2'>two</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <button type="submit">Get Workout</button>
-                </form>
+                <>
+                    <form className="formBody">
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                            <Select
+                                value={phase}
+                                onChange={(event) => setPhase(event.target.value)}
+                            >
+                                <MenuItem value="endurance">endurance</MenuItem>
+                                <MenuItem value="hypertrophy">hypertrophy</MenuItem>
+                                <MenuItem value="strength">strength</MenuItem>
+                                <MenuItem value="power">power</MenuItem>
+                                <MenuItem value="maintenance">maintenance</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">What day of the week are you on?</h1>
+                            <Select
+                                value={dayOfWeek}
+                                onChange={(event) => setDayOfWeek(event.target.value)}
+                            >
+                                <MenuItem value='1'>one</MenuItem>
+                                <MenuItem value='2'>two</MenuItem>
+                                <MenuItem value='3'>three</MenuItem>
+                                <MenuItem value='4'>four</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>
+                    <div className="formFooter">
+                        <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                    </div>
+                </>
             )
         case 3:
             return (
-                <form onSubmit={handleSubmit}>
-                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={phase}
-                            onChange={(event) => setPhase(event.target.value)}
-                        >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <h1 className="subHeaderText">What day of the week are you on?</h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={dayOfWeek}
-                            onChange={(event) => setDayOfWeek(event.target.value)}
-                        >
-                            <MenuItem value='1'>one</MenuItem>
-                            <MenuItem value='2'>two</MenuItem>
-                            <MenuItem value='3'>three</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <button type="submit">Get Workout</button>
-                </form>
+                <>
+                    <form className="formBody">
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                            <Select
+                                value={phase}
+                                onChange={(event) => setPhase(event.target.value)}
+                            >
+                                <MenuItem value="endurance">endurance</MenuItem>
+                                <MenuItem value="hypertrophy">hypertrophy</MenuItem>
+                                <MenuItem value="strength">strength</MenuItem>
+                                <MenuItem value="power">power</MenuItem>
+                                <MenuItem value="maintenance">maintenance</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">What day of the week are you on?</h1>
+                            <Select
+                                value={dayOfWeek}
+                                onChange={(event) => setDayOfWeek(event.target.value)}
+                            >
+                                <MenuItem value='1'>one</MenuItem>
+                                <MenuItem value='2'>two</MenuItem>
+                                <MenuItem value='3'>three</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>
+                    <div className="formFooter">
+                        <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                    </div>
+                </>
             )
-        case 4:
+           
+        case 2:
             return (
-                <form onSubmit={handleSubmit}>
-                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={phase}
-                            onChange={(event) => setPhase(event.target.value)}
-                        >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <h1 className="subHeaderText">What day of the week are you on?</h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={dayOfWeek}
-                            onChange={(event) => setDayOfWeek(event.target.value)}
-                        >
-                            <MenuItem value='1'>one</MenuItem>
-                            <MenuItem value='2'>two</MenuItem>
-                            <MenuItem value='3'>three</MenuItem>
-                            <MenuItem value='4'>four</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <button type="submit">Get Workout</button>
-                </form>
+                <>
+                    <form className="formBody">
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                            <Select
+                                value={phase}
+                                onChange={(event) => setPhase(event.target.value)}
+                            >
+                                <MenuItem value="endurance">endurance</MenuItem>
+                                <MenuItem value="hypertrophy">hypertrophy</MenuItem>
+                                <MenuItem value="strength">strength</MenuItem>
+                                <MenuItem value="power">power</MenuItem>
+                                <MenuItem value="maintenance">maintenance</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">What day of the week are you on?</h1>
+                            <Select
+                                value={dayOfWeek}
+                                onChange={(event) => setDayOfWeek(event.target.value)}
+                            >
+                                <MenuItem value='1'>one</MenuItem>
+                                <MenuItem value='2'>two</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>
+                    <div className="formFooter">
+                        <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                    </div>
+                </>
             )
         default:
             return (
-                <form onSubmit={handleSubmit}>
-                    <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={phase}
-                            onChange={(event) => setPhase(event.target.value)}
-                        >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <h1 className="subHeaderText">What day of the week are you on?</h1>
-                    <FormControl fullWidth>
-                        <Select
-                            value={dayOfWeek}
-                            onChange={(event) => setDayOfWeek(event.target.value)}
-                        >
-                            <MenuItem value='1'>one</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <button type="submit">Get Workout</button>
-                </form>
+                <>
+                    <form className="formBody">
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                            <Select
+                                value={phase}
+                                onChange={(event) => setPhase(event.target.value)}
+                            >
+                                <MenuItem value="endurance">endurance</MenuItem>
+                                <MenuItem value="hypertrophy">hypertrophy</MenuItem>
+                                <MenuItem value="strength">strength</MenuItem>
+                                <MenuItem value="power">power</MenuItem>
+                                <MenuItem value="maintenance">maintenance</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <h1 className="subHeaderText">What day of the week are you on?</h1>
+                            <Select
+                                value={dayOfWeek}
+                                onChange={(event) => setDayOfWeek(event.target.value)}
+                            >
+                                <MenuItem value='1'>one</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </form>
+                    <div className="formFooter">
+                        <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                    </div>
+                </>
             )
     }
 }

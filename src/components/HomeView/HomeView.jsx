@@ -44,27 +44,31 @@ function HomeView() {
 
   return (
     <>
-      <div className="appContainer homeContainer">
-        <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
-        { userPreferences &&
-          <DailyInfoForm
-          daysPerWeek={userPreferences.days_per_week}
-          handleOpen={handleOpen}
-          />
-        }
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <h1 className="subHeaderText">Endurance</h1>
-            <p></p>
-          </Box>
-        </Modal>
+      <div className="appContainer formContainer">
+        <div className="formHeader">
+          <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
+        </div>
+
+          {userPreferences &&
+            <DailyInfoForm
+              daysPerWeek={userPreferences.days_per_week}
+              handleOpen={handleOpen}
+            />
+          }
       </div>
       <Nav />
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <h1 className="subHeaderText">Endurance</h1>
+          <p></p>
+        </Box>
+      </Modal>
     </>
   );
 }
