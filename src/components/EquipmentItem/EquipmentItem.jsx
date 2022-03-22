@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+// Import SASS/MUI components
+import './EquipmentItem.scss';
+import Checkbox from '@mui/material/Checkbox';
+
 function EquipmentItem({ equipment }) {
 
     const dispatch = useDispatch();
@@ -17,9 +21,9 @@ function EquipmentItem({ equipment }) {
     }
 
         return (
-            <div className='=equipmentContainer'>
-                <input type="checkbox" value={equipment.id} name={equipment.name} onClick={handleCheckboxChange}/>
-                <label for={equipment.name}>{equipment.name}</label>
+            <div className='equipmentContainer'>
+                <Checkbox className="checkbox" value={equipment.id} name={equipment.name} onClick={handleCheckboxChange}/>
+                <h1 className="subHeaderText">{equipment.name}</h1>
                 <img src={equipment.img_url}/>
             </div>
         )

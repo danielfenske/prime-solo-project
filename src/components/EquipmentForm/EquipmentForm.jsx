@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
+import './EquipmentForm.scss';
+
 function EquipmentForm() {
 
     const equipmentList = useSelector((store) => (store.equipment.equipmentList));
@@ -31,25 +33,31 @@ function EquipmentForm() {
 
 
     return (
-        <div className="appContainer">
-            <h1 className="headerText">What equipment is available to you?</h1>
-            <h3 className="subHeaderText">Select all that apply:</h3>
-
-            <form onSubmit={handleNextButton}>
+        <div className="appContainer formContainer">
+            <div className="formHeader">
+                <div className="progressBar">
+                    <div className="equipmentBar"></div>
+                </div>
+                <h1 className="headerText">What equipment's at your gym?</h1>
+            </div>
+            <form className="formBody">
+                <h1 className="subHeaderText">Select all that apply.</h1>
                 {
-                   equipmentList && equipmentList.map((equipment) => {
-                       return (
-                           <EquipmentItem
+                    equipmentList && equipmentList.map((equipment) => {
+                        return (
+                            <EquipmentItem
                                 key={equipment.id}
                                 equipment={equipment}
                             />
-                       )
-                   })
+                        )
+                    })
                 }
                 <button type="submit">Next</button>
             </form>
-
-            <button onClick={handleBackButton}>Back</button>
+            <div className="formFooter">
+                <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
+                <button onClick={handleBackButton}>Back</button>
+            </div>
         </div>
     )
 }
