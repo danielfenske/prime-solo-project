@@ -10,11 +10,17 @@
     bottom: 0;
     width: 100vw;
     .navLink {
-        margin: 5vw;
+        @include flexRow(5px);
+        padding: 2vw;
         color: $lightGrey;
+        text-decoration: none;
         .navLogo {
             height: 36px;
             width: auto;
+        }
+        p {
+            @include sansSerif(12px, normal, $lightGrey);
+            text-decoration: none;
         }
     }
 }

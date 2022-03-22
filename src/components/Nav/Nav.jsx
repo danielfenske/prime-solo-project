@@ -17,18 +17,22 @@ function Nav() {
     <div className="navBar">
       <Link className="navLink" to="/home">
         <img src={Logo} className="navLogo"/>
+        <p>Home</p>
       </Link>
 
       <Link className="navLink" to="/workout">
         <FitnessCenterIcon fontSize="large" />
+        <p>Workout</p>
       </Link>
 
       <Link className="navLink" to="/maxes">
         <StackedLineChartOutlinedIcon fontSize="large" />
+        <p>Progress</p>
       </Link>
 
       <Link className="navLink" to="/profile">
         <PersonIcon fontSize="large" />
+        <p>Profile</p>
       </Link>
     </div>
   );
