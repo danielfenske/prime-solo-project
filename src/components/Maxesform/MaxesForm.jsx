@@ -52,13 +52,13 @@ function MaxesForm() {
                     <div className="maxesBar"></div>
                 </div>
                 <h1 className="headerText">Track your progress!</h1>
-                <h1 className="subHeaderText">(optional)</h1>
+                <p>(optional)</p>
             </div>
 
             <form className="maxesFormBody">
                 <div className="maxesFormTop">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Enter exercise:</h1>
+                        <h1 className="subHeaderText">Enter exercise</h1>
                         <TextField
                             type="text"
                             value={exercise}

@@ -8,8 +8,10 @@ function LoginPage() {
 
   return (
     <div className="loginContainer">
-      <img src={Logo} className="loginLogo"/>
-      <h1 className="headerText">QuickLift</h1>
+      <div className="loginHeader">
+        <img src={Logo} className="loginLogo" />
+        <h1 className="headerText">QuickLift</h1>
+      </div>
       <LoginForm />
     </div>
   );

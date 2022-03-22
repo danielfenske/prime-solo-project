@@ -2,10 +2,13 @@
 
 .formContainer {
   .maxesFormBody {
-    @include flexColumn(10px);
-    width: 75%;
+    @include flexColumn(30px);
+    width: 85%;
+    .maxesFormTop {
+      width: 100%;
+    }
     .maxesFormBottom {
-      @include flexRow(10px);
+      @include flexRow(15px);
     }
     .maxesButton {
       margin: 5px;

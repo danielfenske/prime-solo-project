@@ -23,7 +23,7 @@ function RegisterForm() {
 
   return (
 
-    <div className="formContainer">
+    <div className="loginFormContainer">
       <form onSubmit={registerUser}>
         {errors.registrationMessage && (
           <p className="alert" role="alert">
@@ -49,7 +49,7 @@ function RegisterForm() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit">REGISTER</button>
+        <button type="submit" className="primaryButton">REGISTER</button>
       </form>
       <div>
         <p>existing user?<button className="createActBtn" type="button" onClick={() => { history.push('/login'); }}>

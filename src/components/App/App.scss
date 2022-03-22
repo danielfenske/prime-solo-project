@@ -18,20 +18,21 @@
   justify-content: space-around;
 
   .formHeader {
-    @include flexColumn(10px);
+    @include flexColumn(15px);
+    justify-content: flex-start;
     text-align: center;
     width: 100%;
   }
 
   .formBody {
-    @include flexColumn(30px);
-    height: 50vh;
+    @include flexColumn(15px);
+    height: 60vh;
     width: 75%;
   }
 
   .formFooter {
-    @include flexColumn(10px);
-    justify-content: space-between;
+    @include flexColumn(15px);
+    justify-content: flex-end;
     background-color: $white;
   }
 }
@@ -58,12 +59,12 @@
 // FONT STYLING
 .headerText {
   @include sansSerif($headerText, bold, black);
-  padding: 10px;
+  padding: 0px 20px;
 }
 
 .subHeaderText {
   @include sansSerif($subHeaderText, medium, black);
-  padding: 10px;
+  padding-bottom: 5px;
 }
 
 .alert {

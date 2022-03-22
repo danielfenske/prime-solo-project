@@ -1,17 +1,18 @@
 @import "../Styles/Variables.scss";
 
-.formContainer {
+.loginFormContainer {
   @include flexColumn(10px);
 
   form {
-    @include flexColumn(0px);
-    button {
-      @include buttonFilled($white, $primaryColor);
-    }
+    @include flexColumn(5px);
+    width: 75vw;
     input {
-      padding: 10px 28px;
+      padding: 10px;
       margin: 8px 0px;
       box-sizing: border-box;
+    }
+    .primaryButton {
+      @include buttonFilled($white, $primaryColor);
     }
   }
   p {
@@ -21,5 +22,6 @@
     @include buttonText($primaryColor);
     letter-spacing: normal;
     text-transform: lowercase;
+    padding-left: 10px;
   }
 }

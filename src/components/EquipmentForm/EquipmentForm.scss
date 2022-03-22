@@ -11,3 +11,17 @@
     justify-content: flex-start;
     overflow-y: scroll;
 }
+
+.scrollText {
+    animation: MoveUpDown 1.5s linear infinite;
+    color: $darkGrey;
+  }
+  
+  @keyframes MoveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }

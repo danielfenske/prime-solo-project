@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
+// IMPORT SASS/MUI
 import './EquipmentForm.scss';
+import SwipeVerticalIcon from '@mui/icons-material/SwipeVertical';
 
 function EquipmentForm() {
 
@@ -38,10 +40,10 @@ function EquipmentForm() {
                 <div className="progressBar">
                     <div className="equipmentBar"></div>
                 </div>
-                <h1 className="headerText">What equipment's at your gym?</h1>
-                <h1 className="subHeaderText">Select all that apply.</h1>
+                <h1 className="headerText">What's at your gym?</h1>
             </div>
             <form className="formBody">
+                <h1 className="subHeaderText">Select all that apply.</h1>
                 <div className="equipmentBody">
                     {
                         equipmentList && equipmentList.map((equipment) => {
@@ -54,6 +56,7 @@ function EquipmentForm() {
                         })
                     }
                 </div>
+                <span className="scrollText"><SwipeVerticalIcon/></span>
             </form>
 
             <div className="formFooter">
