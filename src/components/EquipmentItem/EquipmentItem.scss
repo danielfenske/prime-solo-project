@@ -3,14 +3,16 @@
 .equipmentContainer {
     @include flexRow(0px);
     justify-content: space-between;
-    width: 100%;
-    border-radius: 25px;
+    width: 90%;
+    border-radius: 50px;
     .checkbox {
-        padding-left: 25px;
+        padding-right: 25px;
     }
     background-color: $darkGrey;
     .subHeaderText {
         color: $white;
         text-transform: capitalize;
+        font-size: $subHeaderText;
+        text-align: center;
     }
 }
