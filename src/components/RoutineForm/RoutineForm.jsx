@@ -48,10 +48,10 @@ function RoutineForm() {
                         value={daysPerWeek}
                         onChange={(event) => setDaysPerWeek(event.target.value)}
                     >
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                        <MenuItem value="3">3</MenuItem>
-                        <MenuItem value="4">4</MenuItem>
+                        <MenuItem value="1">one</MenuItem>
+                        <MenuItem value="2">two</MenuItem>
+                        <MenuItem value="3">three</MenuItem>
+                        <MenuItem value="4">four</MenuItem>
                     </Select>
                 </FormControl>
 

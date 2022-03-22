@@ -6,7 +6,10 @@
     width: 90%;
     border-radius: 50px;
     .checkbox {
-        padding-right: 25px;
+        margin-right: 10px;
+    }
+    img {
+        border-radius: 50px 0px 0px 50px;
     }
     background-color: $darkGrey;
     .subHeaderText {
