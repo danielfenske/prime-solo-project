@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
@@ -9,7 +7,7 @@ import './HomeView.scss';
 import { Modal, Box } from '@mui/material';
 
 // import DaySelector
-import DailyInfoForm from '../DailyInfoForm/DailyInfoForm';
+import DailyInfoForm from './DailyInfoForm/DailyInfoForm';
 
 const style = {
   position: 'absolute',
