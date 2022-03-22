@@ -1,0 +1,16 @@
+@import "../Styles/Variables.scss";
+
+.formContainer {
+  .maxesFormBody {
+    @include flexColumn(10px);
+    width: 75%;
+    .maxesFormBottom {
+      @include flexRow(10px);
+    }
+    .maxesButton {
+      margin: 5px;
+      padding: 8px 12px;
+      width: 100px;
+    }
+  }
+}

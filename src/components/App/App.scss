@@ -9,30 +9,30 @@
 
 // SHARED CONTAINERS
 .appContainer {
-  padding: 40px;
+  height: 100vh;
+  padding: 0px 40px;
 }
 
 .formContainer {
-  @include flexColumn(30px);
-  justify-content: space-between;
+  @include flexColumn(0px);
+  justify-content: space-around;
 
   .formHeader {
     @include flexColumn(10px);
-    justify-content: space-between;
     text-align: center;
     width: 100%;
   }
 
   .formBody {
-    @include flexColumn(15px);
+    @include flexColumn(30px);
     height: 50vh;
     width: 75%;
   }
 
   .formFooter {
     @include flexColumn(10px);
-    background-color: $white;
     justify-content: space-between;
+    background-color: $white;
   }
 }
 

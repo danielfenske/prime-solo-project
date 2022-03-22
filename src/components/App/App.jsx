@@ -22,6 +22,7 @@ import MaxesView from '../MaxesView/MaxesView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
+import MaxesForm from '../MaxesForm/MaxesForm';
 import ReceivedForm from '../ReceivedForm/ReceivedForm';
 
 import './App.scss';
@@ -90,7 +91,10 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/maxes">
-            <MaxesView />
+            {user.form_complete ?
+              <MaxesView />
+              :
+              <MaxesForm />}
           </ProtectedRoute>
 
           {/* EXISTING USER VIEWS */}

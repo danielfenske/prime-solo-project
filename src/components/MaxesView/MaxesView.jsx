@@ -7,7 +7,6 @@ import Nav from '../Nav/Nav';
 import './MaxesView.scss';
 
 // import children components
-import MaxesForm from '../MaxesForm/MaxesForm';
 import UserMaxes from '../UserMaxes/UserMaxes';
 
 function MaxesView() {
@@ -37,32 +36,10 @@ function MaxesView() {
 
     return (
         <>
-            <div className="appContainer formContainer">
-                <div className="formHeader">
-                    {user.form_complete === false &&
-                        <div className="progressBar">
-                            <div className="maxesBar"></div>
-                        </div>}
-                    <h1 className="headerText">Track your progress!</h1>
-                    {user.form_complete === false && <h1 className="subHeaderText">(optional)</h1>}
-                </div>
+            <div className="appContainer">
 
-                <div className="formBody">
-                    <MaxesForm />
-                    <UserMaxes />
-                </div>
-
-                {user.form_complete === false &&
-                    <div className="formFooter">
-                        <button className="primaryButton submitButton" onClick={handleSubmitButton}>Submit</button>
-                        <button className="backButton submitBackButton" onClick={handleBackButton}>Back</button>
-                    </div>
-                }
             </div>
-            {
-                user.form_complete &&
-                <Nav />
-            }
+            <Nav />
         </>
     )
 }
