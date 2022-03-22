@@ -15,8 +15,6 @@ function MaxesForm() {
     const [weight, setWeight] = useState('');
     const [reps, setReps] = useState('');
 
-    const user = useSelector(store => store.user);
-
     const dispatch = useDispatch();
     const history = useHistory();
 

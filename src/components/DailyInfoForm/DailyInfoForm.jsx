@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
-// MUI imports
+
+// SASS/MUI imports
+import './DailyInfoForm.scss';
 import { FormControl, Select, MenuItem } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -40,7 +42,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
         case 4:
             return (
                 <>
-                    <form className="formBody">
+                    <form className="homeBody">
                         <FormControl fullWidth>
                             <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                             <Select
@@ -67,7 +69,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             </Select>
                         </FormControl>
                     </form>
-                    <div className="formFooter">
+                    <div className="homeFooter">
                         <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
                     </div>
                 </>
@@ -75,7 +77,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
         case 3:
             return (
                 <>
-                    <form className="formBody">
+                    <form className="homeBody">
                         <FormControl fullWidth>
                             <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                             <Select
@@ -101,7 +103,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             </Select>
                         </FormControl>
                     </form>
-                    <div className="formFooter">
+                    <div className="homeFooter">
                         <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
                     </div>
                 </>
@@ -110,7 +112,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
         case 2:
             return (
                 <>
-                    <form className="formBody">
+                    <form className="homeBody">
                         <FormControl fullWidth>
                             <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                             <Select
@@ -135,7 +137,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             </Select>
                         </FormControl>
                     </form>
-                    <div className="formFooter">
+                    <div className="homeFooter">
                         <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
                     </div>
                 </>
@@ -143,7 +145,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
         default:
             return (
                 <>
-                    <form className="formBody">
+                    <form className="homeBody">
                         <FormControl fullWidth>
                             <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                             <Select
@@ -167,7 +169,7 @@ function DailyInfoForm({ daysPerWeek, handleOpen }) {
                             </Select>
                         </FormControl>
                     </form>
-                    <div className="formFooter">
+                    <div className="homeFooter">
                         <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
                     </div>
                 </>

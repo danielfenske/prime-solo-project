@@ -44,17 +44,17 @@ function HomeView() {
 
   return (
     <>
-      <div className="appContainer formContainer">
-        <div className="formHeader">
+      <div className="appContainer homeContainer">
+        <div className="homeHeader">
           <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
         </div>
 
-          {userPreferences &&
-            <DailyInfoForm
-              daysPerWeek={userPreferences.days_per_week}
-              handleOpen={handleOpen}
-            />
-          }
+        {userPreferences &&
+          <DailyInfoForm
+            daysPerWeek={userPreferences.days_per_week}
+            handleOpen={handleOpen}
+          />
+        }
       </div>
       <Nav />
 
