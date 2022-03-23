@@ -1,19 +1,19 @@
 @import "../../Styles/Variables.scss";
 
 .exerciseContainer {
-  @include flexRow(0px);
-  align-items: center;
-  width: 80%;
-  position: relative;
-  .checkboxContainer {
-    background-color: $darkGrey;
-  }
-  .exerciseDetailsContainer {
-    @include flexColumn(0px);
-    justify-content: flex-start;
-    background-color: $lightGrey;
-  }
-  .exerciseSwapButton {
-      background-color: black;
-  }
+  @include flexColumn(5px);
+  width: 100%;
+    .exerciseHeader {
+      @include flexRow(5px);
+      width: 80%;
+    }
+    .exerciseBody {
+      @include flexRow(0px);
+      justify-content: space-between;
+      background-color: $darkGrey;
+      color: $white;
+      border-radius: 50px;
+      width: 85%;
+      height: 60px;
+    }
 }

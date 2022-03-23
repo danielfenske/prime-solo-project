@@ -35,19 +35,18 @@ function Exercise({ exercise }) {
     return (
         <>
             <div className="exerciseContainer">
-                <div className="checkboxContainer">
+                <div className="exerciseHeader">
+                    <h1 className="subHeaderText">{exercise.name}</h1>
+                    <HelpIcon onClick={handleOpen} sx={{color: '#0695fd'}}/>
+                </div>
+                <div className="exerciseBody">
                     <Checkbox
-                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#0695fd' } }}
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#b8b8b8' } }}
                         icon={<CheckCircleOutlinedIcon />}
                         checkedIcon={<CheckCircleIcon />}
                     />
-                </div>
-                <div className="exerciseDetailsContainer">
-                    <h1 className="subHeaderText">{exercise.name}</h1>
-                    <p className="bodyText">3 x 12-15</p>
-                </div>
-                <div className="exerciseSwapButton">
-                    <button onClick={handleSwap}><SwapHorizIcon /></button>
+                    <p>Sets: 3 Reps: 12-15</p>
+                    <SwapHorizIcon/>
                 </div>
             </div>
             <Modal
