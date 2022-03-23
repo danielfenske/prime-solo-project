@@ -85,15 +85,41 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 })
 // #endregion ====
 
-router.put('/swap/:target', async (req, res) => {
+router.put('/swap/:target/:id', async (req, res) => {
   let target = req.params.target;
+  let exerciseId = req.params.id;
   let userId = req.user.id;
 
   if (req.isAuthenticated()) {
-    console.log('target', target);
+    // grabs exercise data from ExerciseDB database (related to target muscle)
+    const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises/target/${target}`, {
+      headers: {
+        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+        'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
+      }
+    })
+    const targetExercises = exerciseAPIQuery.data;
+
+    const swappedExercise = selectExercise(targetExercises, exerciseId);
+    
+    res.send(swappedExercise);
+
   } else {
     res.sendStatus(403);
   }
 })
+
+const selectExercise = (targetExercises, exerciseId) => {
+  
+  let randomIndex = Math.floor(Math.random() * targetExercises.length);
+
+  let randomExercise = targetExercises[randomIndex];
+
+  if (randomExercise.id === exerciseId) {
+    selectExercise(targetExercises, exerciseId) 
+  } else {
+    return randomExercise;
+  }
+}
 
 module.exports = router;
