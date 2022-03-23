@@ -1,1 +1,13 @@
 @import "../Styles/Variables.scss";
+
+.workoutContainer {
+  @include flexColumn(0px);
+  background-color: $white;
+  .workoutBody {
+    @include flexColumn(15px);
+    justify-content: flex-start;
+    overflow-y: scroll;
+    height: 75vh;
+    width: 100%;
+  }
+}

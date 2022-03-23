@@ -16,18 +16,20 @@ function WorkoutView() {
 
     return (
         <>
-        <WorkoutHeader/>
-        <div className="appContainer">
-            {dailyWorkout && (dailyWorkout.map((exercise) => {
-                return (
-                    <Exercise 
-                        key={exercise.id}
-                        exercise={exercise}
-                    />
-                );
-            }))}
-        </div>
-        <Nav/>
+            <WorkoutHeader />
+            <div className="appContainer workoutContainer">
+                <div className="workoutBody">
+                    {dailyWorkout && (dailyWorkout.map((exercise) => {
+                        return (
+                            <Exercise
+                                key={exercise.id}
+                                exercise={exercise}
+                            />
+                        );
+                    }))}
+                </div>
+            </div>
+            <Nav />
         </>
     )
 }

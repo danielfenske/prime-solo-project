@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
-// import Material UI
+// import SASS/MUI
+import './Exercise.scss';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Checkbox from '@mui/material/Checkbox';
-
-// Exercise CSS file 
-import './Exercise.scss';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HelpIcon from '@mui/icons-material/Help';
 
 const style = {
     position: 'absolute',
@@ -32,17 +34,22 @@ function Exercise({ exercise }) {
 
     return (
         <>
-            <div className="exerciseHeader">
-                <h4 className="exerciseTitle">{exercise.name}</h4>
-                <button type="button" onClick={handleOpen}>?</button>
+            <div className="exerciseContainer">
+                <div className="checkboxContainer">
+                    <Checkbox
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#0695fd' } }}
+                        icon={<CheckCircleOutlinedIcon />}
+                        checkedIcon={<CheckCircleIcon />}
+                    />
+                </div>
+                <div className="exerciseDetailsContainer">
+                    <h1 className="subHeaderText">{exercise.name}</h1>
+                    <p className="bodyText">3 x 12-15</p>
+                </div>
+                <div className="exerciseSwapButton">
+                    <button onClick={handleSwap}><SwapHorizIcon /></button>
+                </div>
             </div>
-
-            <div className="exerciseBody">
-                <Checkbox />
-                <p>3 x 12-15</p>
-                <button type="button" onClick={handleSwap}>Swap</button>
-            </div>
-
             <Modal
                 open={open}
                 onClose={handleClose}
