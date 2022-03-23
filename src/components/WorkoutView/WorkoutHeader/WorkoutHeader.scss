@@ -1,15 +1,15 @@
 @import "../../Styles/Variables.scss";
 
 .workoutHeader {
-    @include flexColumn(0);
     background-color: $primaryColor;
     color: $white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     overflow: hidden;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100vw;
     height: 10vh;
-
-    text-align: center;
     letter-spacing: 3px;
 }
