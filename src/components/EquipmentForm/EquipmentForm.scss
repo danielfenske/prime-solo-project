@@ -1,0 +1,13 @@
+@import "../Styles/Variables.scss";
+
+.equipmentBar {
+    background-color: $primaryColor;
+    width: 75%;
+    height: 2vw;
+}
+
+.equipmentBody {
+    @include flexColumn(10px);
+    justify-content: flex-start;
+    overflow-y: scroll;
+}

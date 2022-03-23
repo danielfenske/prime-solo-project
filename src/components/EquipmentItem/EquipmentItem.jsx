@@ -1,5 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+// Import SASS/MUI components
+import './EquipmentItem.scss';
+import Checkbox from '@mui/material/Checkbox';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CircleIcon from '@mui/icons-material/Circle';
+
 function EquipmentItem({ equipment }) {
 
     const dispatch = useDispatch();
@@ -16,12 +22,19 @@ function EquipmentItem({ equipment }) {
         }
     }
 
-        return (
-            <div className='=equipmentContainer'>
-                <input type="checkbox" value={equipment.id} name={equipment.name} onClick={handleCheckboxChange}/>
-                <label for={equipment.name}>{equipment.name}</label>
-            </div>
-        )
+    return (
+        <div className='equipmentContainer'>
+            <img src={equipment.img_url} />
+            <h1 className="subHeaderText">{equipment.name}</h1>
+            <Checkbox className="checkbox"
+                sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#b8b8b8' } }}
+                icon={<CircleOutlinedIcon />}
+                checkedIcon={<CircleIcon />}
+                value={equipment.id}
+                name={equipment.name}
+                onClick={handleCheckboxChange} />
+        </div>
+    )
 }
 
 export default EquipmentItem;

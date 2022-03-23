@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
+// IMPORT SASS
+import './EquipmentForm.scss';
+
 function EquipmentForm() {
 
     const equipmentList = useSelector((store) => (store.equipment.equipmentList));
@@ -31,25 +34,33 @@ function EquipmentForm() {
 
 
     return (
-        <div className="appContainer">
-            <h1 className="headerText">What equipment is available to you?</h1>
-            <h3 className="subHeaderText">Select all that apply:</h3>
-
-            <form onSubmit={handleNextButton}>
-                {
-                   equipmentList && equipmentList.map((equipment) => {
-                       return (
-                           <EquipmentItem
-                                key={equipment.id}
-                                equipment={equipment}
-                            />
-                       )
-                   })
-                }
-                <button type="submit">Next</button>
+        <div className="appContainer formContainer">
+            <div className="formHeader">
+                <div className="progressBar">
+                    <div className="equipmentBar"></div>
+                </div>
+                <h1 className="headerText">What's at your gym?</h1>
+            </div>
+            <form className="formBody">
+                <h1 className="subHeaderText">Select all that apply.</h1>
+                <div className="equipmentBody">
+                    {
+                        equipmentList && equipmentList.map((equipment) => {
+                            return (
+                                <EquipmentItem
+                                    key={equipment.id}
+                                    equipment={equipment}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </form>
 
-            <button onClick={handleBackButton}>Back</button>
+            <div className="formFooter">
+                <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
+                <button className="backButton" onClick={handleBackButton}>Back</button>
+            </div>
         </div>
     )
 }

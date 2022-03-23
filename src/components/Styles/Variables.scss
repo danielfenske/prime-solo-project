@@ -1,0 +1,76 @@
+// VARIABLES //
+$primaryColor: #0695fd;
+$secondaryColor: #ffcb4c;
+
+$lightGrey: #b8b8b8;
+$darkGrey: #615f5f;
+$white: rgb(255, 255, 255);
+
+$fontFamily: "Cabin", sans-serif;
+$headerText: 24px;
+$subHeaderText: 18px;
+$bodyText: 14px;
+
+// MIXINS //
+@mixin sansSerif($size, $weight, $color) {
+  font-family: "Cabin", sans-serif;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+}
+
+@mixin buttonFilled($textColor, $backgroundColor) {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  padding: 16px 24px;
+  width: 200px;
+  border-radius: 25px;
+  box-shadow: 0px 3px 2px 2px rgba(0, 0, 0, 0.2);
+
+  color: $textColor;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: $backgroundColor;
+}
+
+@mixin buttonText($textColor) {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  color: $textColor;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+@mixin flexColumn($gap) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin flexRow($gap) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: $gap;
+}

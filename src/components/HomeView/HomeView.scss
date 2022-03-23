@@ -1,0 +1,12 @@
+@import "../Styles/Variables.scss";
+
+.homeContainer {
+  .homeHeader {
+    @include flexColumn(15px);
+    text-align: center;
+    width: 100%;
+    .homeViewText {
+      color: $primaryColor;
+    }
+  }
+}

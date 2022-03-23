@@ -22,9 +22,10 @@ import MaxesView from '../MaxesView/MaxesView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
-import ReviewForm from '../ReviewForm/ReviewForm';
+import MaxesForm from '../MaxesForm/MaxesForm';
+import ReceivedForm from '../ReceivedForm/ReceivedForm';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({type: 'FETCH_USER_PREFERENCES'});
+    dispatch({ type: 'FETCH_USER_PREFERENCES' });
   }, [dispatch]);
 
   return (
@@ -82,8 +83,18 @@ function App() {
               <EquipmentForm />}
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/received">
+            {user.form_complete ?
+              <Redirect to="/home" />
+              :
+              <ReceivedForm />}
+          </ProtectedRoute>
+
           <ProtectedRoute exact path="/maxes">
-            <MaxesView />
+            {user.form_complete ?
+              <MaxesView />
+              :
+              <MaxesForm />}
           </ProtectedRoute>
 
           {/* EXISTING USER VIEWS */}

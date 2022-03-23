@@ -1,0 +1,81 @@
+@import "../Styles/Variables.scss";
+
+// ALL
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $fontFamily;
+}
+
+// SHARED CONTAINERS
+.appContainer {
+  @include flexColumn(0px);
+  height: 100vh;
+  width: 100vw;
+}
+
+.formContainer {
+  @include flexColumn(0px);
+  justify-content: space-around;
+
+  .formHeader {
+    @include flexColumn(15px);
+    text-align: center;
+    width: 100%;
+  }
+
+  .formBody {
+    @include flexColumn(15px);
+    height: 60vh;
+    width: 75%;
+  }
+
+  .formFooter {
+    @include flexColumn(15px);
+    background-color: $white;
+  }
+}
+
+// COMPONENTS
+.primaryButton {
+  @include buttonFilled($white, $primaryColor);
+}
+
+.backButton {
+  @include buttonText($primaryColor);
+}
+
+.submitButton {
+  @include buttonFilled($white, $darkGrey);
+}
+
+.progressBar {
+  background-color: $lightGrey;
+  width: 85%;
+  height: 2vw;
+}
+
+// FONT STYLING
+.headerText {
+  @include sansSerif($headerText, bold, black);
+  padding: 0px 20px;
+}
+
+.subHeaderText {
+  @include sansSerif($subHeaderText, medium, black);
+  padding-bottom: 5px;
+}
+
+.alert {
+  @include sansSerif($bodyText, normal, $white);
+  text-align: center;
+  padding: 10px 50px;
+}
+
+.customSelect {
+  select {
+    display: none;
+  }
+  position: relative;
+  font-family: $fontFamily;
+}
