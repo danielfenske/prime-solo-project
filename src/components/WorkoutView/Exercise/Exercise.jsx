@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import Checkbox from '@mui/material/Checkbox';
 
 // Exercise CSS file 
-import './Exercise.css';
+import './Exercise.scss';
 
 const style = {
     position: 'absolute',
