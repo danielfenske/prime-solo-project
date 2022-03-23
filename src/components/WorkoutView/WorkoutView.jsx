@@ -17,7 +17,7 @@ function WorkoutView() {
     return (
         <>
             <WorkoutHeader />
-            <div className="appContainer workoutContainer">
+            <div className="workoutContainer">
                 <div className="workoutBody">
                     {dailyWorkout && (dailyWorkout.map((exercise) => {
                         return (

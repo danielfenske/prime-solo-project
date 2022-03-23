@@ -3,17 +3,36 @@
 .exerciseContainer {
   @include flexColumn(5px);
   width: 100%;
-    .exerciseHeader {
-      @include flexRow(5px);
-      width: 80%;
+  .exerciseHeader {
+    @include flexRow(5px);
+    text-transform: capitalize;
+    width: 80%;
+  }
+  .exerciseBody {
+    @include flexRow(0px);
+    justify-content: space-around;
+    background-color: $darkGrey;
+    color: $lightGrey;
+    border-radius: 50px;
+    width: 85%;
+    height: 60px;
+    .checkBox,
+    .swapButton {
+      color: $lightGrey;
+      margin: 0;
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
-    .exerciseBody {
-      @include flexRow(0px);
-      justify-content: space-between;
-      background-color: $darkGrey;
+    p {
       color: $white;
-      border-radius: 50px;
-      width: 85%;
-      height: 60px;
     }
+  }
 }

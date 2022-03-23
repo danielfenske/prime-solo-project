@@ -2,13 +2,16 @@
 
 .workoutContainer {
   @include flexColumn(0px);
+  justify-content: space-around;
   background-color: $white;
-  width: 95vw;
+  height: 90vh;
+  width: 100vw;
+  position: relative;
   .workoutBody {
     @include flexColumn(45px);
     justify-content: flex-start;
     overflow-y: scroll;
-    height: 75vh;
+    height: 95%;
     width: 100%;
   }
 }

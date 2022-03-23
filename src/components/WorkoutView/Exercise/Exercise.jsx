@@ -5,8 +5,7 @@ import './Exercise.scss';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Checkbox from '@mui/material/Checkbox';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle'; import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -37,16 +36,21 @@ function Exercise({ exercise }) {
             <div className="exerciseContainer">
                 <div className="exerciseHeader">
                     <h1 className="subHeaderText">{exercise.name}</h1>
-                    <HelpIcon onClick={handleOpen} sx={{color: '#0695fd'}}/>
+                    <HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} />
                 </div>
                 <div className="exerciseBody">
                     <Checkbox
-                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#b8b8b8' } }}
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
                         icon={<CheckCircleOutlinedIcon />}
                         checkedIcon={<CheckCircleIcon />}
+                        className="checkBox"
                     />
-                    <p>Sets: 3 Reps: 12-15</p>
-                    <SwapHorizIcon/>
+                    <p className="details">Sets: 3 Reps: 12-15</p>
+                    <button className="swapButton">
+                        <SwapHorizontalCircleIcon
+                            sx={{ fontSize: 32 }}
+                        />
+                    </button>
                 </div>
             </div>
             <Modal
