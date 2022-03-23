@@ -77,6 +77,35 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     // necessary values for determine dailyWorkout
     const dailyWorkout = await buildDailyWorkout(dayOfWeek, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
 
+    // Promise.all
+    // for (let exercise of dailyWorkout) {
+    //const preSql = `DELETE FROM "user_exercise" WHERE "userId" = $1`
+
+    // await pool.query(preSql, [req.user.id])
+
+    // const sqlQuery = `INSERT INTO "exerciseTable" ("bodyPart"....)
+    //                   ($1, $2, $3) `
+
+    // const sqlParams = [
+    //   exercise.bodyPart,
+    //   exercise.equipment,
+    // ]
+
+    // const sqlQuery2 = `INSERT INTO "user_exercise" ("userId", "exerciseId")`
+
+    // const sqlParams2 = [req.user.id, exercise.id]
+
+    // await pool.query(sqlQuery, sqlParams)
+    // await pool.query(sqlQuery2, sqlParams2)
+    // }
+    // loop through provided array and add to database
+    for (let exercise of dailyWorkout) {
+      // delete all exercises within the array
+      const deleteExerciseQuery = await pool.query(`DELETE FROM "user_exercise" WHERE "user_id" = $1`, [id])
+
+      const addExerciseQuery = await pool.query 
+    }
+
     res.send(dailyWorkout);
 
   } else {
