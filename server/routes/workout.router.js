@@ -85,4 +85,15 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 })
 // #endregion ====
 
+router.put('/swap/:target', async (req, res) => {
+  let target = req.params.target;
+  let userId = req.user.id;
+
+  if (req.isAuthenticated()) {
+    console.log('target', target);
+  } else {
+    res.sendStatus(403);
+  }
+})
+
 module.exports = router;
