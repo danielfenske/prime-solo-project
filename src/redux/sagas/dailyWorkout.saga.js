@@ -15,13 +15,23 @@ function* getDailyWorkout(action) {
       yield put ({ type: 'SET_DAILY_WORKOUT', payload: response.data});
 
       
-    } catch {
-      console.log('Error GETTING workout');
+    } catch (error) {
+      console.log('Error GETTING workout', error);
+    }
+  }
+
+  function* updateExercise(action) {
+    try {
+      let target = action.payload;
+      
+    } catch (error) {
+      console.log('error UPDATING exercise', error);
     }
   }
   
   function* dailyWorkoutSaga() {
     yield takeLatest('FETCH_DAILY_WORKOUT', getDailyWorkout);
+    yield takeLatest('SWAP_EXERCISE', updateExercise);
   }
   
   export default dailyWorkoutSaga;

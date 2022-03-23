@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 // import SASS/MUI
 import './Exercise.scss';
@@ -27,8 +28,12 @@ function Exercise({ exercise }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const dispatch = useDispatch();
+
     const handleSwap = () => {
-        console.log('in handleSwap');
+        console.log('in handleSwap', exercise.target);
+
+        dispatch({type: 'SWAP_EXERCISE', payload: exercise.target});
     }
 
     return (
