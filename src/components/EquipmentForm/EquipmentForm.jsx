@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
-// IMPORT SASS/MUI
+// IMPORT SASS
 import './EquipmentForm.scss';
-import SwipeVerticalIcon from '@mui/icons-material/SwipeVertical';
 
 function EquipmentForm() {
 
@@ -56,7 +55,6 @@ function EquipmentForm() {
                         })
                     }
                 </div>
-                <span className="scrollText"><SwipeVerticalIcon/></span>
             </form>
 
             <div className="formFooter">

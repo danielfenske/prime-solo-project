@@ -1,13 +1,12 @@
 @import "../Styles/Variables.scss";
 
 .homeContainer {
-  @include flexColumn(20px);
-  justify-content: flex-start;
-
   .homeHeader {
-    @include flexColumn(10px);
+    @include flexColumn(15px);
     text-align: center;
-    padding-top: 40px;
     width: 100%;
+    .homeViewText {
+      color: $primaryColor;
+    }
   }
 }

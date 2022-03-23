@@ -101,6 +101,7 @@ function MetricsForm() {
 
             <div className="formFooter">
                 <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
+                <button className="backButton" onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</button>
             </div>
         </div >
     )

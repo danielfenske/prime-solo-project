@@ -1,9 +1,10 @@
 @import "../Styles/Variables.scss";
 
 .loginContainer {
-  @include flexColumn(50px);
+  @include flexColumn(45px);
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../../public/images/login-background.jpg");
+    // url("../../../public/images/login-background.jpg");
+    url("https://media.giphy.com/media/rE1RNycMweWBRTCdpd/giphy-downsized-medium.gif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,7 +17,7 @@
       width: auto;
     }
     .headerText {
-      @include sansSerif(42px, bold, $white);
+      @include sansSerif(36px, bold, $white);
       letter-spacing: 3px;
     }
   }

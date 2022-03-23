@@ -1,18 +1,19 @@
 @import "../Styles/Variables.scss";
 
 .loginFormContainer {
-  @include flexColumn(10px);
+  @include flexColumn(30px);
 
   form {
-    @include flexColumn(5px);
-    width: 75vw;
+    @include flexColumn(15px);
+    width: 85vw;
     input {
-      padding: 10px;
-      margin: 8px 0px;
-      box-sizing: border-box;
+      padding: 10px 30px;
     }
     .primaryButton {
       @include buttonFilled($white, $primaryColor);
+      margin: 5px;
+      padding: 8px 12px;
+      width: 100px;
     }
   }
   p {

@@ -45,6 +45,7 @@ function HomeView() {
       <div className="appContainer homeContainer">
         <div className="homeHeader">
           <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
+          <h1 className="subHeaderText homeViewText">Let's get to work. 💪</h1>
         </div>
 
         {userPreferences &&

@@ -9,8 +9,9 @@
 
 // SHARED CONTAINERS
 .appContainer {
+  @include flexColumn(0px);
   height: 100vh;
-  padding: 0px 40px;
+  width: 100vw;
 }
 
 .formContainer {
@@ -19,7 +20,6 @@
 
   .formHeader {
     @include flexColumn(15px);
-    justify-content: flex-start;
     text-align: center;
     width: 100%;
   }
@@ -32,7 +32,6 @@
 
   .formFooter {
     @include flexColumn(15px);
-    justify-content: flex-end;
     background-color: $white;
   }
 }
