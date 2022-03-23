@@ -49,6 +49,7 @@ function Exercise({ exercise }) {
                     <button className="swapButton">
                         <SwapHorizontalCircleIcon
                             sx={{ fontSize: 32 }}
+                            onClick={handleSwap}
                         />
                     </button>
                 </div>
