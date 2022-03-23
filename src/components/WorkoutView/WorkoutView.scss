@@ -1,0 +1,15 @@
+@import "../Styles/Variables.scss";
+
+.workoutContainer {
+  @include flexColumn(0px);
+  background-color: $white;
+  height: 80vh;
+  width: 100vw;
+  .workoutBody {
+    @include flexColumn(45px);
+    justify-content: flex-start;
+    overflow-y: scroll;
+    height: 90%;
+    width: 100%;
+  }
+}

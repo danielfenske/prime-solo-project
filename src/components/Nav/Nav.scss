@@ -9,9 +9,10 @@
     position: fixed;
     bottom: 0;
     width: 100vw;
+    height: 10vh;
     .navLink {
         @include flexColumn(5px);
-        padding: 2vw;
+        // padding: 2vw;
         color: $lightGrey;
         text-decoration: none;
         .navLogo {

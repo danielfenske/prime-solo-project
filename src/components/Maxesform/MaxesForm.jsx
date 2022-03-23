@@ -39,6 +39,7 @@ function MaxesForm() {
 
     const handleAdd = () => {
         console.log('in handleAdd');
+        // event.preventDefault();
 
         dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps) } });
         dispatch({ type: 'FETCH_USER_MAXES' });

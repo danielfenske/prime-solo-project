@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
 // import Exercise component
+import WorkoutHeader from './WorkoutHeader/WorkoutHeader';
 import Exercise from './Exercise/Exercise';
 
 // import CSS
-import './WorkoutView.css';
+import './WorkoutView.scss';
 
 function WorkoutView() {
 
@@ -15,18 +16,22 @@ function WorkoutView() {
 
     return (
         <>
-        <div className="appContainer">
-            <h1 className="headerText">LET'S GET IT</h1>
-            {dailyWorkout ? (dailyWorkout.map((exercise) => {
-                return (
-                    <Exercise 
-                        key={exercise.id}
-                        exercise={exercise}
-                    />
-                );
-            })) : <p>Loading</p>}
-        </div>
-        <Nav/>
+            <WorkoutHeader />
+            <div className="workoutContainer">
+                <div className="workoutContainer">
+                    <div className="workoutBody">
+                        {dailyWorkout && (dailyWorkout.map((exercise) => {
+                            return (
+                                <Exercise
+                                    key={exercise.id}
+                                    exercise={exercise}
+                                />
+                            );
+                        }))}
+                    </div>
+                </div>
+            </div>
+            <Nav />
         </>
     )
 }
