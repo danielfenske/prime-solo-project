@@ -146,9 +146,9 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
 
   function addSetsAndReps(dailyWorkout, phase) {
 
-    let finalDailyWorkout = [];
+    let finalDailyWorkout = [];    
   
-    for (let exercise of dailyWorkout) {
+    for (let exercise of dailyWorkout) {      
         switch (phase) {
             case 'endurance':
               if(exercise.target !== 'cardiovascular system') {
