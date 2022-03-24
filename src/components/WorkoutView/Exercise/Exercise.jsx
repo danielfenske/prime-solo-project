@@ -40,8 +40,7 @@ function Exercise({ exercise }) {
         <>
             <div className="exerciseContainer">
                 <div className="exerciseHeader">
-                    <h1 className="subHeaderText">{exercise.name}</h1>
-                    <HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} />
+                    <h1 className="subHeaderText">{exercise.name}<HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} /></h1>
                 </div>
                 <div className="exerciseBody">
                     <Checkbox

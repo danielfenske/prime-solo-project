@@ -4,9 +4,13 @@
   @include flexColumn(10px);
   width: 100%;
   .exerciseHeader {
-    @include flexRow(5px);
-    text-transform: capitalize;
-    width: 95%;
+    width: 75%;
+    .subHeaderText {
+      text-transform: capitalize;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
   }
   .exerciseBody {
     @include flexRow(0px);
