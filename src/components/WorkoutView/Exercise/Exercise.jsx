@@ -31,9 +31,9 @@ function Exercise({ exercise }) {
     const dispatch = useDispatch();
 
     const handleSwap = () => {
-        console.log('in handleSwap', exercise.target);
+        console.log('in handleSwap', exercise.id);
 
-        dispatch({type: 'SWAP_EXERCISE', payload: exercise.target});
+        dispatch({type: 'SWAP_EXERCISE', payload: {target: exercise.target, id: exercise.id}});
     }
 
     return (

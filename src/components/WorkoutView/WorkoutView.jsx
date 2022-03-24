@@ -18,7 +18,7 @@ function WorkoutView() {
 
     useEffect(() => {
         dispatch({type: 'FETCH_CURRENT_WORKOUT'});
-    })
+    }, [])
 
     return (
         <>

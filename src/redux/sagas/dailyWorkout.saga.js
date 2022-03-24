@@ -22,7 +22,14 @@ function* getDailyWorkout(action) {
 
   function* updateExercise(action) {
     try {
-      let target = action.payload;
+      let target = action.payload.target;
+      let id = action.payload.id;
+
+      // UPDATE exercise in same target group
+      yield axios.put(`/api/workout/swap/${target}/${id}`);
+
+      // GRAB latest workout from DB
+      yield put ({type: 'FETCH_CURRENT_WORKOUT'});
       
     } catch (error) {
       console.log('error UPDATING exercise', error);

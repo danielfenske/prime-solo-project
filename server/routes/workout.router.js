@@ -105,7 +105,7 @@ router.get('/current', (req, res) => {
   let id = req.user.id;
 
   if (req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "user_exercises" WHERE "user_id" = $1 ORDER BY "id";`;
+    const queryText = `SELECT * FROM "user_exercises" WHERE "user_id" = $1 ORDER BY "id";`;
 
     pool.query(queryText, [id])
       .then((result) => {
@@ -113,7 +113,7 @@ router.get('/current', (req, res) => {
       })
       .catch((error) => {
         console.log('err', error);
-        
+
         res.sendStatus(500);
       })
   } else {
@@ -135,17 +135,22 @@ router.put('/swap/:target/:id', async (req, res) => {
         'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
       }
     })
+
     const targetExercises = exerciseAPIQuery.data;
 
     const swappedExercise = selectExercise(targetExercises, exerciseId);
 
-    res.send(swappedExercise);
 
+    const updateExerciseQuery = await pool.query(`UPDATE "user_exercises" SET "bodyPart" = $1, "equipment" = $2, "gifUrl" = $3, "API_id" = $4, "name" = $5
+    WHERE "id" = $6;`, [swappedExercise.bodyPart, swappedExercise.equipment, swappedExercise.gifUrl, swappedExercise.id, swappedExercise.name, exerciseId]);
+
+    res.sendStatus(200);
   } else {
     res.sendStatus(403);
   }
 })
 
+// THIS FUNCTION STILL NEEDS TO FACTOR IN USER EQUIPMENT... NOT DONE YET.
 const selectExercise = (targetExercises, exerciseId) => {
 
   let randomIndex = Math.floor(Math.random() * targetExercises.length);
@@ -153,7 +158,7 @@ const selectExercise = (targetExercises, exerciseId) => {
   let randomExercise = targetExercises[randomIndex];
 
   if (randomExercise.id === exerciseId) {
-    selectExercise(targetExercises, exerciseId)
+    selectExercise(targetExercises, exerciseId);
   } else {
     return randomExercise;
   }
