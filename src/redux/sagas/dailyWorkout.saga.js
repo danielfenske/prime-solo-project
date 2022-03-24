@@ -13,8 +13,7 @@ function* getDailyWorkout(action) {
       
       // sends response to be stored in redux state
       yield put ({ type: 'SET_DAILY_WORKOUT', payload: response.data});
-
-      
+   
     } catch (error) {
       console.log('Error GETTING workout', error);
     }

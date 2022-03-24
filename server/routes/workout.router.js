@@ -8,6 +8,7 @@ const {
 
 const dummyExerciseData = require('../modules/dummyExerciseData');
 const buildDailyWorkout = require('../modules/buildDailyWorkout');
+const selectNewExercise = require('../modules/selectNewExercise');
 
 // #region ==== GET ROUTES ====
 // get workout request first starts with grabbing all eligible
@@ -34,22 +35,21 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 
     // selects array of exerciseHistory for that given week
     const historyQuery = await pool.query(
-      `SELECT array_agg("exercise_history"."exercise_id") AS exercise_id
-
-      FROM "exercise_history" 
-      JOIN "user" ON "exercise_history"."user_id" = "user"."id"
-
-      WHERE "exercise_history"."user_id" = $1
-      GROUP BY "exercise_history"."user_id";`, [id]
+      `SELECT array_agg("user_exercises"."API_id") AS exercise_id
+        FROM "user_exercises" 
+        WHERE "user_exercises"."user_id" = $1;`, [id]
     )
 
+    console.log('historyQuery.rows[0]', historyQuery.rows[0]);
+
     let exerciseHistory;
-    if (historyQuery.rows[0]) {
-      exerciseHistory = historyQuery.rows[0].exercise_id;
-    } else {
+
+    if (historyQuery.rows[0].exercise_id === null) {
       exerciseHistory = ['none'];
+    } else {
+      exerciseHistory = historyQuery.rows[0].exercise_id;
     }
-    // console.log('exerciseHistory', exerciseHistory);
+    console.log('exerciseHistory', exerciseHistory);
 
     // selects array of equipment available to the user
     const equipmentQuery = await pool.query(
@@ -78,13 +78,13 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     const finalDailyWorkout = await buildDailyWorkout(dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
 
     // delete all exercises within the array
-    const deleteWorkoutQuery = await pool.query(`DELETE FROM "user_exercises" WHERE "user_id" = $1`, [id]);
+    await pool.query(`DELETE FROM "user_exercises" WHERE "user_id" = $1`, [id]);
 
     // loop through provided array and add to database
     for (let exercise of finalDailyWorkout) {
 
       // adds each exercise object within array to DB 
-      const addExerciseQuery = await pool.query(
+      await pool.query(
         `INSERT INTO "user_exercises" ("user_id", "bodyPart", "equipment", "gifUrl", "API_id", "name", "target", "sets", "reps")
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
         [id, exercise.bodyPart, exercise.equipment, exercise.gifUrl, exercise.id, exercise.name, exercise.target, exercise.sets, exercise.reps]);
@@ -122,6 +122,7 @@ router.get('/current', (req, res) => {
 })
 // #endregion ====
 
+
 router.put('/swap/:target/:id', async (req, res) => {
   let target = req.params.target;
   let exerciseId = req.params.id;
@@ -138,10 +139,21 @@ router.put('/swap/:target/:id', async (req, res) => {
 
     const targetExercises = exerciseAPIQuery.data;
 
-    const swappedExercise = selectExercise(targetExercises, exerciseId);
+    // selects array of equipment available to the user
+    const equipmentQuery = await pool.query(
+      `SELECT array_agg("equipment"."name") AS equipment_available
+      FROM "users_equipment" 
+      JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+      JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+      
+      WHERE "users_equipment"."user_id" = $1
+      GROUP BY "users_equipment"."user_id";`, [userId]
+    )
+    const equipmentAvailable = equipmentQuery.rows[0].equipment_available;
 
+    const swappedExercise = selectNewExercise(targetExercises, equipmentAvailable, exerciseId);
 
-    const updateExerciseQuery = await pool.query(`UPDATE "user_exercises" SET "bodyPart" = $1, "equipment" = $2, "gifUrl" = $3, "API_id" = $4, "name" = $5
+    await pool.query(`UPDATE "user_exercises" SET "bodyPart" = $1, "equipment" = $2, "gifUrl" = $3, "API_id" = $4, "name" = $5
     WHERE "id" = $6;`, [swappedExercise.bodyPart, swappedExercise.equipment, swappedExercise.gifUrl, swappedExercise.id, swappedExercise.name, exerciseId]);
 
     res.sendStatus(200);
@@ -149,19 +161,5 @@ router.put('/swap/:target/:id', async (req, res) => {
     res.sendStatus(403);
   }
 })
-
-// THIS FUNCTION STILL NEEDS TO FACTOR IN USER EQUIPMENT... NOT DONE YET.
-const selectExercise = (targetExercises, exerciseId) => {
-
-  let randomIndex = Math.floor(Math.random() * targetExercises.length);
-
-  let randomExercise = targetExercises[randomIndex];
-
-  if (randomExercise.id === exerciseId) {
-    selectExercise(targetExercises, exerciseId);
-  } else {
-    return randomExercise;
-  }
-}
 
 module.exports = router;

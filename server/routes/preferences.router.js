@@ -36,6 +36,8 @@ router.post('/', async (req, res) => {
     let days_per_week = req.body.days_per_week;
     let routine = req.body.routine;
 
+    let bodyWeightId = 2;
+
     if (req.isAuthenticated()) {
 
         await pool.query(`INSERT INTO "user_preferences" ("user_id", "name", "weight", "height", "age", "days_per_week", "routine")
@@ -43,6 +45,9 @@ router.post('/', async (req, res) => {
         [id, name, weight, height, age, days_per_week, routine]);
 
         await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
+
+        await pool.query(`INSERT INTO "users_equipment" ("user_id", "equipment_id") 
+        VALUES ($1, $2);`, [id, bodyWeightId]);
 
         res.sendStatus(201);
     } else {
