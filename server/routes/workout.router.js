@@ -77,28 +77,6 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     // necessary values for determine dailyWorkout
     const finalDailyWorkout = await buildDailyWorkout(dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
 
-    // Promise.all
-    // for (let exercise of dailyWorkout) {
-    //const preSql = `DELETE FROM "user_exercise" WHERE "userId" = $1`
-
-    // await pool.query(preSql, [req.user.id])
-
-    // const sqlQuery = `INSERT INTO "exerciseTable" ("bodyPart"....)
-    //                   ($1, $2, $3) `
-
-    // const sqlParams = [
-    //   exercise.bodyPart,
-    //   exercise.equipment,
-    // ]
-
-    // const sqlQuery2 = `INSERT INTO "user_exercise" ("userId", "exerciseId")`
-
-    // const sqlParams2 = [req.user.id, exercise.id]
-
-    // await pool.query(sqlQuery, sqlParams)
-    // await pool.query(sqlQuery2, sqlParams2)
-    // }
-
     // delete all exercises within the array
     const deleteWorkoutQuery = await pool.query(`DELETE FROM "user_exercises" WHERE "user_id" = $1`, [id]);
 
@@ -118,6 +96,26 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 
     res.send(userDailyWorkout);
 
+  } else {
+    res.sendStatus(403);
+  }
+})
+
+router.get('/current', (req, res) => {
+  let id = req.user.id;
+
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "user_exercises" WHERE "user_id" = $1 ORDER BY "id";`;
+
+    pool.query(queryText, [id])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('err', error);
+        
+        res.sendStatus(500);
+      })
   } else {
     res.sendStatus(403);
   }
