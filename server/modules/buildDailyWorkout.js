@@ -2,7 +2,7 @@
 // the daily workout for a given user. Several helper functions are
 // called within it to filter through the exercises and narrow them 
 // down to one single workout
-const buildDailyWorkout = async (dayOfWeek, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises) => {
+const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises) => {
 
     // calls 'selectTemplate' function and assigns return value to variable
     // 'targetValuesList' is an array of all the exercise values given pulled 
@@ -28,8 +28,10 @@ const buildDailyWorkout = async (dayOfWeek, workoutTemplates, exerciseHistory, e
   
     let dailyWorkout = selectExercises(templateMatches);
     // console.log('dailyWorkout', dailyWorkout);
+
+    let finalDailyWorkout = addSetsAndReps(dailyWorkout, phase);
   
-    return dailyWorkout;
+    return finalDailyWorkout;
   }
   
   
@@ -139,6 +141,56 @@ const buildDailyWorkout = async (dayOfWeek, workoutTemplates, exerciseHistory, e
     }
   
     return dailyWorkout;
+  }
+
+
+  function addSetsAndReps(dailyWorkout, phase) {
+
+    let finalDailyWorkout = [];
+  
+    for (let exercise of dailyWorkout) {
+        switch (phase) {
+            case 'endurance':
+              if(exercise.target !== 'cardiovascular system') {
+                finalDailyWorkout.push({...exercise, sets: '2', reps: '15-20'});
+              } else {
+                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+              }
+                break;
+            case 'hypertrophy':
+              if(exercise.target !== 'cardiovascular system') {
+                finalDailyWorkout.push({...exercise, sets: '3', reps: '10-12'});
+              } else {
+                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+              }
+                break;
+            case 'strength':
+              if(exercise.target !== 'cardiovascular system') {
+                finalDailyWorkout.push({...exercise, sets: '4', reps: '6-8'});
+              } else {
+                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+              }
+                break;
+            case 'power':
+              if(exercise.target !== 'cardiovascular system') {
+                finalDailyWorkout.push({...exercise, sets: '4', reps: '3-5'});
+              } else {
+                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+              }
+                break;
+            case 'maintenance':
+              if(exercise.target !== 'cardiovascular system') {
+                finalDailyWorkout.push({...exercise, sets: '3', reps: '6-8'});
+              } else {
+                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+              }
+                break;
+            default:
+                console.log('Something is wrong');
+        }
+    }
+  
+    return finalDailyWorkout;
   }
   // #endregion ====
 

@@ -50,7 +50,7 @@ function Exercise({ exercise }) {
                         checkedIcon={<CheckCircleIcon />}
                         className="checkBox"
                     />
-                    <p className="details">Sets: 3 Reps: 12-15</p>
+                    <p className="details">{exercise.sets} x {exercise.reps}</p>
                     <button className="swapButton">
                         <SwapHorizontalCircleIcon
                             sx={{ fontSize: 32 }}

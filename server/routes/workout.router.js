@@ -75,7 +75,7 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 
     // initiates all buildDailyWorkout function and sends all data grabbed before as 
     // necessary values for determine dailyWorkout
-    const dailyWorkout = await buildDailyWorkout(dayOfWeek, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
+    const finalDailyWorkout = await buildDailyWorkout(dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
 
     // Promise.all
     // for (let exercise of dailyWorkout) {
@@ -99,14 +99,14 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     // await pool.query(sqlQuery2, sqlParams2)
     // }
     // loop through provided array and add to database
-    for (let exercise of dailyWorkout) {
-      // delete all exercises within the array
-      const deleteExerciseQuery = await pool.query(`DELETE FROM "user_exercise" WHERE "user_id" = $1`, [id])
+    // for (let exercise of dailyWorkout) {
+    //   // delete all exercises within the array
+    //   const deleteExerciseQuery = await pool.query(`DELETE FROM "user_exercise" WHERE "user_id" = $1`, [id])
 
-      const addExerciseQuery = await pool.query 
-    }
+    //   const addExerciseQuery = await pool.query 
+    // }
 
-    res.send(dailyWorkout);
+    res.send(finalDailyWorkout);
 
   } else {
     res.sendStatus(403);
