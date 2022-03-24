@@ -18,7 +18,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import HomeView from '../HomeView/HomeView';
 import WorkoutView from '../WorkoutView/WorkoutView';
 import ProfileView from '../ProfileView/ProfileView';
-import MaxesView from '../MaxesView/MaxesView';
+import ProgressView from '../ProgressView/ProgressView';
 import MetricsForm from '../MetricsForm/MetricsForm';
 import RoutineForm from '../RoutineForm/RoutineForm';
 import EquipmentForm from '../EquipmentForm/EquipmentForm';
@@ -92,7 +92,7 @@ function App() {
 
           <ProtectedRoute exact path="/maxes">
             {user.form_complete ?
-              <MaxesView />
+              <ProgressView />
               :
               <MaxesForm />}
           </ProtectedRoute>
@@ -108,6 +108,13 @@ function App() {
           <ProtectedRoute exact path="/workout">
             {user.form_complete ?
               <WorkoutView />
+              :
+              <Redirect to="/metrics" />}
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/progress">
+            {user.form_complete ?
+              <ProgressView />
               :
               <Redirect to="/metrics" />}
           </ProtectedRoute>

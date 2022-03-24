@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
 // IMPORT SASS/MUI
-import './MaxesView.scss';
+import './ProgressView.scss';
 
 // import children components
 import UserMaxes from '../UserMaxes/UserMaxes';
 
-function MaxesView() {
+function ProgressView() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -44,4 +44,4 @@ function MaxesView() {
     )
 }
 
-export default MaxesView;
+export default ProgressView;
