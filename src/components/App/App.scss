@@ -64,7 +64,8 @@
 
 .subHeaderText {
   @include sansSerif($subHeaderText, medium, black);
-  padding-bottom: 5px;
+  padding-bottom: 15px;
+  @include flexRow(5px);
 }
 
 .alert {

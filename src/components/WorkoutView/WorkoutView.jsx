@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
@@ -12,7 +12,13 @@ import './WorkoutView.scss';
 
 function WorkoutView() {
 
+    const dispatch = useDispatch();
+
     const dailyWorkout = useSelector((store) => store.dailyWorkout);
+
+    useEffect(() => {
+        dispatch({type: 'FETCH_CURRENT_WORKOUT'});
+    }, [])
 
     return (
         <>

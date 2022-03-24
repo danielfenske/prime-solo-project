@@ -15,13 +15,42 @@ function* getDailyWorkout(action) {
       yield put ({ type: 'SET_DAILY_WORKOUT', payload: response.data});
 
       
-    } catch {
-      console.log('Error GETTING workout');
+    } catch (error) {
+      console.log('Error GETTING workout', error);
+    }
+  }
+
+  function* updateExercise(action) {
+    try {
+      let target = action.payload.target;
+      let id = action.payload.id;
+
+      // UPDATE exercise in same target group
+      yield axios.put(`/api/workout/swap/${target}/${id}`);
+
+      // GRAB latest workout from DB
+      yield put ({type: 'FETCH_CURRENT_WORKOUT'});
+      
+    } catch (error) {
+      console.log('error UPDATING exercise', error);
+    }
+  }
+
+  function* getCurrentWorkout() {
+    try {
+      const response = yield axios.get(`/api/workout/current`);
+
+      yield put ({type: 'SET_DAILY_WORKOUT', payload: response.data});
+
+    } catch (error) {
+      console.log('error GETTING current workout', error);   
     }
   }
   
   function* dailyWorkoutSaga() {
     yield takeLatest('FETCH_DAILY_WORKOUT', getDailyWorkout);
+    yield takeLatest('SWAP_EXERCISE', updateExercise);
+    yield takeLatest('FETCH_CURRENT_WORKOUT', getCurrentWorkout);
   }
   
   export default dailyWorkoutSaga;

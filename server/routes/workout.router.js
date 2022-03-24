@@ -22,12 +22,12 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 
   if (req.isAuthenticated()) {
     // pulls user's days_per_week integer in database to determine which templates they are eligible for
-    const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE "user_id"=$1;`, [id])
+    const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE "user_id"=$1;`, [id]);
     const daysPerWeek = daysQuery.rows[0].days_per_week;
     // console.log('daysPerWeek', daysPerWeek);
 
     // selects all eligible templates based off of user's daysPerWeek value
-    const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek])
+    const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek]);
     const workoutTemplates = templatesQuery.rows;
     // console.log('workoutTemplates', workoutTemplates);
 
@@ -75,14 +75,93 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
 
     // initiates all buildDailyWorkout function and sends all data grabbed before as 
     // necessary values for determine dailyWorkout
-    const dailyWorkout = await buildDailyWorkout(dayOfWeek, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
+    const finalDailyWorkout = await buildDailyWorkout(dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises);
 
-    res.send(dailyWorkout);
+    // delete all exercises within the array
+    const deleteWorkoutQuery = await pool.query(`DELETE FROM "user_exercises" WHERE "user_id" = $1`, [id]);
+
+    // loop through provided array and add to database
+    for (let exercise of finalDailyWorkout) {
+
+      // adds each exercise object within array to DB 
+      const addExerciseQuery = await pool.query(
+        `INSERT INTO "user_exercises" ("user_id", "bodyPart", "equipment", "gifUrl", "API_id", "name", "target", "sets", "reps")
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        [id, exercise.bodyPart, exercise.equipment, exercise.gifUrl, exercise.id, exercise.name, exercise.target, exercise.sets, exercise.reps]);
+    }
+
+    const userDailyWorkoutQuery = await pool.query(`SELECT * FROM "user_exercises" WHERE "user_id" = $1 ORDER BY "id";`, [id]);
+
+    const userDailyWorkout = userDailyWorkoutQuery.rows;
+
+    res.send(userDailyWorkout);
 
   } else {
     res.sendStatus(403);
   }
 })
+
+router.get('/current', (req, res) => {
+  let id = req.user.id;
+
+  if (req.isAuthenticated()) {
+    const queryText = `SELECT * FROM "user_exercises" WHERE "user_id" = $1 ORDER BY "id";`;
+
+    pool.query(queryText, [id])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('err', error);
+
+        res.sendStatus(500);
+      })
+  } else {
+    res.sendStatus(403);
+  }
+})
 // #endregion ====
+
+router.put('/swap/:target/:id', async (req, res) => {
+  let target = req.params.target;
+  let exerciseId = req.params.id;
+  let userId = req.user.id;
+
+  if (req.isAuthenticated()) {
+    // grabs exercise data from ExerciseDB database (related to target muscle)
+    const exerciseAPIQuery = await axios.get(`https://exercisedb.p.rapidapi.com/exercises/target/${target}`, {
+      headers: {
+        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+        'x-rapidapi-key': `${process.env.EXERCISE_DB_API_KEY}`
+      }
+    })
+
+    const targetExercises = exerciseAPIQuery.data;
+
+    const swappedExercise = selectExercise(targetExercises, exerciseId);
+
+
+    const updateExerciseQuery = await pool.query(`UPDATE "user_exercises" SET "bodyPart" = $1, "equipment" = $2, "gifUrl" = $3, "API_id" = $4, "name" = $5
+    WHERE "id" = $6;`, [swappedExercise.bodyPart, swappedExercise.equipment, swappedExercise.gifUrl, swappedExercise.id, swappedExercise.name, exerciseId]);
+
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(403);
+  }
+})
+
+// THIS FUNCTION STILL NEEDS TO FACTOR IN USER EQUIPMENT... NOT DONE YET.
+const selectExercise = (targetExercises, exerciseId) => {
+
+  let randomIndex = Math.floor(Math.random() * targetExercises.length);
+
+  let randomExercise = targetExercises[randomIndex];
+
+  if (randomExercise.id === exerciseId) {
+    selectExercise(targetExercises, exerciseId);
+  } else {
+    return randomExercise;
+  }
+}
 
 module.exports = router;

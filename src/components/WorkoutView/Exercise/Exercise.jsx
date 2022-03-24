@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 // import SASS/MUI
 import './Exercise.scss';
@@ -27,16 +28,19 @@ function Exercise({ exercise }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const dispatch = useDispatch();
+
     const handleSwap = () => {
-        console.log('in handleSwap');
+        console.log('in handleSwap', exercise.id);
+
+        dispatch({type: 'SWAP_EXERCISE', payload: {target: exercise.target, id: exercise.id}});
     }
 
     return (
         <>
             <div className="exerciseContainer">
                 <div className="exerciseHeader">
-                    <h1 className="subHeaderText">{exercise.name}</h1>
-                    <HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} />
+                    <h1 className="subHeaderText">{exercise.name}<HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} /></h1>
                 </div>
                 <div className="exerciseBody">
                     <Checkbox
@@ -45,7 +49,7 @@ function Exercise({ exercise }) {
                         checkedIcon={<CheckCircleIcon />}
                         className="checkBox"
                     />
-                    <p className="details">Sets: 3 Reps: 12-15</p>
+                    <p className="details">{exercise.sets} x {exercise.reps}</p>
                     <button className="swapButton">
                         <SwapHorizontalCircleIcon
                             sx={{ fontSize: 32 }}
