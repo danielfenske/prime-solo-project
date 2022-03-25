@@ -1,0 +1,7 @@
+@import "../../Styles/Variables.scss";
+
+.generalItem {
+    @include flexColumn(5px);
+    align-items: flex-start;
+    width: 100%;
+}

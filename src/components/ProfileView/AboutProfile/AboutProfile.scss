@@ -1,0 +1,53 @@
+@import "../../Styles/Variables.scss";
+
+.aboutAccordionContainer {
+  @include flexColumn(15px);
+  width: 90%;
+  .accordionDetailsHeader {
+    @include flexRow(0px);
+    justify-content: space-between;
+    border-top: 1px solid $darkGrey;
+    padding-top: 15px;
+    font-size: $bodyText;
+    color: $primaryColor;
+    width: 100%;
+  }
+  .accordionDetailsBody {
+    @include flexColumn(5px);
+    justify-content: flex-start;
+    width: 90%;
+    padding-bottom: 15px;
+    .technologyBody {
+      @include flexRow(5px);
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      width: 100%;
+      padding-bottom: 15px;
+      .technologyItem {
+        background-color: $white;
+        color: $darkGrey;
+        border: 1px solid $darkGrey;
+        border-radius: 25px;
+        padding: 5px 10px;
+      }
+    }
+    .connectContainer {
+      @include flexColumn(15px);
+      .subHeaderText {
+          padding: 0;
+      }
+      .connectBody {
+        @include flexRow(15px);
+        justify-content: space-around;
+        a {
+          text-decoration: none;
+          color: $darkGrey;
+          :visited {
+            text-decoration: none;
+            color: $darkGrey;
+          }
+        }
+      }
+    }
+  }
+}

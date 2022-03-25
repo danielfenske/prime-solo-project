@@ -4,24 +4,19 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // import equipment component
-import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
-import UserMaxes from '../UserMaxes/UserMaxes';
+import GeneralProfile from './GeneralProfile/GeneralProfile';
+import RoutineProfile from './RoutineProfile/RoutineProfile';
+import EquipmentProfile from './EquipmentProfile/EquipmentProfile';
+import AboutProfile from './AboutProfile/AboutProfile';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
-import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
 // SASS/MUI imports
 import './ProfileView.scss';
-import EditIcon from '@mui/icons-material/Edit';
 import Logo from './quicklift-logo.png';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function ProfileView() {
-
-    const [routineDetails, setRoutineDetails] = useState(false);
-    const [equipmentDetails, setEquipmentDetails] = useState(false);
-    const [aboutDetails, setAboutDetails] = useState(false);
+    const [aboutDetails, setAboutDetails] = useState(true);
 
     // bring in state stored in redux for all data related to profile
     const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
@@ -36,64 +31,25 @@ function ProfileView() {
         dispatch({ type: 'FETCH_USER_EQUIPMENT_LIST' });
     }, []);
 
-    const handleEdit = () => {
-        console.log('in handleClick');
-    }
-
     return (
         <>
             <div className="profileContainer">
                 <div className="profileHeader">
-                    <div className="metricsHeader">
-                        <EditIcon
-                            onClick={handleEdit}
-                        />
-                    </div>
-                    <div className="metricsBody">
-                        <img src={Logo} className="profileLogo" alt="QuickLift logo" />
-                        <div className="detailsContainer">
-                            <p><strong>Name:</strong> Daniel</p>
-                            <p><strong>Age:</strong> 24</p>
-                            <p><strong>Weight:</strong> 165 lbs</p>
-                            <p><strong>Height:</strong> 68"</p>
-                        </div>
-                    </div>
+                    <img src={Logo} className="profileLogo" alt="QuickLift logo" />
+                    <h1 className="headerText">{userPreferences.name}'s Profile</h1>
                 </div>
                 <div className="profileBody">
-                    <div className="routineProfile accordionContainer">
-                        <h1>ROUTINE</h1>
-                        <ExpandLessIcon fontSize="large" />
-                    </div>
-                    {routineDetails ?
-                        <div className="routineProfile accordionContainer" onClick={() => setRoutineDetails(false)}>
-                            <h1>EQUIPMENT</h1>
-                            <ExpandLessIcon fontSize="large" />
-                        </div>
-                        :
-                        <div className="equipmentProfileDetails" onClick={() => setRoutineDetails(true)}>
-                            <div className="equipmentDetailsHeader">
-                                <h1>EQUIPMENT <EditIcon/></h1>
-                                <ExpandMoreIcon fontSize="large"/>
-                            </div>
-
-                            <div className="equipmentDetailsBody">
-                                {
-                                    userEquipment && userEquipment.map((equipment, index) => {
-                                        return (
-                                            <ProfileEquipment
-                                                key={index}
-                                                equipment={equipment}
-                                            />
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    }
-                    <div className="aboutProfile accordionContainer">
-                        <h1>ABOUT</h1>
-                        <ExpandLessIcon fontSize="large" />
-                    </div>
+                    <GeneralProfile
+                        userPreferences={userPreferences}
+                    />
+                    <RoutineProfile
+                        userPreferences={userPreferences}
+                    />
+                    <EquipmentProfile
+                        userEquipment={userEquipment}
+                    />
+                    <AboutProfile
+                    />
                 </div>
                 <LogOutButton />
             </div>
