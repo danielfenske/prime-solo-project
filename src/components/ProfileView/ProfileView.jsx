@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import redux dependencies 
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,13 +8,20 @@ import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
 import UserMaxes from '../UserMaxes/UserMaxes';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
+import EquipmentItem from '../EquipmentItem/EquipmentItem';
 
 // SASS/MUI imports
 import './ProfileView.scss';
 import EditIcon from '@mui/icons-material/Edit';
 import Logo from './quicklift-logo.png';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function ProfileView() {
+
+    const [routineDetails, setRoutineDetails] = useState(false);
+    const [equipmentDetails, setEquipmentDetails] = useState(false);
+    const [aboutDetails, setAboutDetails] = useState(false);
 
     // bring in state stored in redux for all data related to profile
     const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
@@ -53,14 +60,39 @@ function ProfileView() {
                     </div>
                 </div>
                 <div className="profileBody">
-                    <div className="routineProfile accordianContainer">
-                        <h1 className="subHeaderText">Routine</h1>
+                    <div className="routineProfile accordionContainer">
+                        <h1>ROUTINE</h1>
+                        <ExpandLessIcon fontSize="large" />
                     </div>
-                    <div className="routineProfile accordianContainer">
-                        <h1 className="subHeaderText">Equipment</h1>
-                    </div>
-                    <div className="routineProfile accordianContainer">
-                        <h1 className="subHeaderText">About</h1>
+                    {routineDetails ?
+                        <div className="routineProfile accordionContainer" onClick={() => setRoutineDetails(false)}>
+                            <h1>EQUIPMENT</h1>
+                            <ExpandLessIcon fontSize="large" />
+                        </div>
+                        :
+                        <div className="equipmentProfileDetails" onClick={() => setRoutineDetails(true)}>
+                            <div className="equipmentDetailsHeader">
+                                <h1>EQUIPMENT <EditIcon/></h1>
+                                <ExpandMoreIcon fontSize="large"/>
+                            </div>
+
+                            <div className="equipmentDetailsBody">
+                                {
+                                    userEquipment && userEquipment.map((equipment, index) => {
+                                        return (
+                                            <ProfileEquipment
+                                                key={index}
+                                                equipment={equipment}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    }
+                    <div className="aboutProfile accordionContainer">
+                        <h1>ABOUT</h1>
+                        <ExpandLessIcon fontSize="large" />
                     </div>
                 </div>
                 <LogOutButton />

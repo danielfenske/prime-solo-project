@@ -60,7 +60,7 @@ router.get('/equipment', (req, res) => {
 
     if (req.isAuthenticated()) {
       
-    let queryText = `SELECT "equipment"."id", "equipment"."name"
+    let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url"
   
     FROM "users_equipment" 
     JOIN "user" ON "users_equipment"."user_id" = "user"."id"
