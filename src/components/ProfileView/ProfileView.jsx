@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import redux dependencies 
 import { useSelector, useDispatch } from 'react-redux';
 
 // import equipment component
-import ProfileEquipment from '../ProfileEquipment/ProfileEquipment';
-import UserMaxes from '../UserMaxes/UserMaxes';
+import GeneralProfile from './GeneralProfile/GeneralProfile';
+import RoutineProfile from './RoutineProfile/RoutineProfile';
+import EquipmentProfile from './EquipmentProfile/EquipmentProfile';
+import AboutProfile from './AboutProfile/AboutProfile';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
+
+// SASS/MUI imports
 import './ProfileView.scss';
+import Logo from './quicklift-logo.png';
 
 function ProfileView() {
+    const [aboutDetails, setAboutDetails] = useState(true);
 
     // bring in state stored in redux for all data related to profile
     const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
@@ -22,42 +28,32 @@ function ProfileView() {
     // grab user profile information on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_PREFERENCES' });
-        dispatch({type: 'FETCH_USER_EQUIPMENT_LIST'});
+        dispatch({ type: 'FETCH_USER_EQUIPMENT_LIST' });
     }, []);
 
     return (
         <>
-        <div className="appContainer">
-            {/* <h1 className="headerText">{userPreferences.name}</h1>
-            <h1 className="subHeaderText">{userPreferences.days_per_week}</h1>
-            <p>{userPreferences.weight}</p>
-            <p>{userPreferences.height}</p>
-            <p>{userPreferences.age}</p>
-
-            <div className="maxesContainer">
-                <p>Bench: 300</p>
-                <p>Squat: 225</p>
-                <p>Pull ups: 20</p>
+            <div className="profileContainer">
+                <div className="profileHeader">
+                    <img src={Logo} className="profileLogo" alt="QuickLift logo" />
+                    <h1 className="headerText">{userPreferences.name}'s Profile</h1>
+                </div>
+                <div className="profileBody">
+                    <GeneralProfile
+                        userPreferences={userPreferences}
+                    />
+                    <RoutineProfile
+                        userPreferences={userPreferences}
+                    />
+                    <EquipmentProfile
+                        userEquipment={userEquipment}
+                    />
+                    <AboutProfile
+                    />
+                </div>
+                <LogOutButton />
             </div>
-
-            <div className="equipmentContainer">
-                <h1 className="subHeaderText">EQUIPMENT</h1>
-                {
-                    userEquipment && (userEquipment.map((equipment) => {
-                        return (
-                            <ProfileEquipment
-                                key={equipment.id}
-                                equipment={equipment}
-                            />
-                        )
-                    }))
-                }
-            </div>
-
-            <UserMaxes/> */}
-            <LogOutButton/>
-        </div>
-        <Nav/>
+            <Nav />
         </>
     )
 }

@@ -64,8 +64,12 @@ function HomeView() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h1 className="subHeaderText">Endurance</h1>
-          <p></p>
+          <h1 className="subHeaderText">Hypertrophy</h1>
+          <hr/>
+          <p>Hypertrophy refers to an increase in muscular size achieved through 
+            exercise. When you work out, if you want to tone or improve muscle definition, 
+            lifting weights is the most common way to increase hypertrophy.</p>
+          <p><strong>Sets: 3 x 10-12</strong></p>
         </Box>
       </Modal>
     </>
