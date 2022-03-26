@@ -87,10 +87,10 @@ router.post('/maxes', (req, res) => {
 
     if (req.isAuthenticated()) {
         // insert user exercise max into DB 
-        let queryText = `INSERT INTO "exercise_maxes" ("user_id", "exercise", "weight", "reps")
-        VALUES ($1, $2, $3, $4);`;
+        let queryText = `INSERT INTO "exercise_maxes" ("user_id", "exercise", "weight", "reps", "muscle_group")
+        VALUES ($1, $2, $3, $4, $5);`;
 
-        pool.query(queryText, [id, req.body.exercise, req.body.weight, req.body.reps])
+        pool.query(queryText, [id, req.body.exercise, req.body.weight, req.body.reps, req.body.muscleGroup])
             .then((result) => {
                 res.sendStatus(201);
             })

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // IMPORT SASS/MUI
 import './MaxesForm.scss';
-import { TextField, FormControl } from '@mui/material';
+import { TextField, FormControl, Select, MenuItem } from '@mui/material';
 
 // import children components
 import UserMaxes from '../UserMaxes/UserMaxes';
@@ -12,6 +12,7 @@ import UserMaxes from '../UserMaxes/UserMaxes';
 function MaxesForm() {
 
     const [exercise, setExercise] = useState('');
+    const [muscleGroup, setMuscleGroup] = useState('chest');
     const [weight, setWeight] = useState('');
     const [reps, setReps] = useState('');
 
@@ -37,7 +38,12 @@ function MaxesForm() {
         console.log('in handleAdd');
         event.preventDefault();
 
-        dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps) } });
+        dispatch({ type: 'ADD_MAX', 
+        payload: { 
+            exercise: exercise, 
+            muscleGroup: muscleGroup, 
+            weight: Number(weight), 
+            reps: Number(reps) } });
         setExercise('');
         setWeight('');
         setReps('');
@@ -55,9 +61,9 @@ function MaxesForm() {
             </div>
 
             <form className="maxesFormBody">
-                <div className="maxesFormTop">
+                <div className="maxesFormBottom">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Enter exercise</h1>
+                        <h1 className="subHeaderText">Exercise</h1>
                         <TextField
                             autoComplete='off'
                             type="text"
@@ -65,6 +71,19 @@ function MaxesForm() {
                             required
                             onChange={(event) => setExercise(event.target.value)}
                         />
+                    </FormControl>
+                    <FormControl fullWidth>
+                        <h1 className="subHeaderText">Muscle Group</h1>
+                        <Select
+                            name="muscle group"
+                            value={muscleGroup}
+                            onChange={(event) => setMuscleGroup(event.target.value)}
+                        >
+                            <MenuItem value="chest">chest</MenuItem>
+                            <MenuItem value="back">back</MenuItem>
+                            <MenuItem value="legs">legs</MenuItem>
+                            <MenuItem value="arms">arms</MenuItem>
+                        </Select>
                     </FormControl>
                 </div>
 
