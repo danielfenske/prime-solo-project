@@ -14,7 +14,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 275,
+  width: 300,
   height: 350,
   overflow: "hidden",
   overflowY: "scroll",

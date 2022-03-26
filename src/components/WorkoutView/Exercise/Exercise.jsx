@@ -15,10 +15,10 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 275,
+    width: 300,
     bgcolor: 'background.paper',
     boxShadow: 24,
-    p: 4,
+    p: 2,
 };
 
 
@@ -32,7 +32,7 @@ function Exercise({ exercise }) {
     const handleSwap = () => {
         console.log('in handleSwap', exercise.id);
 
-        dispatch({type: 'SWAP_EXERCISE', payload: {target: exercise.target, id: exercise.id}});
+        dispatch({ type: 'SWAP_EXERCISE', payload: { target: exercise.target, id: exercise.id } });
     }
 
     return (
@@ -64,7 +64,10 @@ function Exercise({ exercise }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <img src={exercise.gifUrl} alt="exercise gif" width="275" />
+                    <div className="exerciseModal">
+                        <img src={exercise.gifUrl} alt="exercise gif" width="275" />
+                        <h1 className="subHeaderText">{exercise.name}</h1>
+                    </div>
                 </Box>
             </Modal>
         </>
