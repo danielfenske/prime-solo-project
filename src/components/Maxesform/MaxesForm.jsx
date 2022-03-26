@@ -33,10 +33,14 @@ function MaxesForm() {
         history.push('/equipment');
     }
 
-    const handleAdd = () => {
+    const handleAdd = (event) => {
         console.log('in handleAdd');
+        event.preventDefault();
 
         dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps) } });
+        setExercise('');
+        setWeight('');
+        setReps('');
     }
 
 
@@ -55,6 +59,7 @@ function MaxesForm() {
                     <FormControl fullWidth>
                         <h1 className="subHeaderText">Enter exercise</h1>
                         <TextField
+                            autoComplete='off'
                             type="text"
                             value={exercise}
                             required
@@ -67,6 +72,7 @@ function MaxesForm() {
                     <FormControl fullWidth>
                         <h1 className="subHeaderText">Weight</h1>
                         <TextField
+                            autoComplete='off'
                             type="number"
                             value={weight}
                             required
@@ -77,6 +83,7 @@ function MaxesForm() {
                     <FormControl fullWidth>
                         <h1 className="subHeaderText">Reps</h1>
                         <TextField
+                            autoComplete='off'
                             type="number"
                             value={reps}
                             required
@@ -85,7 +92,7 @@ function MaxesForm() {
                     </FormControl>
                 </div>
 
-                <button type="submit" className="primaryButton maxesButton" onClick={handleAdd}>Add</button>
+                <button type="submit" className="primaryButton smallButton" onClick={handleAdd}>Add</button>
             </form>
             <UserMaxes />
             <div className="formFooter">

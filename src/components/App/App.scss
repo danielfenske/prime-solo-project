@@ -50,6 +50,10 @@
   @include buttonFilled($white, $darkGrey);
 }
 
+.smallButton {
+  width: 130px;
+}
+
 .progressBar {
   background-color: $lightGrey;
   width: 85%;
