@@ -1,4 +1,4 @@
-const phaseData = (state={}, action) => {
+const phaseData = (state=[], action) => {
     if (action.type === 'SET_PHASE_DATA') {
         return action.payload;
     }

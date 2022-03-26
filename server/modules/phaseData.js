@@ -31,7 +31,7 @@ const phaseData = [
         phase: 'maintenance',
         sets: '3',
         reps: '6-8',
-        definition: `The maintenance phase is used to preserve the strength, power, and muscle mass.`,
+        definition: `The maintenance phase is used to preserve the strength, power, and muscle mass previously achieved.`,
         rest: `45 seconds`
     }
 ];
