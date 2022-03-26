@@ -29,7 +29,6 @@ function HomeView() {
   const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
   const phaseData = useSelector((store) => (store.phaseData));
 
-  // const [dayOfWeek, setDayOfWeek] = useState('1');
   // state for modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

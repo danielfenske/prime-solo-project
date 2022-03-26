@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 
         await pool.query(`INSERT INTO "user_preferences" ("user_id", "name", "weight", "height", "age", "days_per_week", "routine")
         VALUES ($1, $2, $3, $4, $5, $6, $7);`,
-        [id, name, weight, height, age, days_per_week, routine]);
+            [id, name, weight, height, age, days_per_week, routine]);
 
         await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
 
@@ -59,8 +59,8 @@ router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
     if (req.isAuthenticated()) {
-      
-    let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url"
+
+        let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url"
   
     FROM "users_equipment" 
     JOIN "user" ON "users_equipment"."user_id" = "user"."id"
@@ -79,6 +79,26 @@ router.get('/equipment', (req, res) => {
             })
     } else {
         res.sendStatus(403);
+    }
+});
+
+router.get('/maxes/:muscle', (req, res) => {
+    let id = req.user.id;
+    let muscle_group = req.params.muscle;
+
+    if (req.isAuthenticated()) {
+        // selects all exercise maxes associated with user id
+        let queryText = `SELECT * FROM "exercise_maxes" WHERE "user_id" = $1 AND "muscle_group" = $2;`;
+
+        pool.query(queryText, [id, muscle_group])
+            .then((result) => {
+                res.send(result.rows);
+            })
+            .catch((error) => {
+                res.sendStatus(500);
+            })
+    } else {
+        sendStatus(403);
     }
 });
 
@@ -104,23 +124,24 @@ router.post('/maxes', (req, res) => {
     }
 });
 
-router.get('/maxes', (req, res) => {
-    let id = req.user.id;
+router.delete(`/maxes/:id`, (req, res) => {
+    let id = req.params.id;
 
     if (req.isAuthenticated()) {
-        // selects all exercise maxes associated with user id
-        let queryText = `SELECT * FROM "exercise_maxes" WHERE user_id = $1;`
+        let queryText = `DELETE FROM "exercise_maxes" WHERE "id" = $1;`;
 
         pool.query(queryText, [id])
             .then((result) => {
-                res.send(result.rows);
+                res.sendStatus(200);
             })
             .catch((error) => {
+                console.log('error', error);
+
                 res.sendStatus(500);
             })
     } else {
-        sendStatus(403);
+        res.sendStatus(403);
     }
-});
+})
 
 module.exports = router;

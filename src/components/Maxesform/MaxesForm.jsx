@@ -6,9 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import './MaxesForm.scss';
 import { TextField, FormControl, Select, MenuItem } from '@mui/material';
 
-// import children components
-import UserMaxes from '../UserMaxes/UserMaxes';
-
 function MaxesForm() {
 
     const [exercise, setExercise] = useState('');
@@ -113,7 +110,6 @@ function MaxesForm() {
 
                 <button type="submit" className="primaryButton smallButton" onClick={handleAdd}>Add</button>
             </form>
-            <UserMaxes />
             <div className="formFooter">
                 <button className="primaryButton submitButton" onClick={handleSubmitButton}>Submit</button>
                 <button className="backButton submitBackButton" onClick={handleBackButton}>Back</button>

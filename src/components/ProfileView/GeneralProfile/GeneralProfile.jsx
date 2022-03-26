@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // SASS/MUI imports
 import './GeneralProfile.scss';

@@ -2,10 +2,12 @@ import axios from 'axios';
 import { put,takeLatest} from 'redux-saga/effects';
 
 
-function* getUserMaxes() {
+function* getUserMaxes(action) {
+    let muscle = action.payload;    
+
     try {
         // GET requests grabs user maxes
-        const maxesResponse = yield axios.get(`/api/preferences/maxes`);
+        const maxesResponse = yield axios.get(`/api/preferences/maxes/${muscle}`);
 
         // sends response to be stored in redux state
         yield put({type: 'SET_USER_MAXES', payload: maxesResponse.data})
@@ -25,9 +27,13 @@ function* postUserMax(action) {
     }
 }
 
-function* deleteUserMax(action) {
+function* deleteUserMax(action) {    
+
+    let id = action.payload;
+
     try {
-        console.log('action.payload', action.payload);
+        yield axios.delete(`/api/preferences/maxes/${id}`);
+        yield put({type: 'FETCH_USER_MAXES'});
 
     } catch (error) {
         console.log('Error DELETING max', error);
@@ -37,7 +43,7 @@ function* deleteUserMax(action) {
 function* userMaxesSaga() {
     yield takeLatest('FETCH_USER_MAXES', getUserMaxes);
     yield takeLatest('ADD_MAX', postUserMax);
-    // yield takeLatest('DELETE_MAX'.deleteUserMax);
+    yield takeLatest('DELETE_MAX', deleteUserMax);
 }
 
 export default userMaxesSaga;
