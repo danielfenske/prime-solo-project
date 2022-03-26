@@ -7,6 +7,7 @@ import dailyWorkout from './dailyWorkout.reducer';
 import userPreferences from './userPreferences.reducer';
 import equipment from './equipment.reducer';
 import userMaxes from './userMaxes.reducer';
+import phaseData from './phaseData.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   userPreferences, // holds all data related to user
   equipment, // holds equipment arrays for user and DB
   userMaxes, // holds user's exercise maxes
+  phaseData // holds phase data
 });
 
 export default rootReducer;

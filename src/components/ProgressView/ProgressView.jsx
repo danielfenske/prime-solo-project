@@ -14,30 +14,16 @@ function ProgressView() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
     const user = useSelector((store) => (store.user));
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_MAXES' });
     }, []);
 
-    // sends all values taken from form to be stored in reducer
-    const handleSubmitButton = () => {
-        event.preventDefault();
-        console.log('in handleSubmitButton');
-
-        dispatch({ type: 'POST_USER_PREFERENCES', payload: newUserPreferences });
-        history.push("/home");
-    }
-
-    const handleBackButton = () => {
-        history.push('/equipment');
-    }
-
     return (
         <>
             <div className="appContainer">
-
+                
             </div>
             <Nav />
         </>

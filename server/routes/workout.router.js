@@ -120,6 +120,14 @@ router.get('/current', (req, res) => {
     res.sendStatus(403);
   }
 })
+
+router.get('/phases', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.send(phaseData);
+  } else {
+    res.sendStatus(403);
+  }
+})
 // #endregion ====
 
 

@@ -16,8 +16,6 @@ import './ProfileView.scss';
 import Logo from './quicklift-logo.png';
 
 function ProfileView() {
-    const [aboutDetails, setAboutDetails] = useState(true);
-
     // bring in state stored in redux for all data related to profile
     const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
     const userEquipment = useSelector((store) => (store.equipment.userEquipmentList));
@@ -48,8 +46,7 @@ function ProfileView() {
                     <EquipmentProfile
                         userEquipment={userEquipment}
                     />
-                    <AboutProfile
-                    />
+                    <AboutProfile/>
                 </div>
                 <LogOutButton />
             </div>

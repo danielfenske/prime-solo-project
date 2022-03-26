@@ -15,9 +15,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 300,
+    width: 275,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };
@@ -65,7 +64,7 @@ function Exercise({ exercise }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <img src={exercise.gifUrl} alt="exercise gif" width="300" />
+                    <img src={exercise.gifUrl} alt="exercise gif" width="275" />
                 </Box>
             </Modal>
         </>
