@@ -22,8 +22,13 @@ function ProgressView() {
 
     return (
         <>
-            <div className="appContainer">
-                
+            <div className="appContainer progressContainer">
+                <div className="progressHeader">
+                    <h1 className="headerText">Track your progress!</h1>
+                </div>
+                <div className="progressBody">
+                    <UserMaxes/>
+                </div>
             </div>
             <Nav />
         </>

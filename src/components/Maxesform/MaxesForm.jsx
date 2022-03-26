@@ -20,10 +20,6 @@ function MaxesForm() {
 
     const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_USER_MAXES' });
-    }, []);
-
     // sends all values taken from form to be stored in reducer
     const handleSubmitButton = () => {
         event.preventDefault();
@@ -39,10 +35,8 @@ function MaxesForm() {
 
     const handleAdd = () => {
         console.log('in handleAdd');
-        // event.preventDefault();
 
         dispatch({ type: 'ADD_MAX', payload: { exercise: exercise, weight: Number(weight), reps: Number(reps) } });
-        dispatch({ type: 'FETCH_USER_MAXES' });
     }
 
 

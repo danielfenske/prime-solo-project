@@ -18,9 +18,7 @@ function* getUserMaxes() {
 function* postUserMax(action) {
     try {
         yield axios.post(`/api/preferences/maxes`, action.payload);
-        yield put({
-            type: 'FETCH_MAXES'
-        });
+        yield put({type: 'FETCH_USER_MAXES'});
     } catch (error) {
         console.log('Error POSTING max', error);
 
