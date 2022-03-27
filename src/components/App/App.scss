@@ -26,9 +26,9 @@
   }
 
   .formBody {
-    @include flexColumn(15px);
+    @include flexColumn(30px);
     height: 60vh;
-    width: 75%;
+    width: 65%;
   }
 
   .formFooter {

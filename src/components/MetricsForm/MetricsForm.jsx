@@ -65,6 +65,7 @@ function MetricsForm() {
                         value={name}
                         required
                         onChange={(event) => setName(event.target.value)}
+                        size="small"
                     />
                 </FormControl>
 
@@ -77,6 +78,7 @@ function MetricsForm() {
                         value={age}
                         required
                         onChange={(event) => setAge(event.target.value)}
+                        size="small"
                     />
                 </FormControl>
 
@@ -90,6 +92,7 @@ function MetricsForm() {
                         value={weight}
                         required
                         onChange={(event) => setWeight(event.target.value)}
+                        size="small"
                     />
                 </FormControl>
 
@@ -102,6 +105,7 @@ function MetricsForm() {
                         value={height}
                         required
                         onChange={(event) => setHeight(event.target.value)}
+                        size="small"
                     />
                 </FormControl>
             </form>
