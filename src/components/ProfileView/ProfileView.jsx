@@ -46,9 +46,11 @@ function ProfileView() {
                     <EquipmentProfile
                         userEquipment={userEquipment}
                     />
-                    <AboutProfile/>
+                    <AboutProfile />
                 </div>
-                <LogOutButton />
+                <div className="profileFooter">
+                    <LogOutButton />
+                </div>
             </div>
             <Nav />
         </>

@@ -8,32 +8,30 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import UserMax from '../UserMax/UserMax';
 
-function ChestMaxes() {
+function LegsMaxes() {
 
-    const [chestMaxesDetails, setChestMaxesDetails] = useState(false);
+    const [legsMaxesDetails, setLegsMaxesDetails] = useState(false);
 
-    const chestMaxes = useSelector((store) => (store.userMaxes.chestMaxes));
+    const legsMaxes = useSelector((store) => (store.userMaxes.legsMaxes));
 
     const dispatch = useDispatch();
 
     const handleAccordionClick = () => {
-
-        dispatch({ type: 'FETCH_USER_MAXES', payload: 'chest' });
-
-        setChestMaxesDetails(!chestMaxesDetails);
+        dispatch({ type: 'FETCH_USER_MAXES', payload: 'legs' });
+        setLegsMaxesDetails(!legsMaxesDetails);
     }
 
     return (
         <>
-            {chestMaxesDetails ?
+            {legsMaxesDetails ?
                 <div className="accordionContainer">
                     <div className="accordionDetailsHeader" onClick={handleAccordionClick}>
-                        <h1 className="accordionHeader">CHEST</h1>
+                        <h1 className="accordionHeader">LEGS</h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
                     <div className="accordionDetailsBody">
-                        {chestMaxes && chestMaxes.map((max) => {
+                        {legsMaxes && legsMaxes.map((max) => {
                             return (
                                 <UserMax
                                     max={max}
@@ -46,7 +44,7 @@ function ChestMaxes() {
                 </div>
                 :
                 <div className="accordionCover" onClick={handleAccordionClick}>
-                    <h1 className="accordionHeader">CHEST</h1>
+                    <h1 className="accordionHeader">LEGS</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }
@@ -54,4 +52,4 @@ function ChestMaxes() {
     )
 }
 
-export default ChestMaxes;
+export default LegsMaxes;

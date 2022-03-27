@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 // import MUI
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function UserMax({ max }) {
 
@@ -11,8 +11,9 @@ function UserMax({ max }) {
         console.log('in handleDelete', max.id);
 
         let id = max.id
+        let muscleGroup = max.muscle_group;
 
-        dispatch({ type: 'DELETE_MAX', payload: id })
+        dispatch({ type: 'DELETE_MAX', payload: {id: id, muscleGroup: muscleGroup} });
     }
 
     return (
@@ -23,8 +24,8 @@ function UserMax({ max }) {
                 <div><p>{max.weight} lbs</p></div>
                 <div><p>{max.reps} reps</p></div>
             </div>
-            <DeleteOutlineIcon
-                fontSize="medium"
+            <DeleteIcon
+                sx={{fontSize: 30}}
                 className="trashIcon"
                 onClick={handleDelete}
             />

@@ -73,6 +73,11 @@
   @include flexRow(5px);
 }
 
+.accordionHeader {
+  font-size: $headerText;
+  letter-spacing: 2px;
+}
+
 .alert {
   @include sansSerif($bodyText, normal, $white);
   text-align: center;

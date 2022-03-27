@@ -19,7 +19,7 @@ function EquipmentProfile({ userEquipment }) {
             {equipmentDetails ?
                 <div className="accordionContainer" onClick={() => setEquipmentDetails(false)}>
                     <div className="accordionDetailsHeader">
-                        <h1>EQUIPMENT <EditIcon /></h1>
+                        <h1 className="accordionHeader">EQUIPMENT <EditIcon /></h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
@@ -37,7 +37,7 @@ function EquipmentProfile({ userEquipment }) {
                 </div>
                 :
                 <div className="accordionCover" onClick={() => setEquipmentDetails(true)}>
-                    <h1>EQUIPMENT</h1>
+                    <h1 className="accordionHeader">EQUIPMENT</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }

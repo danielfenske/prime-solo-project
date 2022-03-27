@@ -7,11 +7,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import UserMax from '../UserMax/UserMax';
 
-function BackMaxes({ backMaxes }) {
+function BackMaxes() {
 
-    // const [backMaxes, setBackMaxes] = useState(false);
+    const [backMaxesDetails, setBackMaxesDetails] = useState(false);
 
-    const userMaxes = useSelector((store) => (store.userMaxes));
+    const backMaxes = useSelector((store) => (store.userMaxes.backMaxes));
 
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ function BackMaxes({ backMaxes }) {
 
         dispatch({ type: 'FETCH_USER_MAXES', payload: 'back' });
 
-        setBackMaxes(!backMaxes);
+        setBackMaxesDetails(!backMaxesDetails);
     }
 
     // grab user maxes on page load
@@ -29,15 +29,15 @@ function BackMaxes({ backMaxes }) {
 
     return (
         <>
-            {backMaxes ?
+            {backMaxesDetails ?
                 <div className="accordionContainer">
                     <div className="accordionDetailsHeader" onClick={handleAccordionClick}>
-                        <h1>BACK</h1>
+                        <h1 className="accordionHeader">BACK</h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
                     <div className="accordionDetailsBody">
-                        {userMaxes && userMaxes.map((max) => {
+                        {backMaxes && backMaxes.map((max) => {
                             return (
                                 <UserMax
                                     max={max}
@@ -50,7 +50,7 @@ function BackMaxes({ backMaxes }) {
                 </div>
                 :
                 <div className="accordionCover" onClick={handleAccordionClick}>
-                    <h1>BACK</h1>
+                    <h1 className="accordionHeader">BACK</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }

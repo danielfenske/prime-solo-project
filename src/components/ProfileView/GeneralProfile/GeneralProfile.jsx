@@ -20,7 +20,7 @@ function GeneralProfile({ userPreferences }) {
             {generalDetails ?
                 <div className="accordionContainer" onClick={() => setGeneralDetails(false)}>
                     <div className="accordionDetailsHeader">
-                        <h1>GENERAL <EditIcon /></h1>
+                        <h1 className="accordionHeader">GENERAL <EditIcon /></h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
@@ -35,7 +35,7 @@ function GeneralProfile({ userPreferences }) {
                 </div>
                 :
                 <div className="accordionCover" onClick={() => setGeneralDetails(true)}>
-                    <h1>GENERAL</h1>
+                    <h1 className="accordionHeader">GENERAL</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }

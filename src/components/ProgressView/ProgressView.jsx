@@ -8,9 +8,11 @@ import './ProgressView.scss';
 import { Modal, Box } from '@mui/material';
 
 // import children components
-import MaxesForm from '../MaxesForm/MaxesForm';
+import ProgressForm from './ProgressForm/ProgressForm';
 import ChestMaxes from './ChestMaxes/ChestMaxes';
 import BackMaxes from './BackMaxes/BackMaxes';
+import LegsMaxes from'./LegsMaxes/LegsMaxes';
+import ArmsMaxes from './ArmsMaxes/ArmsMaxes';
 
 const style = {
     position: 'absolute',
@@ -18,7 +20,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 300,
-    height: 350,
+    height: 450,
     overflow: "hidden",
     overflowY: "scroll",
     bgcolor: 'background.paper',
@@ -28,9 +30,6 @@ const style = {
 
 function ProgressView() {
 
-    const [chestMaxes, setChestMaxes] = useState(false);
-    const [backMaxes, setBackMaxes] = useState(false);
-
     const dispatch = useDispatch();
 
     const [open, setOpen] = React.useState(false);
@@ -39,7 +38,7 @@ function ProgressView() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_MAXES' });
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
@@ -51,6 +50,8 @@ function ProgressView() {
                 <div className="progressBody">
                     <ChestMaxes/>
                     <BackMaxes/>
+                    <LegsMaxes/>
+                    <ArmsMaxes/>
                 </div>
             </div>
             <Nav />
@@ -63,7 +64,7 @@ function ProgressView() {
             >
                 <Box sx={style}>
                     <div className="modalContainer">
-                        <MaxesForm />
+                        <ProgressForm />
                     </div>
                 </Box>
             </Modal>
