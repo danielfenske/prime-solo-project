@@ -9,12 +9,6 @@
     input {
       padding: 10px 30px;
     }
-    .primaryButton {
-      @include buttonFilled($white, $primaryColor);
-      margin: 5px;
-      padding: 8px 12px;
-      width: 100px;
-    }
   }
   p {
     @include sansSerif($bodyText, normal, $white);

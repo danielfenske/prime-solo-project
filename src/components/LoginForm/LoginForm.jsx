@@ -55,7 +55,7 @@ function LoginForm() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit" className="primaryButton">LOGIN</button>
+        <button type="submit" className="primaryButton smallButton">LOGIN</button>
       </form>
       <div>
         <p>new user?<button className="createActBtn" type="button" onClick={() => { history.push('/registration'); }}>

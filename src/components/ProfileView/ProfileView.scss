@@ -7,7 +7,7 @@
   overflow-y: scroll;
   width: 100%;
   height: 90vh;
-  padding-top: 20px;
+  padding-top: 15px;
   .profileHeader {
     @include flexColumn(15px);
     .profileLogo {
@@ -26,7 +26,6 @@
         justify-content: space-between;
         border-top: 1px solid $darkGrey;
         padding-top: 15px;
-        font-size: $bodyText;
         color: $primaryColor;
         width: 100%;
       }
@@ -45,7 +44,6 @@
         padding: 5px 10px;
       }
     }
-
     .accordionCover {
       @include flexRow(0px);
       justify-content: space-between;
@@ -55,9 +53,8 @@
       width: 90%;
       padding: 15px 0px;
     }
-
-    .aboutProfile {
-      border-bottom: 1px solid $darkGrey;
-    }
+  }
+  .profileFooter {
+    padding-bottom: 30px;
   }
 }

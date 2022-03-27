@@ -1,17 +1,67 @@
 @import "../Styles/Variables.scss";
 
-.formContainer {
-  .maxesBar {
-    background-color: $primaryColor;
-    width: 100%;
-    height: 2vw;
+.progressContainer {
+  @include flexColumn(60px);
+  justify-content: flex-start;
+  background-color: $white;
+  overflow-y: scroll;
+  width: 100%;
+  height: 90vh;
+  padding-top: 60px;
+  .progressHeader {
+    @include flexColumn(30px);
   }
-  .formFooter {
-    .submitButton {
-      background-color: $darkGrey;
-    }
-    .submitBackButton {
+  .progressBody {
+    @include flexColumn(0px);
+    width: 90%;
+    .accordionContainer {
+      @include flexColumn(15px);
+      width: 90%;
+      .accordionDetailsHeader {
+        @include flexRow(0px);
+        justify-content: space-between;
+        border-top: 1px solid $darkGrey;
+        padding-top: 15px;
+        color: $primaryColor;
+        width: 100%;
+      }
+      .accordionDetailsBody {
+        @include flexRow(5px);
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 90%;
+        padding-bottom: 15px;
+      }
+      .accordionItem {
+        background-color: $white;
         color: $darkGrey;
+        border: 1px solid $darkGrey;
+        border-radius: 25px;
+        padding: 5px 10px;
+      }
+      .maxContainer {
+          @include flexRow(0px);
+          justify-content: space-between;
+          width: 100%;
+          .maxDetails {
+              @include flexRow(15px);
+              justify-content: flex-start;
+              text-transform: lowercase;
+          }
+          .trashIcon {
+              color: $primaryColor;
+          }
+      }
+    }
+
+    .accordionCover {
+      @include flexRow(0px);
+      justify-content: space-between;
+      border-top: 1px solid $darkGrey;
+      font-size: $bodyText;
+      color: $darkGrey;
+      width: 90%;
+      padding: 15px 0px;
     }
   }
 }

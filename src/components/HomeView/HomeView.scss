@@ -10,3 +10,22 @@
     }
   }
 }
+
+.modalContainer {
+  @include flexColumn(45px);
+  justify-content: flex-start;
+  .subHeaderText {
+    color: $primaryColor;
+    text-transform: capitalize;
+    padding: 0px;
+  }
+  .phaseContainer {
+    @include flexColumn(15px);
+    align-items: flex-start;
+    padding: 0px 15px;
+    .phaseFooter {
+      @include flexColumn(8px);
+      align-items: flex-start;
+    }
+  }
+}

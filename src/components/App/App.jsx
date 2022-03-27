@@ -43,7 +43,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          {/* LOGIN / ABOUT VIEWS */}
+          {/* LOGIN VIEWS */}
           <Redirect exact from="/" to="home" />
 
           <Route exact path="/login">

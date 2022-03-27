@@ -49,7 +49,7 @@ function RegisterForm() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit" className="primaryButton">REGISTER</button>
+        <button type="submit" className="primaryButton smallButton">REGISTER</button>
       </form>
       <div>
         <p>existing user?<button className="createActBtn" type="button" onClick={() => { history.push('/login'); }}>

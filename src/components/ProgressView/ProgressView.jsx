@@ -1,45 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
 
 // IMPORT SASS/MUI
 import './ProgressView.scss';
+import { Modal, Box } from '@mui/material';
 
 // import children components
-import UserMaxes from '../UserMaxes/UserMaxes';
+import ProgressForm from './ProgressForm/ProgressForm';
+import ChestMaxes from './ChestMaxes/ChestMaxes';
+import BackMaxes from './BackMaxes/BackMaxes';
+import LegsMaxes from'./LegsMaxes/LegsMaxes';
+import ArmsMaxes from './ArmsMaxes/ArmsMaxes';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    height: 450,
+    overflow: "hidden",
+    overflowY: "scroll",
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 2,
+};
 
 function ProgressView() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
-    const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
-    const user = useSelector((store) => (store.user));
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_MAXES' });
-    }, []);
-
-    // sends all values taken from form to be stored in reducer
-    const handleSubmitButton = () => {
-        event.preventDefault();
-        console.log('in handleSubmitButton');
-
-        dispatch({ type: 'POST_USER_PREFERENCES', payload: newUserPreferences });
-        history.push("/home");
-    }
-
-    const handleBackButton = () => {
-        history.push('/equipment');
-    }
+    }, [dispatch]);
 
     return (
         <>
-            <div className="appContainer">
-
+            <div className="progressContainer">
+                <div className="progressHeader">
+                    <h1 className="headerText">Track your progress!</h1>
+                    <button className="primaryButton" onClick={handleOpen}>add max</button>
+                </div>
+                <div className="progressBody">
+                    <ChestMaxes/>
+                    <BackMaxes/>
+                    <LegsMaxes/>
+                    <ArmsMaxes/>
+                </div>
             </div>
             <Nav />
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <div className="modalContainer">
+                        <ProgressForm />
+                    </div>
+                </Box>
+            </Modal>
         </>
     )
 }

@@ -8,6 +8,7 @@ import dailyWorkoutSaga from './dailyWorkout.saga';
 import userPreferencesSaga from './userPreferences.saga';
 import userMaxesSaga from './userMaxes.saga';
 import equipmentListSaga from './equipmentList.saga';
+import phaseDataSaga from './phasaData.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     userPreferencesSaga(),
     userMaxesSaga(),
     equipmentListSaga(),
+    phaseDataSaga()
   ]);
 }

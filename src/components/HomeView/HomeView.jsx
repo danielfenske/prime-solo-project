@@ -15,18 +15,20 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 300,
+  height: 350,
+  overflow: "hidden",
+  overflowY: "scroll",
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 function HomeView() {
 
   // bring in state stored in redux for all data related to profile
   const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
+  const phaseData = useSelector((store) => (store.phaseData));
 
-  // const [dayOfWeek, setDayOfWeek] = useState('1');
   // state for modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -38,6 +40,7 @@ function HomeView() {
   // grab user profile information on page load
   useEffect(() => {
     dispatch({ type: 'FETCH_USER_PREFERENCES' });
+    dispatch({ type: 'FETCH_PHASE_DATA' });
   }, []);
 
   return (
@@ -64,12 +67,22 @@ function HomeView() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h1 className="subHeaderText">Hypertrophy</h1>
-          <hr/>
-          <p>Hypertrophy refers to an increase in muscular size achieved through 
-            exercise. When you work out, if you want to tone or improve muscle definition, 
-            lifting weights is the most common way to increase hypertrophy.</p>
-          <p><strong>Sets: 3 x 10-12</strong></p>
+          <div className="modalContainer">
+            {phaseData && phaseData.map((phase, index) => {
+              return (
+                <div className="phaseContainer" key={index}>
+                  <div className="phaseHeader"><h1 className="subHeaderText">{phase.phase}</h1></div>
+                  {/* <div className="phaseBody"><p>{phase.definition}</p></div> */}
+                  <div className="phaseFooter">
+                    <p>{phase.definition}</p>
+                    <p><strong>{phase.sets} sets x {phase.reps} reps</strong></p>
+                    <p>{phase.rest} (rest)</p>
+                  </div>
+                </div>
+              )
+            })
+            }
+          </div>
         </Box>
       </Modal>
     </>

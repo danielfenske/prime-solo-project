@@ -50,6 +50,10 @@
   @include buttonFilled($white, $darkGrey);
 }
 
+.smallButton {
+  width: 130px;
+}
+
 .progressBar {
   background-color: $lightGrey;
   width: 85%;
@@ -65,7 +69,13 @@
 .subHeaderText {
   @include sansSerif($subHeaderText, medium, black);
   padding-bottom: 15px;
+  text-align: center;
   @include flexRow(5px);
+}
+
+.accordionHeader {
+  font-size: $headerText;
+  letter-spacing: 2px;
 }
 
 .alert {

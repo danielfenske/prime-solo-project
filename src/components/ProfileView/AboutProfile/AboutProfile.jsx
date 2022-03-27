@@ -21,7 +21,7 @@ function AboutProfile() {
             {aboutDetails ?
                 <div className="aboutAccordionContainer" onClick={() => setAboutDetails(false)}>
                     <div className="accordionDetailsHeader">
-                        <h1>ABOUT</h1>
+                        <h1 className="accordionHeader">ABOUT</h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
@@ -57,7 +57,7 @@ function AboutProfile() {
                 </div>
                 :
                 <div className="accordionCover" onClick={() => setAboutDetails(true)}>
-                    <h1>ABOUT</h1>
+                    <h1 className="accordionHeader">ABOUT</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }

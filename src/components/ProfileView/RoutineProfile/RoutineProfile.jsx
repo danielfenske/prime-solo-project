@@ -19,7 +19,7 @@ function RoutineProfile({ userPreferences }) {
             {routineDetails ?
                 <div className="accordionContainer" onClick={() => setRoutineDetails(false)}>
                     <div className="accordionDetailsHeader">
-                        <h1>ROUTINE <EditIcon /></h1>
+                        <h1 className="accordionHeader">ROUTINE <EditIcon /></h1>
                         <ExpandMoreIcon fontSize="large" />
                     </div>
 
@@ -38,7 +38,7 @@ function RoutineProfile({ userPreferences }) {
                 </div>
                 :
                 <div className="accordionCover" onClick={() => setRoutineDetails(true)}>
-                    <h1>ROUTINE</h1>
+                    <h1 className="accordionHeader">ROUTINE</h1>
                     <ExpandLessIcon fontSize="large" />
                 </div>
             }
