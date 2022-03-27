@@ -38,11 +38,18 @@ function MetricsForm() {
         }
     }
 
+    const handleFill = () => {
+        setName('Daniel');
+        setAge('23');
+        setWeight('165');
+        setHeight('68');
+    }
+
     return (
         <div className="appContainer formContainer">
 
             <div className="formHeader">
-                <div className="progressBar">
+                <div className="progressBar" onClick={handleFill}>
                     <div className="metricsBar"></div>
                 </div>
                 <h1 className="headerText">Tell us a little more about you.</h1>
@@ -50,7 +57,7 @@ function MetricsForm() {
 
             <form className="formBody">
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter name:</h1>
+                    <h1 className="subHeaderText">Enter name</h1>
                     <TextField
                         autoComplete="off"
                         variant="outlined"
@@ -62,7 +69,7 @@ function MetricsForm() {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter age:</h1>
+                    <h1 className="subHeaderText">Enter age</h1>
                     <TextField
                         autoComplete="off"
                         variant="outlined"
@@ -75,7 +82,7 @@ function MetricsForm() {
 
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter weight (lbs):</h1>
+                    <h1 className="subHeaderText">Enter weight (lbs)</h1>
                     <TextField
                         autoComplete="off"
                         variant="outlined"
@@ -87,7 +94,7 @@ function MetricsForm() {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter height (inches):</h1>
+                    <h1 className="subHeaderText">Enter height (inches)</h1>
                     <TextField
                         autoComplete="off"
                         variant="outlined"
