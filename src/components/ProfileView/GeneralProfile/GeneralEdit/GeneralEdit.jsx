@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // IMPORT SASS/MUI
-import './GeneralEdit.scss';
 import { TextField, FormControl } from '@mui/material';
 
 function GeneralEdit({userPreferences}) {
@@ -38,7 +37,7 @@ function GeneralEdit({userPreferences}) {
     }, []);
 
     return (
-        <form className="progressFormBody">
+        <form className="modalFormBody">
             <FormControl fullWidth>
                 <h1 className="subHeaderText">Name</h1>
                 <TextField

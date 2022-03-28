@@ -73,6 +73,7 @@
   @include flexRow(5px);
 }
 
+// MISC
 .accordionHeader {
   font-size: $headerText;
   letter-spacing: 2px;
@@ -90,4 +91,13 @@
   }
   position: relative;
   font-family: $fontFamily;
+}
+
+.modalFormBody {
+  @include flexColumn(30px);
+  width: 95%;
+  .subHeaderText {
+      color: black;
+      padding-bottom: 5px;
+  }
 }

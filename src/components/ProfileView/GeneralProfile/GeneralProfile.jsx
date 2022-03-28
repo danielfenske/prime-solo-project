@@ -6,7 +6,7 @@ import './GeneralProfile.scss';
 import EditIcon from '@mui/icons-material/Edit';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Modal, Box, Style } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 
 import GeneralEdit from'./GeneralEdit/GeneralEdit';
 
