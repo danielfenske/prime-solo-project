@@ -131,6 +131,8 @@ router.get('/phases', (req, res) => {
 // #endregion ====
 
 
+
+// #region ==== PUT ROUTES ====
 router.put('/swap/:target/:id', async (req, res) => {
   let target = req.params.target;
   let exerciseId = req.params.id;
@@ -169,5 +171,23 @@ router.put('/swap/:target/:id', async (req, res) => {
     res.sendStatus(403);
   }
 })
+
+router.put('/update/:exerciseId', (req, res) => {
+  let isComplete = req.body.isComplete;
+  let exerciseId = req.params.exerciseId;  
+
+  if (req.isAuthenticated()) {
+    let queryText = `UPDATE "user_exercises" SET "isComplete" = $1 WHERE "id" = $2`;
+    
+    pool.query(queryText, [isComplete, exerciseId])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log('Error UPDATING exercise', error);
+      })
+  }
+})
+// #endregion ====
 
 module.exports = router;
