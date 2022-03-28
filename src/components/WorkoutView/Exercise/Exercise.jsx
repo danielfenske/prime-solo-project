@@ -6,9 +6,10 @@ import './Exercise.scss';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Checkbox from '@mui/material/Checkbox';
-import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle'; import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle'; 
 import HelpIcon from '@mui/icons-material/Help';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const style = {
     position: 'absolute',
@@ -47,14 +48,24 @@ function Exercise({ exercise }) {
                 <div className="exerciseHeader">
                     <h1 className="subHeaderText">{exercise.name}<HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} /></h1>
                 </div>
+                
                 <div className="exerciseBody">
+                    {exercise.isComplete ? 
                     <Checkbox
-                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
-                        icon={<CheckCircleOutlinedIcon />}
-                        checkedIcon={<CheckCircleIcon />}
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)'  } }}
+                        icon={<CircleOutlinedIcon />}
+                        checkedIcon={<CircleOutlinedIcon />}
                         className="checkBox"
                         onClick={handleCheckbox}
                     />
+                    :
+                    <Checkbox
+                        sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
+                        icon={<CheckCircleIcon />}
+                        checkedIcon={<CheckCircleIcon />}
+                        className="checkBox"
+                        onClick={handleCheckbox}
+                    />}
                     <p className="details">{exercise.sets} x {exercise.reps}</p>
                     <button className="swapButton">
                         <SwapHorizontalCircleIcon
