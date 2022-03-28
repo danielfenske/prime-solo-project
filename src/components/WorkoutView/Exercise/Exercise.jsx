@@ -53,16 +53,16 @@ function Exercise({ exercise }) {
                     {exercise.isComplete ? 
                     <Checkbox
                         sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)'  } }}
-                        icon={<CircleOutlinedIcon />}
-                        checkedIcon={<CircleOutlinedIcon />}
+                        icon={<CheckCircleIcon />}
+                        checkedIcon={<CheckCircleIcon />}
                         className="checkBox"
                         onClick={handleCheckbox}
                     />
                     :
                     <Checkbox
                         sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
-                        icon={<CheckCircleIcon />}
-                        checkedIcon={<CheckCircleIcon />}
+                        icon={<CircleOutlinedIcon />}
+                        checkedIcon={<CircleOutlinedIcon />}
                         className="checkBox"
                         onClick={handleCheckbox}
                     />}

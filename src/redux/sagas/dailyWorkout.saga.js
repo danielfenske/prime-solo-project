@@ -49,8 +49,7 @@ function* getDailyWorkout(action) {
   function* updateExercise(action) {
     let exerciseId = action.payload.exerciseId;
     let isComplete = action.payload;
-    console.log('action.payload.isComplete', action.payload);
-    
+        
     try {
       yield axios.put(`api/workout/update/${exerciseId}`, isComplete);
 

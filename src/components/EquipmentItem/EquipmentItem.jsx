@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './EquipmentItem.scss';
 import Checkbox from '@mui/material/Checkbox';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import CircleIcon from '@mui/icons-material/Circle';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function EquipmentItem({ equipment }) {
 
@@ -29,7 +29,7 @@ function EquipmentItem({ equipment }) {
             <Checkbox className="checkbox"
                 sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
                 icon={<CircleOutlinedIcon />}
-                checkedIcon={<CircleIcon />}
+                checkedIcon={<CheckCircleIcon />}
                 value={equipment.id}
                 name={equipment.name}
                 onClick={handleCheckboxChange} />
