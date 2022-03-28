@@ -8,12 +8,9 @@
   }
   .maxesFormBody {
     @include flexColumn(30px);
-    width: 85%;
-    .maxesFormTop {
-      width: 100%;
-    }
-    .maxesFormBottom {
-      @include flexRow(15px);
+    width: 75%;
+    .maxesFormRow {
+      @include flexRow(30px);
     }
   }
   .submitBackButton {

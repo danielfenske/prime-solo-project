@@ -27,7 +27,7 @@ function EquipmentItem({ equipment }) {
             <img src={equipment.img_url} />
             <h1 className="subHeaderText">{equipment.name}</h1>
             <Checkbox className="checkbox"
-                sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: '#b8b8b8' } }}
+                sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
                 icon={<CircleOutlinedIcon />}
                 checkedIcon={<CircleIcon />}
                 value={equipment.id}

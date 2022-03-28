@@ -39,7 +39,7 @@ function MetricsForm() {
     }
 
     const handleFill = () => {
-        setName('Daniel');
+        setName('Dan');
         setAge('23');
         setWeight('165');
         setHeight('68');

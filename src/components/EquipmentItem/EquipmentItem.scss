@@ -1,12 +1,13 @@
 @import "../Styles/Variables.scss";
 
 .equipmentContainer {
-  @include flexRow(0px);
+  @include flexRow(15px);
   justify-content: space-between;
   width: 100%;
   border-radius: 50px;
   .checkbox {
-    margin-right: 10px;
+    height: 60px;
+    width: 60px;
   }
   img {
     height: 60px;
