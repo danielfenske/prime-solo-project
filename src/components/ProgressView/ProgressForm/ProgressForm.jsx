@@ -47,6 +47,7 @@ function ProgressForm() {
                     value={exercise}
                     required
                     onChange={(event) => setExercise(event.target.value)}
+                    size="small"
                 />
             </FormControl>
             <FormControl fullWidth>
@@ -55,6 +56,7 @@ function ProgressForm() {
                     name="muscle group"
                     value={muscleGroup}
                     onChange={(event) => setMuscleGroup(event.target.value)}
+                    size="small"
                 >
                     <MenuItem value="chest">chest</MenuItem>
                     <MenuItem value="back">back</MenuItem>
@@ -71,6 +73,7 @@ function ProgressForm() {
                     value={weight}
                     required
                     onChange={(event) => setWeight(event.target.value)}
+                    size="small"
                 />
             </FormControl>
 
@@ -82,6 +85,7 @@ function ProgressForm() {
                     value={reps}
                     required
                     onChange={(event) => setReps(event.target.value)}
+                    size="small"
                 />
             </FormControl>
             <button type="submit" className="primaryButton smallButton" onClick={handleAdd}>Add</button>

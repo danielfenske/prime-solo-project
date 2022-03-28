@@ -46,8 +46,10 @@ router.post('/', async (req, res) => {
 
         await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
 
-        // await pool.query(`DELETE FROM "users_equipment" ("user_id", "equipment_id") 
-        // VALUES ($1, $2);`, [id, bodyWeightId]);
+        await pool.query(`
+        DELETE FROM "users_equipment" 
+        WHERE "user_id" = $1 
+        AND "equipment_id" = $2;`, [id, bodyWeightId]);
 
         await pool.query(`INSERT INTO "users_equipment" ("user_id", "equipment_id") 
         VALUES ($1, $2);`, [id, bodyWeightId]);

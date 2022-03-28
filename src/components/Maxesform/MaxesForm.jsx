@@ -31,6 +31,34 @@ function MaxesForm() {
         history.push('/equipment');
     }
 
+    const addChest = () => {
+        setExercise('bench');
+        setMuscleGroup('chest');
+        setWeight('225');
+        setReps('11');
+    }
+
+    const addBack = () => {
+        setExercise('pull-up');
+        setMuscleGroup('back');
+        setWeight('165');
+        setReps('21');
+    }
+
+    const addLegs = () => {
+        setExercise('squat');
+        setMuscleGroup('legs');
+        setWeight('300');
+        setReps('3');
+    }
+
+    const addArms = () => {
+        setExercise('curl');
+        setMuscleGroup('arms');
+        setWeight('30');
+        setReps('12');
+    }
+
     const handleAdd = (event) => {
         console.log('in handleAdd');
         event.preventDefault();
@@ -58,23 +86,25 @@ function MaxesForm() {
             </div>
 
             <form className="maxesFormBody">
-                <div className="maxesFormBottom">
+                <div className="maxesFormRow">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Exercise</h1>
+                        <h1 className="subHeaderText" onClick={addChest}>Exercise</h1>
                         <TextField
                             autoComplete='off'
                             type="text"
                             value={exercise}
                             required
                             onChange={(event) => setExercise(event.target.value)}
+                            size="small"
                         />
                     </FormControl>
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Muscle Group</h1>
+                        <h1 className="subHeaderText" onClick={addBack}>Muscle Group</h1>
                         <Select
                             name="muscle group"
                             value={muscleGroup}
                             onChange={(event) => setMuscleGroup(event.target.value)}
+                            size="small"
                         >
                             <MenuItem value="chest">chest</MenuItem>
                             <MenuItem value="back">back</MenuItem>
@@ -84,26 +114,28 @@ function MaxesForm() {
                     </FormControl>
                 </div>
 
-                <div className="maxesFormBottom">
+                <div className="maxesFormRow">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Weight</h1>
+                        <h1 className="subHeaderText" onClick={addLegs}>Weight</h1>
                         <TextField
                             autoComplete='off'
                             type="number"
                             value={weight}
                             required
                             onChange={(event) => setWeight(event.target.value)}
+                            size="small"
                         />
                     </FormControl>
 
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Reps</h1>
+                        <h1 className="subHeaderText" onClick={addArms}>Reps</h1>
                         <TextField
                             autoComplete='off'
                             type="number"
                             value={reps}
                             required
                             onChange={(event) => setReps(event.target.value)}
+                            size="small"
                         />
                     </FormControl>
                 </div>

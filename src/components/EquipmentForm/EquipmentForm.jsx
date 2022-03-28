@@ -41,7 +41,7 @@ function EquipmentForm() {
                 </div>
                 <h1 className="headerText">What's at your gym?</h1>
             </div>
-            <form className="formBody">
+            <form className="formBody" id="equipmentBody">
                 <h1 className="subHeaderText">Select all that apply.</h1>
                 <div className="equipmentBody">
                     {

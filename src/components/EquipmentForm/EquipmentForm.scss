@@ -6,6 +6,10 @@
     height: 2vw;
 }
 
+#equipmentbody {
+    width: 100%;
+}
+
 .equipmentBody {
     @include flexColumn(10px);
     justify-content: flex-start;

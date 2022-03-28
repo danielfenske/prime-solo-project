@@ -16,13 +16,13 @@
     @include flexRow(0px);
     justify-content: space-around;
     background-color: $darkGrey;
-    color: $lightGrey;
+    color: $white;
     border-radius: 50px;
     width: 85%;
     height: 60px;
     .checkBox,
     .swapButton {
-      color: $lightGrey;
+      color: $white;
       margin: 0;
       background: none;
       color: inherit;

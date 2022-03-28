@@ -1,7 +1,7 @@
 @import "../../Styles/Variables.scss";
 
 .progressFormBody {
-    @include flexColumn(15px);
+    @include flexColumn(30px);
     width: 95%;
     .subHeaderText {
         color: black;
