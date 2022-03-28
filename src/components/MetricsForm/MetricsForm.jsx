@@ -57,9 +57,10 @@ function MetricsForm() {
 
             <form className="formBody">
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter name</h1>
+                    <h1 className="subHeaderText">Name</h1>
                     <TextField
                         autoComplete="off"
+                        placeholder='enter name'
                         variant="outlined"
                         type="text"
                         value={name}
@@ -70,9 +71,10 @@ function MetricsForm() {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter age</h1>
+                    <h1 className="subHeaderText">Age</h1>
                     <TextField
                         autoComplete="off"
+                        placeholder='enter age'
                         variant="outlined"
                         type="number"
                         value={age}
@@ -84,9 +86,10 @@ function MetricsForm() {
 
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter weight (lbs)</h1>
+                    <h1 className="subHeaderText">Weight (lbs)</h1>
                     <TextField
                         autoComplete="off"
+                        placeholder='enter weight'
                         variant="outlined"
                         type="number"
                         value={weight}
@@ -97,9 +100,10 @@ function MetricsForm() {
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Enter height (inches)</h1>
+                    <h1 className="subHeaderText">Height (inches)</h1>
                     <TextField
                         autoComplete="off"
+                        placeholder='enter height'
                         variant="outlined"
                         type="number"
                         value={height}

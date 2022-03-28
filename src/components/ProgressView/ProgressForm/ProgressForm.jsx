@@ -43,6 +43,7 @@ function ProgressForm() {
                 <h1 className="subHeaderText">Exercise</h1>
                 <TextField
                     autoComplete='off'
+                    placeholder='enter exercise'
                     type="text"
                     value={exercise}
                     required
@@ -69,6 +70,7 @@ function ProgressForm() {
                 <h1 className="subHeaderText">Weight</h1>
                 <TextField
                     autoComplete='off'
+                    placeholder='enter weight'
                     type="number"
                     value={weight}
                     required
@@ -81,6 +83,7 @@ function ProgressForm() {
                 <h1 className="subHeaderText">Reps</h1>
                 <TextField
                     autoComplete='off'
+                    placeholder='enter reps'
                     type="number"
                     value={reps}
                     required

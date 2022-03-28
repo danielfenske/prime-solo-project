@@ -17,9 +17,7 @@ function EquipmentForm() {
     const handleNextButton = () => {
         event.preventDefault();
         console.log('in handleSubmit');
-
-        alert(`Are you sure you want to move on? The exercises you checked will reflect the workouts you're given.`)
-
+        // alert(`Are you sure you want to move on? The exercises you checked will reflect the workouts you're given.`)
         history.push('/maxes');
     }
 

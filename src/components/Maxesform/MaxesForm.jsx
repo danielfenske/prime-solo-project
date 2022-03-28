@@ -91,6 +91,7 @@ function MaxesForm() {
                         <h1 className="subHeaderText" onClick={addChest}>Exercise</h1>
                         <TextField
                             autoComplete='off'
+                            placeholder='enter exercise'
                             type="text"
                             value={exercise}
                             required
@@ -119,6 +120,7 @@ function MaxesForm() {
                         <h1 className="subHeaderText" onClick={addLegs}>Weight</h1>
                         <TextField
                             autoComplete='off'
+                            placeholder='enter weight'
                             type="number"
                             value={weight}
                             required
@@ -131,6 +133,7 @@ function MaxesForm() {
                         <h1 className="subHeaderText" onClick={addArms}>Reps</h1>
                         <TextField
                             autoComplete='off'
+                            placeholder='enter reps'
                             type="number"
                             value={reps}
                             required
