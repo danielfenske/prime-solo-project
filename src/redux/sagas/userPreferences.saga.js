@@ -34,6 +34,8 @@ function* updateMetrics(action) {
     const updatedMetrics = action.payload;
 
     yield axios.put(`api/preferences/metrics/edit`, updatedMetrics);
+    yield put({type: 'FETCH_USER_PREFERENCES'});
+
   } catch (error) {
     console.log('Error UPDATING user metrics', error);
   }

@@ -5,6 +5,7 @@ const {
     default: axios
 } = require('axios');
 
+// #region ==== PREFERENCES ROUTES ====
 // get user preferences 
 router.get('/', (req, res) => {
     let id = req.user.id;
@@ -60,6 +61,29 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put(`/metrics/edit`, (req, res) => {
+    let name = req.body.name;
+    let weight = req.body.weight;
+    let height = req.body.height;
+    let age = req.body.age;
+    let userId = req.user.id;
+
+    let queryText = 
+    `UPDATE "user_preferences" 
+    SET "name" = $1, "weight" = $2, "height" = $3, "age" = $4 
+    WHERE "user_id" = $5;`
+
+    pool.query(queryText, [name, weight, height, age, userId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+})
+// #endregion ====
+
+// #region ==== EQUIPMENT ROUTES ====
 router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
@@ -86,7 +110,10 @@ router.get('/equipment', (req, res) => {
         res.sendStatus(403);
     }
 });
+// #endregion ====
 
+
+// #region ==== MAXES ROUTES ====
 router.get('/maxes/:muscle', (req, res) => {
     let id = req.user.id;
     let muscle_group = req.params.muscle;
@@ -148,5 +175,6 @@ router.delete(`/maxes/:id`, (req, res) => {
         res.sendStatus(403);
     }
 })
+// #endregion ====
 
 module.exports = router;
