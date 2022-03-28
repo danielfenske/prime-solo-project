@@ -172,9 +172,9 @@ router.put('/swap/:target/:id', async (req, res) => {
   }
 })
 
-router.put('/update/:id', (req, res) => {
+router.put('/update/:exerciseId', (req, res) => {
   let isComplete = req.body.isComplete;
-  let exerciseId = req.params.id;
+  let exerciseId = req.params.exerciseId;  
 
   if (req.isAuthenticated()) {
     let queryText = `UPDATE "user_exercises" SET "isComplete" = $1 WHERE "id" = $2`;

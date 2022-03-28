@@ -35,6 +35,12 @@ function Exercise({ exercise }) {
         dispatch({ type: 'SWAP_EXERCISE', payload: { target: exercise.target, id: exercise.id } });
     }
 
+    const handleCheckbox = () => {
+        console.log('in handleCheckbox');
+
+        dispatch({type: 'UPDATE_EXERCISE', payload: {exerciseId: exercise.id, isComplete: !exercise.isComplete}});
+    }
+
     return (
         <>
             <div className="exerciseContainer">
@@ -47,6 +53,7 @@ function Exercise({ exercise }) {
                         icon={<CheckCircleOutlinedIcon />}
                         checkedIcon={<CheckCircleIcon />}
                         className="checkBox"
+                        onClick={handleCheckbox}
                     />
                     <p className="details">{exercise.sets} x {exercise.reps}</p>
                     <button className="swapButton">
