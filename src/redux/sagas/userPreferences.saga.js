@@ -28,10 +28,21 @@ function* postUserPreferences(action) {
     console.log('Error POSTING user preferences', error);
   }
 }
+
+function* updateMetrics(action) {
+  try {
+    const updatedMetrics = action.payload;
+
+    yield axios.put(`api/preferences/metrics/edit`, updatedMetrics);
+  } catch (error) {
+    console.log('Error UPDATING user metrics', error);
+  }
+}
   
   function* userPreferencesSaga() {
     yield takeLatest('FETCH_USER_PREFERENCES', getUserPreferences);
     yield takeLatest('POST_USER_PREFERENCES', postUserPreferences);
+    yield takeLatest('UPDATE_METRICS', updateMetrics);
   }
   
   export default userPreferencesSaga;
