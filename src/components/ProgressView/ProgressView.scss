@@ -17,6 +17,7 @@
     .accordionContainer {
       @include flexColumn(15px);
       width: 90%;
+      overflow-y: scroll;
       .accordionDetailsHeader {
         @include flexRow(0px);
         justify-content: space-between;

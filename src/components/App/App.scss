@@ -101,11 +101,21 @@
   @include flexColumn(30px);
   width: 95%;
   .subHeaderText {
-      color: black;
-      padding-bottom: 5px;
+    color: black;
+    padding-bottom: 5px;
   }
-  .modalImageContainer{
+  .modalImageContainer {
     height: 200px;
     width: auto;
+  }
+  .equipmentBody {
+    .subHeaderText {
+      color: $white;
+      text-transform: capitalize;
+      font-size: $bodyText;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
   }
 }

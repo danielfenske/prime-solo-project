@@ -11,7 +11,7 @@ router.get('/equipment', (req, res) => {
 
     if (req.isAuthenticated()) {
         // selects all equipment listed in DB
-        let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url" from "equipment";`;
+        let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url" from "equipment" ORDER BY "equipment"."id";`;
 
         pool.query(queryText)
             .then((result) => {

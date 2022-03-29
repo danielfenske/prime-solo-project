@@ -109,11 +109,11 @@ router.get('/equipment', (req, res) => {
 
         let queryText = `SELECT "equipment"."id", "equipment"."name", "equipment"."img_url"
   
-    FROM "users_equipment" 
-    JOIN "user" ON "users_equipment"."user_id" = "user"."id"
-    JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
-    
-    WHERE "users_equipment"."user_id" = $1;`;
+        FROM "users_equipment" 
+        JOIN "user" ON "users_equipment"."user_id" = "user"."id"
+        JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
+        WHERE "users_equipment"."user_id" = $1
+        ORDER BY "users_equipment"."id";`;
 
         pool.query(queryText, [id])
             .then((result) => {
@@ -132,7 +132,7 @@ router.get('/equipment', (req, res) => {
 router.put(`/equipment/edit`, async (req, res) => {
 
     let userId = req.user.id;
-    let updatedEquipmentList = req.body;    
+    let updatedEquipmentList = req.body;
 
     if (req.isAuthenticated()) {
         await pool.query(`DELETE FROM "users_equipment" WHERE "user_id" = $1`, [userId]);
