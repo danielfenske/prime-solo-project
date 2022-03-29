@@ -20,6 +20,9 @@ function* postUserPreferences(action) {
 
     const newUserPreferences = action.payload;
     
+    console.log('newUserPreferences', newUserPreferences);
+    
+
     yield axios.post(`api/preferences`, newUserPreferences);
     yield put({type: 'FETCH_USER'});
     yield put({type: 'FETCH_USER_PREFERENCES'});

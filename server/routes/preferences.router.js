@@ -36,8 +36,7 @@ router.post('/', async (req, res) => {
     let age = req.body.age;
     let days_per_week = req.body.days_per_week;
     let routine = req.body.routine;
-
-    let bodyWeightId = 2;
+    let equipmentList = req.body.equipmentList;
 
     if (req.isAuthenticated()) {
 
@@ -45,15 +44,15 @@ router.post('/', async (req, res) => {
         VALUES ($1, $2, $3, $4, $5, $6, $7);`,
             [id, name, weight, height, age, days_per_week, routine]);
 
+        for (let equipmentId of equipmentList) {
+            // adds each equipment object within array to DB 
+            await pool.query(
+                `INSERT INTO "users_equipment" ("user_id", "equipment_id")
+         VALUES ($1, $2)`,
+                [id, equipmentId]);
+        }
+
         await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
-
-        await pool.query(`
-        DELETE FROM "users_equipment" 
-        WHERE "user_id" = $1 
-        AND "equipment_id" = $2;`, [id, bodyWeightId]);
-
-        await pool.query(`INSERT INTO "users_equipment" ("user_id", "equipment_id") 
-        VALUES ($1, $2);`, [id, bodyWeightId]);
 
         res.sendStatus(201);
     } else {
@@ -68,8 +67,8 @@ router.put(`/metrics/edit`, (req, res) => {
     let age = req.body.age;
     let userId = req.user.id;
 
-    let queryText = 
-    `UPDATE "user_preferences" 
+    let queryText =
+        `UPDATE "user_preferences" 
     SET "name" = $1, "weight" = $2, "height" = $3, "age" = $4 
     WHERE "user_id" = $5;`
 
@@ -87,8 +86,8 @@ router.put(`/routine/edit`, (req, res) => {
     let routine = req.body.routine;
     let userId = req.user.id;
 
-    let queryText = 
-    `UPDATE "user_preferences" 
+    let queryText =
+        `UPDATE "user_preferences" 
     SET "days_per_week" = $1, "routine" = $2  
     WHERE "user_id" = $3;`
 
@@ -129,6 +128,29 @@ router.get('/equipment', (req, res) => {
         res.sendStatus(403);
     }
 });
+
+router.put(`/equipment/edit`, async (req, res) => {
+
+    let userId = req.user.id;
+    let updatedEquipmentList = req.body;    
+
+    if (req.isAuthenticated()) {
+        await pool.query(`DELETE FROM "users_equipment" WHERE "user_id" = $1`, [userId]);
+
+        for (let equipmentId of updatedEquipmentList) {
+            // adds each equipment object within array to DB 
+            await pool.query(
+                `INSERT INTO "users_equipment" ("user_id", "equipment_id")
+         VALUES ($1, $2)`,
+                [userId, equipmentId]);
+        }
+
+        res.sendStatus(200);
+
+    } else {
+        res.sendStatus(403);
+    }
+})
 // #endregion ====
 
 
