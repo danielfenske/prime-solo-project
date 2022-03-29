@@ -1,0 +1,19 @@
+@import "../Styles/Variables.scss";
+
+.formContainer {
+  .maxesBar {
+    background-color: $primaryColor;
+    width: 100%;
+    height: 2vw;
+  }
+  .maxesFormBody {
+    @include flexColumn(30px);
+    width: 75%;
+    .maxesFormRow {
+      @include flexRow(30px);
+    }
+  }
+  .submitBackButton {
+    color: $darkGrey;
+  }
+}
