@@ -20,6 +20,9 @@ function* postUserPreferences(action) {
 
     const newUserPreferences = action.payload;
     
+    console.log('newUserPreferences', newUserPreferences);
+    
+
     yield axios.post(`api/preferences`, newUserPreferences);
     yield put({type: 'FETCH_USER'});
     yield put({type: 'FETCH_USER_PREFERENCES'});
@@ -28,10 +31,36 @@ function* postUserPreferences(action) {
     console.log('Error POSTING user preferences', error);
   }
 }
+
+function* updateMetrics(action) {
+  try {
+    const updatedMetrics = action.payload;
+
+    yield axios.put(`api/preferences/metrics/edit`, updatedMetrics);
+    yield put({type: 'FETCH_USER_PREFERENCES'});
+
+  } catch (error) {
+    console.log('Error UPDATING user metrics', error);
+  }
+}
+
+function* updateRoutine(action) {
+  try {
+    const updatedRoutine = action.payload;
+
+    yield axios.put(`api/preferences/routine/edit`, updatedRoutine);
+    yield put({type: 'FETCH_USER_PREFERENCES'});
+  } catch(error) {
+    console.log('Error UPDATING routine', error);
+    
+  }
+}
   
   function* userPreferencesSaga() {
     yield takeLatest('FETCH_USER_PREFERENCES', getUserPreferences);
     yield takeLatest('POST_USER_PREFERENCES', postUserPreferences);
+    yield takeLatest('UPDATE_METRICS', updateMetrics);
+    yield takeLatest('UPDATE_ROUTINE', updateRoutine);
   }
   
   export default userPreferencesSaga;

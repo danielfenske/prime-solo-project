@@ -5,6 +5,7 @@ const {
     default: axios
 } = require('axios');
 
+// #region ==== PREFERENCES ROUTES ====
 // get user preferences 
 router.get('/', (req, res) => {
     let id = req.user.id;
@@ -35,8 +36,7 @@ router.post('/', async (req, res) => {
     let age = req.body.age;
     let days_per_week = req.body.days_per_week;
     let routine = req.body.routine;
-
-    let bodyWeightId = 2;
+    let equipmentList = req.body.equipmentList;
 
     if (req.isAuthenticated()) {
 
@@ -44,15 +44,15 @@ router.post('/', async (req, res) => {
         VALUES ($1, $2, $3, $4, $5, $6, $7);`,
             [id, name, weight, height, age, days_per_week, routine]);
 
+        for (let equipmentId of equipmentList) {
+            // adds each equipment object within array to DB 
+            await pool.query(
+                `INSERT INTO "users_equipment" ("user_id", "equipment_id")
+         VALUES ($1, $2)`,
+                [id, equipmentId]);
+        }
+
         await pool.query(`UPDATE "user" SET "form_complete" = TRUE WHERE "id" = $1`, [id]);
-
-        await pool.query(`
-        DELETE FROM "users_equipment" 
-        WHERE "user_id" = $1 
-        AND "equipment_id" = $2;`, [id, bodyWeightId]);
-
-        await pool.query(`INSERT INTO "users_equipment" ("user_id", "equipment_id") 
-        VALUES ($1, $2);`, [id, bodyWeightId]);
 
         res.sendStatus(201);
     } else {
@@ -60,6 +60,48 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put(`/metrics/edit`, (req, res) => {
+    let name = req.body.name;
+    let weight = req.body.weight;
+    let height = req.body.height;
+    let age = req.body.age;
+    let userId = req.user.id;
+
+    let queryText =
+        `UPDATE "user_preferences" 
+    SET "name" = $1, "weight" = $2, "height" = $3, "age" = $4 
+    WHERE "user_id" = $5;`
+
+    pool.query(queryText, [name, weight, height, age, userId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+})
+
+router.put(`/routine/edit`, (req, res) => {
+    let days_per_week = req.body.daysPerWeek;
+    let routine = req.body.routine;
+    let userId = req.user.id;
+
+    let queryText =
+        `UPDATE "user_preferences" 
+    SET "days_per_week" = $1, "routine" = $2  
+    WHERE "user_id" = $3;`
+
+    pool.query(queryText, [days_per_week, routine, userId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+})
+// #endregion ====
+
+// #region ==== EQUIPMENT ROUTES ====
 router.get('/equipment', (req, res) => {
     let id = req.user.id;
 
@@ -87,6 +129,32 @@ router.get('/equipment', (req, res) => {
     }
 });
 
+router.put(`/equipment/edit`, async (req, res) => {
+
+    let userId = req.user.id;
+    let updatedEquipmentList = req.body;    
+
+    if (req.isAuthenticated()) {
+        await pool.query(`DELETE FROM "users_equipment" WHERE "user_id" = $1`, [userId]);
+
+        for (let equipmentId of updatedEquipmentList) {
+            // adds each equipment object within array to DB 
+            await pool.query(
+                `INSERT INTO "users_equipment" ("user_id", "equipment_id")
+         VALUES ($1, $2)`,
+                [userId, equipmentId]);
+        }
+
+        res.sendStatus(200);
+
+    } else {
+        res.sendStatus(403);
+    }
+})
+// #endregion ====
+
+
+// #region ==== MAXES ROUTES ====
 router.get('/maxes/:muscle', (req, res) => {
     let id = req.user.id;
     let muscle_group = req.params.muscle;
@@ -148,5 +216,6 @@ router.delete(`/maxes/:id`, (req, res) => {
         res.sendStatus(403);
     }
 })
+// #endregion ====
 
 module.exports = router;

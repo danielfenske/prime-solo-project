@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // IMPORT SASS/MUI
-import './ProgressForm.scss';
 import { TextField, FormControl, Select, MenuItem } from '@mui/material';
 
 function ProgressForm() {
@@ -38,7 +37,7 @@ function ProgressForm() {
     }
 
     return (
-        <form className="progressFormBody">
+        <form className="modalFormBody">
             <FormControl fullWidth>
                 <h1 className="subHeaderText">Exercise</h1>
                 <TextField

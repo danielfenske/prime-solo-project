@@ -22,40 +22,17 @@ function* getUserEquipmentList(action) {
   yield put ({ type: 'SET_USER_EQUIPMENT', payload: userEquipmentResponse.data});
 }
 
-function* postEquipment (action) {
-  try {
-    const equipmentId = action.payload;
-
-    // DELETE newUser equipment id from DB to eliminate duplicate values
-    yield axios.delete(`api/signup/equipment/${equipmentId}`);
-
-    // POST newUser equipment id to DB
-    yield axios.post(`api/signup/equipment/${equipmentId}`);
-
-  } catch (error) {
-    console.log('error POSTING exercise', error);
-
-  }
-}
-
-function* deleteEquipment(action) {
-  try {
-    const equipmentId = action.payload;
-
-    // DELETE newUser equipment id from DB
-    yield axios.delete(`api/signup/equipment/${equipmentId}`);
-
-  } catch (error) {
-    console.log('error DELETING exercise', error);
-
-  }
+function* updateEquipmentList(action) {
+  const updatedEquipmentList = action.payload;
+  
+  yield axios.put(`api/preferences/equipment/edit`, updatedEquipmentList);
+  yield put({type: 'FETCH_USER_EQUIPMENT_LIST'});
 }
 
 function* equipmentListSaga() {
   yield takeLatest('FETCH_EQUIPMENT_LIST', getEquipmentList);
   yield takeLatest('FETCH_USER_EQUIPMENT_LIST', getUserEquipmentList);
-  yield takeLatest('POST_EQUIPMENT', postEquipment);
-  yield takeLatest('DELETE_EQUIPMENT', deleteEquipment);
+  yield takeLatest('UPDATE_EQUIPMENT_LIST', updateEquipmentList);
 }
 
 export default equipmentListSaga;

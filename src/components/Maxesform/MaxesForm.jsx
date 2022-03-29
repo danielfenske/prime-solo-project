@@ -17,13 +17,20 @@ function MaxesForm() {
     const history = useHistory();
 
     const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
+    const newUserEquipmentList = useSelector((store) => (store.equipment.newUserEquipmentList));
+
+    console.log(newUserPreferences);
 
     // sends all values taken from form to be stored in reducer
     const handleSubmitButton = () => {
         event.preventDefault();
         console.log('in handleSubmitButton');
 
-        dispatch({ type: 'POST_USER_PREFERENCES', payload: newUserPreferences });
+        dispatch(
+            {
+                type: 'POST_USER_PREFERENCES',
+                payload: { ...newUserPreferences, equipmentList: newUserEquipmentList }
+            });
         history.push("/home");
     }
 
@@ -63,12 +70,15 @@ function MaxesForm() {
         console.log('in handleAdd');
         event.preventDefault();
 
-        dispatch({ type: 'ADD_MAX', 
-        payload: { 
-            exercise: exercise, 
-            muscleGroup: muscleGroup, 
-            weight: Number(weight), 
-            reps: Number(reps) } });
+        dispatch({
+            type: 'ADD_MAX',
+            payload: {
+                exercise: exercise,
+                muscleGroup: muscleGroup,
+                weight: Number(weight),
+                reps: Number(reps)
+            }
+        });
         setExercise('');
         setWeight('');
         setReps('');

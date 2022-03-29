@@ -19,6 +19,7 @@ function ProfileView() {
     // bring in state stored in redux for all data related to profile
     const userPreferences = useSelector((store) => (store.userPreferences.userPreferences));
     const userEquipment = useSelector((store) => (store.equipment.userEquipmentList));
+    const equipmentList = useSelector((store) => (store.equipment.equipmentList));
 
     // initialize useDispatch to connect with SAGA
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function ProfileView() {
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_PREFERENCES' });
         dispatch({ type: 'FETCH_USER_EQUIPMENT_LIST' });
+        dispatch({type: 'FETCH_EQUIPMENT_LIST'});
     }, []);
 
     return (
@@ -45,6 +47,7 @@ function ProfileView() {
                     />
                     <EquipmentProfile
                         userEquipment={userEquipment}
+                        equipmentList={equipmentList}
                     />
                     <AboutProfile />
                 </div>
