@@ -56,7 +56,7 @@ function RoutineForm() {
                         size="small"
                     >
                         <MenuItem value="full_body">full body</MenuItem>
-                        <MenuItem value="split">split</MenuItem>
+                        <MenuItem value="split" disabled>split</MenuItem>
                     </Select>
                 </FormControl>
 

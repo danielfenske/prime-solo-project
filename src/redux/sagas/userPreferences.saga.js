@@ -40,11 +40,24 @@ function* updateMetrics(action) {
     console.log('Error UPDATING user metrics', error);
   }
 }
+
+function* updateRoutine(action) {
+  try {
+    const updatedRoutine = action.payload;
+
+    yield axios.put(`api/preferences/routine/edit`, updatedRoutine);
+    yield put({type: 'FETCH_USER_PREFERENCES'});
+  } catch(error) {
+    console.log('Error UPDATING routine', error);
+    
+  }
+}
   
   function* userPreferencesSaga() {
     yield takeLatest('FETCH_USER_PREFERENCES', getUserPreferences);
     yield takeLatest('POST_USER_PREFERENCES', postUserPreferences);
     yield takeLatest('UPDATE_METRICS', updateMetrics);
+    yield takeLatest('UPDATE_ROUTINE', updateRoutine);
   }
   
   export default userPreferencesSaga;

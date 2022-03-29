@@ -21,15 +21,10 @@ function RoutineEdit({ userPreferences }) {
         dispatch({ type: 'UPDATE_ROUTINE', payload: { daysPerWeek: Number(daysPerWeek), routine: routine } });
     }
 
-    // grab user profile information on page load
-    useEffect(() => {
-        dispatch({ type: 'FETCH_USER_PREFERENCES' });
-    }, []);
-
     return (
         <form className="modalFormBody">
-            {routine === 'full_body' ? <img src={FullBodyImg} className="imageContainer" alt="man working out" />
-                : <img src={SplitImg} className="imageContainer" alt="three men working out" />}
+            {routine === 'full_body' ? <img src={FullBodyImg} className="modalImageContainer" alt="man working out" />
+                : <img src={SplitImg} className="modalImageContainer" alt="three men working out" />}
             <FormControl fullWidth>
                 <h1 className="subHeaderText">Lifting routine</h1>
                 <Select
@@ -39,7 +34,7 @@ function RoutineEdit({ userPreferences }) {
                     size="small"
                 >
                     <MenuItem value="full_body">full body</MenuItem>
-                    <MenuItem value="split">split</MenuItem>
+                    <MenuItem value="split" disabled>split</MenuItem>
                 </Select>
             </FormControl>
 
@@ -57,7 +52,7 @@ function RoutineEdit({ userPreferences }) {
                     <MenuItem value="4">four</MenuItem>
                 </Select>
             </FormControl>
-            <button type="submit" className="primaryButton smallButton" onClick={handleUpdate}>UPDATE</button>
+            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
         </form>
     )
 }

@@ -54,6 +54,10 @@
   width: 130px;
 }
 
+.updateButton {
+  background-color: $darkGrey;
+}
+
 .progressBar {
   background-color: $lightGrey;
   width: 85%;
@@ -99,5 +103,9 @@
   .subHeaderText {
       color: black;
       padding-bottom: 5px;
+  }
+  .modalImageContainer{
+    height: 200px;
+    width: auto;
   }
 }

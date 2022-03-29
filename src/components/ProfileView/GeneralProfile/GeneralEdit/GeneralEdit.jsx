@@ -94,7 +94,7 @@ function GeneralEdit({userPreferences}) {
                     size="small"
                 />
             </FormControl>
-            <button type="submit" className="primaryButton smallButton" onClick={handleUpdate}>UPDATE</button>
+            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
         </form>
     )
 }

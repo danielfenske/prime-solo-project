@@ -81,6 +81,25 @@ router.put(`/metrics/edit`, (req, res) => {
             res.sendStatus(500);
         })
 })
+
+router.put(`/routine/edit`, (req, res) => {
+    let days_per_week = req.body.daysPerWeek;
+    let routine = req.body.routine;
+    let userId = req.user.id;
+
+    let queryText = 
+    `UPDATE "user_preferences" 
+    SET "days_per_week" = $1, "routine" = $2  
+    WHERE "user_id" = $3;`
+
+    pool.query(queryText, [days_per_week, routine, userId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            res.sendStatus(500);
+        })
+})
 // #endregion ====
 
 // #region ==== EQUIPMENT ROUTES ====
