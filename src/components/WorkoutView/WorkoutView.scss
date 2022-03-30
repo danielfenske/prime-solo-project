@@ -3,7 +3,7 @@
 .workoutContainer {
   @include flexColumn(0px);
   background-color: $white;
-  height: 80vh;
+  height: 90vh;
   width: 100vw;
   .workoutBody {
     @include flexColumn(45px);
