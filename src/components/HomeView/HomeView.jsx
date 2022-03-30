@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
+import TopNav from'../TopNav/TopNav';
 
 // SASS/MUI imports
 import './HomeView.scss';
@@ -45,6 +46,7 @@ function HomeView() {
 
   return (
     <>
+      <TopNav/>
       <div className="appContainer homeContainer">
         <div className="homeHeader">
           <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
@@ -58,7 +60,7 @@ function HomeView() {
           />
         }
       </div>
-      <Nav />
+      {/* <Nav /> */}
 
       <Modal
         open={open}

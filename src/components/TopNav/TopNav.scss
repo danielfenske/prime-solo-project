@@ -1,0 +1,20 @@
+@import "../Styles/Variables.scss";
+
+.topNav {
+    background-color: $darkGrey;
+    color: $lightGrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 60px;
+    letter-spacing: 3px;
+    .navLogo, .navMenu {
+        height: 36px;
+        width: auto;
+        padding: 0px 30px;
+    }
+}
