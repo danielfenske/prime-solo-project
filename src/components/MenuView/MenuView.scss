@@ -1,0 +1,27 @@
+@import "../Styles/Variables.scss";
+
+.menuContainer {
+  background-color: $primaryColor;
+  color: $white;
+  height: 100vh;
+  .menuHeader {
+    display: flex;
+    justify-content: flex-end;
+    color: $white;
+    padding-right: 30px;
+    padding-top: 30px;
+  }
+  .linkContainer {
+    @include flexColumn(30px);
+    height: calc(100vh - 65px);
+    .navLink {
+      @include flexColumn(5px);
+      text-decoration: none;
+      p {
+        @include sansSerif($subHeaderText, normal, $white);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}

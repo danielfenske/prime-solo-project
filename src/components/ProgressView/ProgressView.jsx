@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
+import TopNav from '../TopNav/TopNav';
 
 // IMPORT SASS/MUI
 import './ProgressView.scss';
@@ -42,6 +43,7 @@ function ProgressView() {
 
     return (
         <>
+            <TopNav/>
             <div className="progressContainer">
                 <div className="progressHeader">
                     <h1 className="headerText">Track your progress!</h1>
@@ -54,7 +56,7 @@ function ProgressView() {
                     <ArmsMaxes/>
                 </div>
             </div>
-            <Nav />
+            {/* <Nav /> */}
 
             <Modal
                 open={open}

@@ -10,6 +10,7 @@ import EquipmentProfile from './EquipmentProfile/EquipmentProfile';
 import AboutProfile from './AboutProfile/AboutProfile';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Nav from '../Nav/Nav';
+import TopNav from '../TopNav/TopNav';
 
 // SASS/MUI imports
 import './ProfileView.scss';
@@ -33,6 +34,7 @@ function ProfileView() {
 
     return (
         <>
+            <TopNav/>
             <div className="profileContainer">
                 <div className="profileHeader">
                     <img src={Logo} className="profileLogo" alt="QuickLift logo" />
@@ -55,7 +57,7 @@ function ProfileView() {
                     <LogOutButton />
                 </div>
             </div>
-            <Nav />
+            {/* <Nav /> */}
         </>
     )
 }
