@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './TopNav.scss';
 import Logo from './quicklift-logo.png';
@@ -13,6 +14,8 @@ function TopNav() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const history = useHistory();
 
     const style = {
         position: 'absolute',
@@ -31,8 +34,8 @@ function TopNav() {
     return (
         <>
             <div className="topNav">
-                <h1 className="navHeaderText">QUICKLIFT</h1>
-                <MenuIcon onClick={handleOpen} className="navMenu" fontSize="large"/>
+                <h1 className="navHeaderText" onClick={() => history.push('/home')}>QuickLift</h1>
+                <MenuIcon onClick={handleOpen} className="navMenu" fontSize="large" />
             </div>
 
             <Modal
@@ -42,7 +45,7 @@ function TopNav() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <MenuView 
+                    <MenuView
                         handleClose={handleClose}
                     />
                 </Box>
