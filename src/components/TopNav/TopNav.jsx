@@ -31,8 +31,8 @@ function TopNav() {
     return (
         <>
             <div className="topNav">
-                {/* <img src={Logo} className="navLogo" /> */}
-                <MenuIcon onClick={handleOpen} className="navMenu" />
+                <h1 className="navHeaderText">QUICKLIFT</h1>
+                <MenuIcon onClick={handleOpen} className="navMenu" fontSize="large"/>
             </div>
 
             <Modal
