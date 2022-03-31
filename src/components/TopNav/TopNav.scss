@@ -1,20 +1,20 @@
 @import "../Styles/Variables.scss";
 
 .topNav {
-    background-color: $primaryColor;
-    color: $white;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-    width: 100vw;
-    height: 10vh;
-    letter-spacing: 3px;
-    .navLogo, .navMenu {
-        height: 36px;
-        width: auto;
-        padding: 0px 30px;
-    }
+  @include flexRow(0px);
+  justify-content: space-between;
+  background-color: $primaryColor;
+  color: $white;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 10vh;
+  letter-spacing: 3px;
+  .navMenu, .navHeaderText {
+    padding: 0px 30px;
+  }
+  .navHeaderText {
+    @include sansSerif($headerText, normal, $white);
+  }
 }
