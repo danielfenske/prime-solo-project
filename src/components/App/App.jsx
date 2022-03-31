@@ -125,6 +125,7 @@ function App() {
               :
               <Redirect to="/metrics" />}
           </ProtectedRoute>
+
         </Switch>
       </div>
     </Router>

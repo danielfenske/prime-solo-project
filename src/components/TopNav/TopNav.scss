@@ -1,10 +1,10 @@
 @import "../Styles/Variables.scss";
 
 .topNav {
-    background-color: $darkGrey;
-    color: $lightGrey;
+    background-color: $primaryColor;
+    color: $white;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     overflow: hidden;
     position: sticky;

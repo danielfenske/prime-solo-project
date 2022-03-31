@@ -74,7 +74,6 @@ function HomeView() {
               return (
                 <div className="phaseContainer" key={index}>
                   <div className="phaseHeader"><h1 className="subHeaderText">{phase.phase}</h1></div>
-                  {/* <div className="phaseBody"><p>{phase.definition}</p></div> */}
                   <div className="phaseFooter">
                     <p>{phase.definition}</p>
                     <p><strong>{phase.sets} sets x {phase.reps} reps</strong></p>
