@@ -7,9 +7,9 @@
   overflow-y: scroll;
   width: 100%;
   height: 90vh;
-  padding-top: 60px;
   .progressHeader {
     @include flexColumn(30px);
+    padding-top: 30px;
   }
   .progressBody {
     @include flexColumn(0px);
