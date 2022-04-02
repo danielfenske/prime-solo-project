@@ -7,6 +7,7 @@ const {
 
 
 // get all equipment available
+// explained: this route grabs all equipment to be sent to the client for whenever a user initially signs up or wants to edit their equipment list
 router.get('/equipment', (req, res) => {
 
     if (req.isAuthenticated()) {
@@ -26,52 +27,5 @@ router.get('/equipment', (req, res) => {
         res.sendStatus(403);
     }
 });
-
-// post new equipment list 
-router.post('/equipment/:id', (req, res) => {
-
-    let userId = req.user.id;
-    let equipmentId = req.params.id;
-
-    if (req.isAuthenticated()) {
-        let queryText =
-        `INSERT INTO "users_equipment" ("user_id", "equipment_id") 
-        VALUES ($1, $2);`
-
-        pool.query(queryText, [userId, equipmentId])
-            .then((result) => {
-                res.sendStatus(201);
-            })
-            .catch((error) => {
-                console.log('error', error);
-
-
-                res.sendStatus(500);
-            })
-    }
-});
-
-router.delete('/equipment/:id', (req, res) => {
-    let userId = req.user.id;
-    let equipmentId = req.params.id;    
-
-    if (req.isAuthenticated()) {
-        let queryText =
-            `DELETE FROM "users_equipment" 
-            WHERE "users_equipment"."user_id" = $1
-            AND "users_equipment"."equipment_id" = $2;`
-
-        pool.query(queryText, [userId, equipmentId])
-            .then((result) => {
-                res.sendStatus(200);
-            })
-            .catch((error) => {
-                console.log('error', error);
-
-
-                res.sendStatus(500);
-            })
-    }
-})
 
 module.exports = router;
