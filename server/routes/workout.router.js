@@ -104,7 +104,7 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
       // adds each exercise object within array to DB 
       await pool.query(
         `INSERT INTO "user_exercises" ("user_id", "bodyPart", "equipment", "gifUrl", "API_id", "name", "target", "sets", "reps")
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
         [id, exercise.bodyPart, exercise.equipment, exercise.gifUrl, exercise.id, exercise.name, exercise.target, exercise.sets, exercise.reps]);
     }
 
@@ -217,7 +217,7 @@ router.put('/update/:exerciseId', (req, res) => {
   let exerciseId = req.params.exerciseId;  
 
   if (req.isAuthenticated()) {
-    let queryText = `UPDATE "user_exercises" SET "isComplete" = $1 WHERE "id" = $2`;
+    let queryText = `UPDATE "user_exercises" SET "isComplete" = $1 WHERE "id" = $2;`;
     
     pool.query(queryText, [isComplete, exerciseId])
       .then((result) => {
