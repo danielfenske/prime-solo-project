@@ -1,12 +1,6 @@
 import { combineReducers } from "redux";
 
-// const userMaxes = (state=[], action) => {
-//     if (action.type === 'SET_USER_MAXES') {
-//         return action.payload;
-//     }
-//     return state;
-// }
-
+// stores each list of user maxes and organizes by category
 const chestMaxes = (state = [], action) => {
     if (action.type === 'SET_CHEST_MAXES') {
         return action.payload;

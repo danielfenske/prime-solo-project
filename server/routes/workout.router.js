@@ -145,6 +145,8 @@ router.get('/current', (req, res) => {
   }
 })
 
+// this route sends the phase data held in the phaseData.js file
+// which includes a description, rest amount, and sets/reps for each phase (ex: 'endurance')
 router.get('/phases', (req, res) => {
   if (req.isAuthenticated()) {
     res.send(phaseData);
