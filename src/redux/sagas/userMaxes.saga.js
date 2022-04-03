@@ -33,9 +33,17 @@ function* getUserMaxes(action) {
 }
 
 function* postUserMax(action) {
+
+    let muscleGroup = action.payload.muscleGroup;
+
     try {
+
+        // posts new user max to DB whenever added by user
         yield axios.post(`/api/preferences/maxes`, action.payload);
-        yield put({type: 'FETCH_USER_MAXES'});
+
+        // fetches all user maxes for that specific muscle group (ex: 'legs')
+        yield put({type: 'FETCH_USER_MAXES', payload: muscleGroup});
+
     } catch (error) {
         console.log('Error POSTING max', error);
 
@@ -48,7 +56,11 @@ function* deleteUserMax(action) {
     let muscleGroup = action.payload.muscleGroup;
 
     try {
+
+        // deletes user max from DB by sending its id to server
         yield axios.delete(`/api/preferences/maxes/${id}`);
+
+        // fetches user maxes for that specific muscle group (ex: 'chest')
         yield put({type: 'FETCH_USER_MAXES', payload: muscleGroup});
     } catch (error) {
         console.log('Error DELETING max', error);

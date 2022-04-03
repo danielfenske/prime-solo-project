@@ -1,5 +1,5 @@
 // buildDailyWorkout is the parent function that ultimately returns 
-// the daily workout for a given user. Several helper functions are
+// a daily workout for a given user. Several helper functions are
 // called within it to filter through the exercises and narrow them 
 // down to one single workout
 const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHistory, equipmentAvailable, allExercises) => {
@@ -12,30 +12,49 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
     // console.log('selectedTemplate', selectedTemplate);
     // console.log('targetValuesList', targetValuesList);
   
+
     // removes all exercises that user has already completed 
-    // during the week
+    // during the week (referenced by exercise id provided by the exerciseDB API)
+    // (exercises provided to user previously are filtered out)
     let newExercises = filterHistory(allExercises, exerciseHistory);
     // console.log('newExercises', newExercises);
   
+
     // returns all exercises that include equipment available to user
+    // (exercises without user's equipment are filtered out)
     let equipmentMatches = filterEquipment(newExercises, equipmentAvailable);
     // console.log('equipmentMatches', equipmentMatches);
   
+
     // returns an object containing an array of all eligible exercises
     // where the exercise's target value matched the targetValuesList value
+    // (exercises that don't match the target muscle are filtered out)
     let templateMatches = filterExercises(equipmentMatches, targetValuesList);
     // console.log('templateMatches', templateMatches);
   
+
+    // returns an array of 11 exercise objects that match all criteria 
+    // above and are relevant to the user
+    // (one exercise is randomly selected out of all eligible exercises)
     let dailyWorkout = selectExercises(templateMatches);
     // console.log('dailyWorkout', dailyWorkout);
 
+    
+    // sets and reps are added to each exercise, and the numbers
+    // are dependant on which phase the user said they were on
     let finalDailyWorkout = addSetsAndReps(dailyWorkout, phase);
-  
+
+
+    // the array of exercise objects are returned after exercises are chosen and sets/reps are added, 
     return finalDailyWorkout;
   }
   
   
   // #region ==== HELPER FUNCTIONS ====
+  // selectTemplate chooses one template out of all templates available to user,
+  // which is determined by the number of days the user said they lifted
+    // (example: if user lifts twice a week and they are on day two, 
+    // their 'workout template will be the second template, or case '2')
   const selectTemplate = (dayOfWeek, workoutTemplates) => {
     let selectedTemplate = 0;
     switch (dayOfWeek) {
@@ -54,14 +73,20 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
       default:
         console.log('Unable to assign workout');
     }
-  
+    
+    // returns selected template, which will reflect the target 
+    // muscle group exercises user will be eligible for
     return selectedTemplate;
   }
   
-  
+  // grabTargetValues flattens the selectedTemplate
+  // array of objects into an array of string values 
+    // example: ['chest', 'back', 'biceps', etc.]
   const grabTargetValues = (selectedTemplate) => {
     let targetValuesList = Object.values(selectedTemplate);
-  
+    
+    // the first two values (cells within the row) are not needed,
+    // therefore they are removed from the array
     targetValuesList.shift();
     targetValuesList.shift();
   
@@ -69,6 +94,12 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
   }
   
   
+  // filterHistory loops through the entire array of exercises 
+  // provided by the exerciseDB API and compares them to each index,
+  // or exercise id, within the exerciseHistory array
+    // If the two exercise ids that are compared don't match, they 
+    // get added to the array 'newExercises' to be moved to the next 
+    // round of filtering
   const filterHistory = (allExercises, exerciseHistory) => {
     let newExercises = [];
   
@@ -84,6 +115,11 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
   }
   
   
+  // filterEquipment compares all equipment available to the user with
+  // the exercises returned from the filterHistory function. 
+    // If there is a match between the user's equipment list and 
+    // newExercises array, that exercise object is added to the equipmentMatches
+    // array and moved on to the next round of filtering
   const filterEquipment = (newExercises, equipmentAvailable) => {
   
     let equipmentMatches = [];
@@ -100,6 +136,12 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
   }
   
   
+  // filterExercises filters through all exercises within the equipmentMatches
+  // array and only keeps the ones that match the targetValuesList array
+    // Since there will always be eleven exercises provided each time a workout is given, 
+    // each e_# represents the targetValue, or target muscle, subscribed for a given workout
+      // example: if exercise one is 'chest', e_ones will only include exercise objects that
+      // include the targetMuscle value of 'chest'
   const filterExercises = (equipmentMatches, targetValuesList) => {
   
     let templateMatches = {
@@ -119,24 +161,30 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
     return templateMatches;
   }
   
-  // 'selectExercises' randomly selects on exercise from 
-  // the given array and returns it as an object to be added
-  // to the user's daily workout
+  // 'selectExercises' randomly selects on exercise for each 
+  // array of exercises existing in the templateMatches object
+    // example: if e_ones includes 23 exercises for 'chest', 
+    // one of those exercises is randomly selected using 
+    // the Math.random method
   let selectExercises = (templateMatches) => {
     let dailyWorkout = [];
-  
+    
+    // loops through each property within the templateMatches object
+      // each property includes an array of exercises that match the target muscle 
+      // for the provided template (example: 'chest')
     for (templateMatchesProperty in templateMatches) {
   
-      // this loop is evaluating each property within 'templateMatches',
-      // which is an array
+      // exerciseArray represents one property of the templateMatches object
+        // example: e_ones
       let exerciseArray = templateMatches[templateMatchesProperty];
   
-      // get random index value
+      // get random index value that is in the range of the array length
       const randomIndex = Math.floor(Math.random() * exerciseArray.length);
   
-      // get random exercise
+      // gets random exercise 
       const exercise = exerciseArray[randomIndex];
-  
+      
+      // pushes that random exercise to the dailyWorkout array
       dailyWorkout.push(exercise);
     }
   
@@ -144,6 +192,11 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
   }
 
 
+  // after eleven unique exercises are chosen for a given workout,
+  // sets and reps needed to be added to each exercise object to reflect
+  // the phase the user is on in their workout journey (example: if phase is endurance, sets/reps is 2/15-20)
+    // note: the first exercise in any workout will be a warmup, which won't require sets and reps. To accommodate for this,
+    // 'warmup' and '2 minutes' is added instead of sets/reps within the switch statement
   function addSetsAndReps(dailyWorkout, phase) {
 
     let finalDailyWorkout = [];    
@@ -189,7 +242,7 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
                 console.log('Something is wrong');
         }
     }
-  
+    
     return finalDailyWorkout;
   }
   // #endregion ====

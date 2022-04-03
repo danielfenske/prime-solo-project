@@ -19,7 +19,6 @@ function MaxesForm() {
     const newUserPreferences = useSelector((store) => (store.userPreferences.newUserPreferences));
     const newUserEquipmentList = useSelector((store) => (store.equipment.newUserEquipmentList));
 
-    console.log(newUserPreferences);
 
     // sends all values taken from form to be stored in reducer
     const handleSubmitButton = () => {
@@ -36,34 +35,6 @@ function MaxesForm() {
 
     const handleBackButton = () => {
         history.push('/equipment');
-    }
-
-    const addChest = () => {
-        setExercise('bench');
-        setMuscleGroup('chest');
-        setWeight('225');
-        setReps('11');
-    }
-
-    const addBack = () => {
-        setExercise('pull-up');
-        setMuscleGroup('back');
-        setWeight('165');
-        setReps('21');
-    }
-
-    const addLegs = () => {
-        setExercise('squat');
-        setMuscleGroup('legs');
-        setWeight('300');
-        setReps('3');
-    }
-
-    const addArms = () => {
-        setExercise('curl');
-        setMuscleGroup('arms');
-        setWeight('30');
-        setReps('12');
     }
 
     const handleAdd = (event) => {
@@ -98,7 +69,7 @@ function MaxesForm() {
             <form className="maxesFormBody">
                 <div className="maxesFormRow">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText" onClick={addChest}>Exercise</h1>
+                        <h1 className="subHeaderText">Exercise</h1>
                         <TextField
                             autoComplete='off'
                             placeholder='enter exercise'
@@ -110,7 +81,7 @@ function MaxesForm() {
                         />
                     </FormControl>
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText" onClick={addBack}>Muscle Group</h1>
+                        <h1 className="subHeaderText">Muscle Group</h1>
                         <Select
                             name="muscle group"
                             value={muscleGroup}
@@ -127,7 +98,7 @@ function MaxesForm() {
 
                 <div className="maxesFormRow">
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText" onClick={addLegs}>Weight</h1>
+                        <h1 className="subHeaderText">Weight</h1>
                         <TextField
                             autoComplete='off'
                             placeholder='enter weight'
@@ -140,7 +111,7 @@ function MaxesForm() {
                     </FormControl>
 
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText" onClick={addArms}>Reps</h1>
+                        <h1 className="subHeaderText">Reps</h1>
                         <TextField
                             autoComplete='off'
                             placeholder='enter reps'

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 
+// stores all userPreference for existing users
 const userPreferences = (state={}, action) => {
     if (action.type === 'SET_USER_PREFERENCES') {        
         return action.payload;
@@ -7,6 +8,8 @@ const userPreferences = (state={}, action) => {
     return state;
 }
 
+// stores all userPreferences for new users, which will
+// eventually be posted to DB once new user form is complete
 function newUserPreferences(state={}, action) {
     switch(action.type) {
         case 'ADD_METRICS':

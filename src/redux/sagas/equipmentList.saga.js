@@ -14,7 +14,7 @@ function* getEquipmentList() {
   }
 }
 
-function* getUserEquipmentList(action) {
+function* getUserEquipmentList() {
   // GET request grabs array of all equipment related to user
   const userEquipmentResponse = yield axios.get(`/api/preferences/equipment`);
 
@@ -25,7 +25,10 @@ function* getUserEquipmentList(action) {
 function* updateEquipmentList(action) {
   const updatedEquipmentList = action.payload;
   
+  // sends new list of equipment available to user 
   yield axios.put(`api/preferences/equipment/edit`, updatedEquipmentList);
+
+  // fetches new list that is now stored in DB
   yield put({type: 'FETCH_USER_EQUIPMENT_LIST'});
 }
 

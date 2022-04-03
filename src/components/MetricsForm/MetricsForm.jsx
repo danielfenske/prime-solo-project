@@ -38,18 +38,11 @@ function MetricsForm() {
         }
     }
 
-    const handleFill = () => {
-        setName('Dan');
-        setAge('23');
-        setWeight('165');
-        setHeight('68');
-    }
-
     return (
         <div className="appContainer formContainer">
 
             <div className="formHeader">
-                <div className="progressBar" onClick={handleFill}>
+                <div className="progressBar">
                     <div className="metricsBar"></div>
                 </div>
                 <h1 className="headerText">Tell us a little more about you.</h1>
