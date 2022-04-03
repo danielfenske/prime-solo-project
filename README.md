@@ -1,121 +1,62 @@
+# QuickLift Workout Application
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Description
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+QuickLift is a powerful, never-before-seen workout application that prescribes its users a unique workout, or set of eleven exercises, every time they login and hit the gym. Exercises provided to the user factor in the user's equipment available, phase of the lifting journey they're in, and the target muscles they expect to be hitting in a given day of the week. Users can edit their preferences at any time and add exercise maxes to track their progress as they aim to reach their physical fitness potential. Get in and get out with ease with QuickLift.
 
-## Use the Template for This Repository (Don't Clone)
+## Wireframes
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+![Wireframe](public/images/quick-lift-wireframe.png)
 
+## Instructions
 
-## Prerequisites
+- New users are directed to an onboarding form to provide basic information, such as name, age, weight, height, their usual workout routine, and equipment available at their gym. Once the initial sign up form is complete, users are sent to the home page to get their daily workout.
 
-Before you get started, make sure you have the following software installed on your computer:
+- A navigation bar is located at the top of every page and can be clicked to travel between each view within the application (eg: workout, profile, or progress).
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- Exercises given for a user's daily workout can be marked as complete and/or swapped if the exercise isn't currently available or desired by the user. Users can simply click the 'swap' icon provided with each exercise to execute this action.
 
-## Create database and table
+- Question marks are located throughout the app and can be clicked on to receive more detail on the topic the icon is located next to. Once clicked, a pop-up will appear on the screen to provide more information.
 
-Create a new database called `prime_app` and create a `user` table:
+- Users can add exercise maxes in the Progress page.  Maxes are organized by category and can be viewed by clicking on the name of any given category. Users can delete the max from their list by clicking the delete icon.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## What problem was solved?
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+QuickLift's biggest feature is its ability to prescribe a user with a unique workout that accounts for several variables relevant to them. This application eliminates the need for its user to manually write out a workout every time they go to the gym and allows them to switch out any exercise for a new exercise that works the same muscle group.
 
-## Development Setup Instructions
+## The Process
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+Below are a few steps I took to ensure project satisfaction: 
 
-## Debugging
+- Created an intentional, well-defined project scope
+    - See more on the scope of the project here: [QuickLift project scope](https://docs.google.com/document/d/19TiqLgKmLdcXswBZA9HOhtMHywwfonUk-DRF0WqVh9Y/edit?usp=sharing)
+- Defined table relationships and built out queries to get, add, update, and remove data when actions are initiated by server
+- Built and tested server-side logic that grabs 1,300-exercise database from an API and selects eleven unique exercises that reflects the user's preferences
+- Transitioned from the server to the client to create the new user and existing user views 
+- Setup reducers and sagas and test their connections with the API endpoints setup on the server
+- Used SASS as primary form of styling for all views within the application, ensuring each view supported mobile and were responsive for all screen sizes
+- Continued to build out additional views and refine functionality on both client and server, making modifications when necessary
+- Testing, testing, and even more testing!
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+### Built using:
+- JavaScript (client and server)
+- React
+- Redux
+- Saga
+- Node
+- ExerciseDB API
+- postgreSQL
+- SASS
+- HTML5
+- Material UI  
+- Figma (wireframes) 
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Duration
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+Prime students were given ~2.5 weeks for scoping, building, and refactoring their projects before presentation.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+### Acknowledgement
 
-## Testing Routes with Postman
+This project is implemented into the curriculum taught at Prime Academy to strengthen our understanding of the full stack.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+[ExerciseDB](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/) API was used to provide all exercises given within the application.
