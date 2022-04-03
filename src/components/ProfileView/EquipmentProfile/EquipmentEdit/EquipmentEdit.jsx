@@ -10,13 +10,14 @@ function EquipmentEdit({ equipmentList }) {
 
     const handleUpdate = () => {
         console.log('in handleUpdate');
-    
-        dispatch({type: 'UPDATE_EQUIPMENT_LIST', payload: newUserEquipmentList});
+
+        dispatch({ type: 'UPDATE_EQUIPMENT_LIST', payload: newUserEquipmentList });
     }
 
     return (
         <form className="modalFormBody" id="equipmentBody">
             <h1 className="subHeaderText">Select all that apply.</h1>
+            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
             <div className="equipmentBody">
                 {
                     equipmentList && equipmentList.map((equipment) => {
@@ -29,7 +30,6 @@ function EquipmentEdit({ equipmentList }) {
                     })
                 }
             </div>
-            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
         </form>
     )
 }
