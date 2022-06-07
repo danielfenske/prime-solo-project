@@ -5,11 +5,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getDailyWorkout(action) {
     try {
 
-      let dayOfWeek = action.payload.dayOfWeek;
+      let dayOfWeek = 4;
       let phase = action.payload.phase;
       
-      // GET request grabs dailyWorkout from server and sends user values as params
-      const response = yield axios.get(`/api/workout/${dayOfWeek}/${phase}`);
+      // POST request grabs dailyWorkout from server and sends user values in req.body
+      const response = yield axios.post(`/api/workout/`, {dayOfWeek, phase});
       
       // sends response to be stored in redux state
       yield put ({ type: 'SET_DAILY_WORKOUT', payload: response.data});
