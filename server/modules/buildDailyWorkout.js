@@ -57,21 +57,28 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
     // their 'workout template will be the second template, or case '2')
   const selectTemplate = (dayOfWeek, workoutTemplates) => {
     let selectedTemplate = 0;
-    switch (dayOfWeek) {
-      case 1:
-        selectedTemplate = workoutTemplates[0];
-        break;
-      case 2:
-        selectedTemplate = workoutTemplates[1];
-        break;
-      case 3:
-        selectedTemplate = workoutTemplates[2]
-        break;
-      case 4:
-        selectedTemplate = workoutTemplates[3];
-        break;
-      default:
-        console.log('Unable to assign workout');
+
+    if (typeof dayOfWeek === 'string') {
+      selectedTemplate = workoutTemplates[0];
+  
+    } else if (typeof dayOfWeek === 'number') {
+  
+      switch (dayOfWeek) {
+        case 1:
+          selectedTemplate = workoutTemplates[0];
+          break;
+        case 2:
+          selectedTemplate = workoutTemplates[1];
+          break;
+        case 3:
+          selectedTemplate = workoutTemplates[2]
+          break;
+        case 4:
+          selectedTemplate = workoutTemplates[3];
+          break;
+        default:
+          console.log('Unable to assign workout');
+      }
     }
     
     // returns selected template, which will reflect the target 

@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getDailyWorkout(action) {
     try {
 
-      let dayOfWeek = 4;
+      let dayOfWeek = action.payload.dayOfWeek;
       let phase = action.payload.phase;
       
       // POST request grabs dailyWorkout from server and sends user values in req.body
