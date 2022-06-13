@@ -32,8 +32,6 @@ function App() {
 
   const user = useSelector(store => store.user);
 
-  console.log('user.form_complete', user.form_complete);
-
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_USER_PREFERENCES' });

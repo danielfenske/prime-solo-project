@@ -45,8 +45,10 @@ function RoutineForm() {
             </div>
 
             <form className="formBody">
-                {routine === 'full_body' ? <img src={FullBodyImg} className="imageContainer" alt="man working out" />
-                    : <img src={SplitImg} className="imageContainer" alt="three men working out" />}
+                {routine === 'full_body' 
+                    ? <img src={FullBodyImg} className="imageContainer" alt="man working out" />
+                    : <img src={SplitImg} className="imageContainer" alt="three men working out" />
+                }
                 <FormControl fullWidth>
                     <h1 className="subHeaderText">Lifting routine</h1>
                     <Select
@@ -56,7 +58,7 @@ function RoutineForm() {
                         size="small"
                     >
                         <MenuItem value="full_body">full body</MenuItem>
-                        <MenuItem value="split" disabled>split</MenuItem>
+                        <MenuItem value="split">split</MenuItem>
                     </Select>
                 </FormControl>
 

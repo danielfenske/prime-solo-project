@@ -23,8 +23,10 @@ function RoutineEdit({ userPreferences }) {
 
     return (
         <form className="modalFormBody">
-            {routine === 'full_body' ? <img src={FullBodyImg} className="modalImageContainer" alt="man working out" />
-                : <img src={SplitImg} className="modalImageContainer" alt="three men working out" />}
+            {routine === 'full_body' 
+                ? <img src={FullBodyImg} className="modalImageContainer" alt="man working out" />
+                : <img src={SplitImg} className="modalImageContainer" alt="three men working out" />
+            }
             <FormControl fullWidth>
                 <h1 className="subHeaderText">Lifting routine</h1>
                 <Select
@@ -34,7 +36,7 @@ function RoutineEdit({ userPreferences }) {
                     size="small"
                 >
                     <MenuItem value="full_body">full body</MenuItem>
-                    <MenuItem value="split" disabled>split</MenuItem>
+                    <MenuItem value="split">split</MenuItem>
                 </Select>
             </FormControl>
 
