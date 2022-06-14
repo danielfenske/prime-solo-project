@@ -14,22 +14,46 @@ const selectNewExercise = require('../modules/selectNewExercise');
 // get workout request first starts with grabbing all eligible
 // templates from the database and selecting one template that corresponds
 // to the day the user is on in their week (ex: working out twice a week, on second day)
-router.get('/:dayOfWeek/:phase', async (req, res) => {
-  const id = req.user.id
-  const dayOfWeek = Number(req.params.dayOfWeek);
-  const phase = req.params.phase;
+router.post('/', async (req, res) => {
+  let id = req.user.id
+  let dayOfWeek = req.body.dayOfWeek;
+  let phase = req.body.phase;
+
+
+  let table;
+  let daysQuery;
+  let targetWorkout;
 
   if (req.isAuthenticated()) {
-    // pulls user's days_per_week integer in database to determine which templates they are eligible for
-    const daysQuery = await pool.query(`SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE "user_id"=$1;`, [id]);
-    const daysPerWeek = daysQuery.rows[0].days_per_week;
-    // console.log('daysPerWeek', daysPerWeek);
+
+    if (typeof dayOfWeek === 'string') {
+      table = 'split_workouts';
+      column = 'body_region';
+      targetWorkout = dayOfWeek;
+
+    } else if (typeof dayOfWeek === 'number') {
+
+      table = 'full_body_workouts';
+      column = 'days_per_week';
+      dayOfWeek = Number(dayOfWeek);
+
+      // pulls user's days_per_week integer in database to determine which templates they are eligible for
+      daysQuery = await pool.query(
+        `SELECT "user_preferences"."days_per_week" FROM "user_preferences" WHERE "user_id"=$1;`,
+        [id]);
+      targetWorkout = daysQuery.rows[0].days_per_week;
+
+    }
+
 
     // selects all eligible templates based off of user's daysPerWeek value
-      // example: user who exercises 2/week will be given two rows from full_body_workouts table
-    const templatesQuery = await pool.query(`SELECT * FROM "full_body_workouts" WHERE "days_per_week" = $1 ORDER BY "id";`, [daysPerWeek]);
+    // example: user who exercises 2/week will be given two rows from full_body_workouts table
+    const templatesQuery = await pool.query(
+      `SELECT * FROM ${table} WHERE ${column} = $1 ORDER BY "id";`,
+      [targetWorkout]);
+
+
     const workoutTemplates = templatesQuery.rows;
-    // console.log('workoutTemplates', workoutTemplates);
 
 
     // selects array of exercises IDs previously provided to user 
@@ -38,6 +62,7 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
         FROM "user_exercises" 
         WHERE "user_exercises"."user_id" = $1;`, [id]
     )
+
 
     // exerciseHistory is used to prevent user from receiving exercises 
     // previously done the day before. If they don't have any exercises
@@ -52,24 +77,21 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
     }
 
 
-
-
     // selects array of equipment available to the user
     const equipmentQuery = await pool.query(
       `SELECT array_agg("equipment"."name") AS equipment_available
       FROM "users_equipment" 
       JOIN "user" ON "users_equipment"."user_id" = "user"."id"
       JOIN "equipment" ON "equipment"."id" = "users_equipment"."equipment_id"
-      
+
       WHERE "users_equipment"."user_id" = $1
       GROUP BY "users_equipment"."user_id";`, [id]
     )
 
+
     // equipmentAvailable represents an array of equipment available to the user
     // this is needed to determine exercises that match equipment in this list
     const equipmentAvailable = equipmentQuery.rows[0].equipment_available;
-
-
 
 
     // grabs exercise data from ExerciseDB database (1,300 total)
@@ -119,12 +141,12 @@ router.get('/:dayOfWeek/:phase', async (req, res) => {
   } else {
     res.sendStatus(403);
   }
-})
+});
 
 
 // grabs the user's set of eleven exercises from the DB
-  // this route was established for whenever a user
-  // signs back into the app or refreshes their page
+// this route was established for whenever a user
+// signs back into the app or refreshes their page
 router.get('/current', (req, res) => {
   let id = req.user.id;
 
@@ -161,7 +183,7 @@ router.get('/phases', (req, res) => {
 // #region ==== PUT ROUTES ====
 // this route swaps out an exercise held in the DB 
 // with a new exercise that includes the same body region
-  // is initiated whenever a user clicks the 'swap' button
+// is initiated whenever a user clicks the 'swap' button
 router.put('/swap/:target/:id', async (req, res) => {
   // variables represent everything needed from the client 
   // to successfully replace old exercise with a new one
@@ -181,8 +203,8 @@ router.put('/swap/:target/:id', async (req, res) => {
     const targetExercises = exerciseAPIQuery.data;
 
     // selects array of equipment available to the user
-      // this is done to eliminate all exercises that do not match
-      // user's equipment available to them
+    // this is done to eliminate all exercises that do not match
+    // user's equipment available to them
     const equipmentQuery = await pool.query(
       `SELECT array_agg("equipment"."name") AS equipment_available
       FROM "users_equipment" 
@@ -216,11 +238,11 @@ router.put('/swap/:target/:id', async (req, res) => {
 // so that users can track their progress as they work through completing the workout
 router.put('/update/:exerciseId', (req, res) => {
   let isComplete = req.body.isComplete;
-  let exerciseId = req.params.exerciseId;  
+  let exerciseId = req.params.exerciseId;
 
   if (req.isAuthenticated()) {
     let queryText = `UPDATE "user_exercises" SET "isComplete" = $1 WHERE "id" = $2;`;
-    
+
     pool.query(queryText, [isComplete, exerciseId])
       .then((result) => {
         res.sendStatus(200);

@@ -40,7 +40,6 @@ function HomeView() {
 
   // grab user profile information on page load
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER_PREFERENCES' });
     dispatch({ type: 'FETCH_PHASE_DATA' });
   }, []);
 
@@ -56,6 +55,7 @@ function HomeView() {
         {userPreferences &&
           <DailyInfoForm
             daysPerWeek={userPreferences.days_per_week}
+            routine={userPreferences.routine}
             handleOpen={handleOpen}
           />
         }

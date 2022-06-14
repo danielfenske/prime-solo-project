@@ -57,21 +57,28 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
     // their 'workout template will be the second template, or case '2')
   const selectTemplate = (dayOfWeek, workoutTemplates) => {
     let selectedTemplate = 0;
-    switch (dayOfWeek) {
-      case 1:
-        selectedTemplate = workoutTemplates[0];
-        break;
-      case 2:
-        selectedTemplate = workoutTemplates[1];
-        break;
-      case 3:
-        selectedTemplate = workoutTemplates[2]
-        break;
-      case 4:
-        selectedTemplate = workoutTemplates[3];
-        break;
-      default:
-        console.log('Unable to assign workout');
+
+    if (typeof dayOfWeek === 'string') {
+      selectedTemplate = workoutTemplates[0];
+  
+    } else if (typeof dayOfWeek === 'number') {
+  
+      switch (dayOfWeek) {
+        case 1:
+          selectedTemplate = workoutTemplates[0];
+          break;
+        case 2:
+          selectedTemplate = workoutTemplates[1];
+          break;
+        case 3:
+          selectedTemplate = workoutTemplates[2]
+          break;
+        case 4:
+          selectedTemplate = workoutTemplates[3];
+          break;
+        default:
+          console.log('Unable to assign workout');
+      }
     }
     
     // returns selected template, which will reflect the target 
@@ -154,8 +161,6 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
       e_sevens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[6]),
       e_eights: equipmentMatches.filter(exercise => exercise.target === targetValuesList[7]),
       e_nines: equipmentMatches.filter(exercise => exercise.target === targetValuesList[8]),
-      e_tens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[9]),
-      e_elevens: equipmentMatches.filter(exercise => exercise.target === targetValuesList[10])
     }
   
     return templateMatches;
@@ -202,45 +207,29 @@ const buildDailyWorkout = async (dayOfWeek, phase, workoutTemplates, exerciseHis
     let finalDailyWorkout = [];    
   
     for (let exercise of dailyWorkout) {      
+      if (exercise.target === 'cardiovascular system') {
+        finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
+      } else {
         switch (phase) {
-            case 'endurance':
-              if(exercise.target !== 'cardiovascular system') {
-                finalDailyWorkout.push({...exercise, sets: '2', reps: '15-20'});
-              } else {
-                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
-              }
-                break;
-            case 'hypertrophy':
-              if(exercise.target !== 'cardiovascular system') {
-                finalDailyWorkout.push({...exercise, sets: '3', reps: '10-12'});
-              } else {
-                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
-              }
-                break;
-            case 'strength':
-              if(exercise.target !== 'cardiovascular system') {
-                finalDailyWorkout.push({...exercise, sets: '4', reps: '6-8'});
-              } else {
-                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
-              }
-                break;
-            case 'power':
-              if(exercise.target !== 'cardiovascular system') {
-                finalDailyWorkout.push({...exercise, sets: '4', reps: '3-5'});
-              } else {
-                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
-              }
-                break;
-            case 'maintenance':
-              if(exercise.target !== 'cardiovascular system') {
-                finalDailyWorkout.push({...exercise, sets: '3', reps: '6-8'});
-              } else {
-                finalDailyWorkout.push({...exercise, sets: 'warmup', reps: '2 minutes'});
-              }
-                break;
-            default:
-                console.log('Something is wrong');
+          case 'endurance':
+              finalDailyWorkout.push({...exercise, sets: '2', reps: '15-20'});
+              break;
+          case 'hypertrophy':
+              finalDailyWorkout.push({...exercise, sets: '3', reps: '10-12'});
+              break;
+          case 'strength':   
+              finalDailyWorkout.push({...exercise, sets: '4', reps: '6-8'});
+              break;
+          case 'power':
+              finalDailyWorkout.push({...exercise, sets: '4', reps: '3-5'});
+              break;
+          case 'maintenance':
+              finalDailyWorkout.push({...exercise, sets: '3', reps: '6-8'});
+              break;
+          default:
+              console.log('Something is wrong');
         }
+      }
     }
     
     return finalDailyWorkout;
