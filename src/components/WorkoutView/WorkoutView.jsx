@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Nav from '../Nav/Nav';
 import TopNav from '../TopNav/TopNav';
 
 // import Exercise component
-import WorkoutHeader from './WorkoutHeader/WorkoutHeader';
 import Exercise from './Exercise/Exercise';
 
 // import CSS
@@ -23,7 +20,6 @@ function WorkoutView() {
 
     return (
         <>
-            {/* <WorkoutHeader /> */}
             <TopNav/>
             <div className="workoutContainer">
                 <div className="workoutContainer">
@@ -39,7 +35,6 @@ function WorkoutView() {
                     </div>
                 </div>
             </div>
-            {/* <Nav /> */}
         </>
     )
 }

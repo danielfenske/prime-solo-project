@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Nav from '../Nav/Nav';
 import TopNav from '../TopNav/TopNav';
 
 // IMPORT SASS/MUI
@@ -56,7 +54,6 @@ function ProgressView() {
                     <ArmsMaxes/>
                 </div>
             </div>
-            {/* <Nav /> */}
 
             <Modal
                 open={open}

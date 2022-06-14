@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import Logo from './quicklift-logo.png';
+import { useDispatch } from 'react-redux';
 
 // SASS/mui imports
 import './MenuView.scss';

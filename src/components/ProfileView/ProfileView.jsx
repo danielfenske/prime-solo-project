@@ -9,7 +9,6 @@ import RoutineProfile from './RoutineProfile/RoutineProfile';
 import EquipmentProfile from './EquipmentProfile/EquipmentProfile';
 import AboutProfile from './AboutProfile/AboutProfile';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import Nav from '../Nav/Nav';
 import TopNav from '../TopNav/TopNav';
 
 // SASS/MUI imports
@@ -57,7 +56,6 @@ function ProfileView() {
                     <LogOutButton />
                 </div>
             </div>
-            {/* <Nav /> */}
         </>
     )
 }

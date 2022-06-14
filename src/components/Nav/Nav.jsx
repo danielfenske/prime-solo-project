@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.scss';
-import { useSelector } from 'react-redux';
 import Logo from './quicklift-logo.png'; 
 
 // icon imports
@@ -11,7 +9,6 @@ import StackedLineChartOutlinedIcon from '@mui/icons-material/StackedLineChartOu
 import PersonIcon from '@mui/icons-material/Person';
 
 function Nav() {
-  const user = useSelector((store) => store.user);
 
   return (
     <div className="navBar">
