@@ -42,53 +42,53 @@ function App() {
       <div>
         <Switch>
           {/* LOGIN VIEWS */}
-          <Redirect exact from="/" to="home" />
+          <Redirect exact from='/' to='home' />
 
-          <Route exact path="/login">
+          <Route exact path='/login'>
             {user.id ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <LoginPage />}
           </Route>
 
-          <Route exact path="/registration">
+          <Route exact path='/registration'>
             {user.id ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <RegisterPage />}
           </Route>
 
 
           {/* NEW USER VIEWS */}
-          <ProtectedRoute exact path="/metrics">
+          <ProtectedRoute exact path='/metrics'>
             {user.form_complete ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <MetricsForm />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/routine">
+          <ProtectedRoute exact path='/routine'>
             {user.form_complete ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <RoutineForm />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/equipment">
+          <ProtectedRoute exact path='/equipment'>
             {user.form_complete ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <EquipmentForm />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/received">
+          <ProtectedRoute exact path='/received'>
             {user.form_complete ?
-              <Redirect to="/home" />
+              <Redirect to='/home' />
               :
               <ReceivedForm />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/maxes">
+          <ProtectedRoute exact path='/maxes'>
             {user.form_complete ?
               <ProgressView />
               :
@@ -96,32 +96,32 @@ function App() {
           </ProtectedRoute>
 
           {/* EXISTING USER VIEWS */}
-          <ProtectedRoute exact path="/home">
+          <ProtectedRoute exact path='/home'>
             {user.form_complete ?
               <HomeView />
               :
-              <Redirect to="/metrics" />}
+              <Redirect to='/metrics' />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/workout">
+          <ProtectedRoute exact path='/workout'>
             {user.form_complete ?
               <WorkoutView />
               :
-              <Redirect to="/metrics" />}
+              <Redirect to='/metrics' />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/progress">
+          <ProtectedRoute exact path='/progress'>
             {user.form_complete ?
               <ProgressView />
               :
-              <Redirect to="/metrics" />}
+              <Redirect to='/metrics' />}
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/profile">
+          <ProtectedRoute exact path='/profile'>
             {user.form_complete ?
               <ProfileView />
               :
-              <Redirect to="/metrics" />}
+              <Redirect to='/metrics' />}
           </ProtectedRoute>
 
         </Switch>

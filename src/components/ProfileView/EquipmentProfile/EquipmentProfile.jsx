@@ -25,8 +25,8 @@ function EquipmentProfile({ userEquipment, equipmentList }) {
         transform: 'translate(-50%, -50%)',
         width: 300,
         height: 450,
-        overflow: "hidden",
-        overflowY: "scroll",
+        overflow: 'hidden',
+        overflowY: 'scroll',
         bgcolor: 'background.paper',
         boxShadow: 24,
         p: 2,
@@ -35,17 +35,17 @@ function EquipmentProfile({ userEquipment, equipmentList }) {
     return (
         <>
             {equipmentDetails ?
-                <div className="accordionContainer" onClick={() => setEquipmentDetails(false)}>
-                    <div className="accordionDetailsHeader">
-                        <h1 className="accordionHeader">EQUIPMENT <EditIcon onClick={handleOpen}/></h1>
-                        <ExpandMoreIcon fontSize="large" />
+                <div className='accordionContainer' onClick={() => setEquipmentDetails(false)}>
+                    <div className='accordionDetailsHeader'>
+                        <h1 className='accordionHeader'>EQUIPMENT <EditIcon onClick={handleOpen}/></h1>
+                        <ExpandMoreIcon fontSize='large' />
                     </div>
 
-                    <div className="accordionDetailsBody">
+                    <div className='accordionDetailsBody'>
                         {
                             userEquipment && userEquipment.map((equipment, index) => {
                                 return (
-                                    <div className="accordionItem" key={index}>
+                                    <div className='accordionItem' key={index}>
                                         <p>{equipment.name}</p>
                                     </div>
                                 )
@@ -54,19 +54,19 @@ function EquipmentProfile({ userEquipment, equipmentList }) {
                     </div>
                 </div>
                 :
-                <div className="accordionCover" onClick={() => setEquipmentDetails(true)}>
-                    <h1 className="accordionHeader">EQUIPMENT</h1>
-                    <ExpandLessIcon fontSize="large" />
+                <div className='accordionCover' onClick={() => setEquipmentDetails(true)}>
+                    <h1 className='accordionHeader'>EQUIPMENT</h1>
+                    <ExpandLessIcon fontSize='large' />
                 </div>
             }
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
-                    <div className="modalContainer">
+                    <div className='modalContainer'>
                         <EquipmentEdit
                             equipmentList={equipmentList}
                         />

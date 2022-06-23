@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // stores all userPreference for existing users
 const userPreferences = (state={}, action) => {

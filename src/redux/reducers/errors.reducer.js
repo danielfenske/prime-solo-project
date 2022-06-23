@@ -9,7 +9,7 @@ const loginMessage = (state = '', action) => {
     case 'LOGIN_INPUT_ERROR':
       return 'Enter your username and password!';
     case 'LOGIN_FAILED':
-      return "The username and password didn't match.";
+      return `The username and password didn't match.`;
     case 'LOGIN_FAILED_NO_CODE':
       return 'Something went wrong! Is the server running?';
     default:
@@ -26,7 +26,7 @@ const registrationMessage = (state = '', action) => {
     case 'REGISTRATION_INPUT_ERROR':
       return 'Choose a username and password!';
     case 'REGISTRATION_FAILED':
-      return "That username might already be taken.";
+      return 'That username might already be taken.';
     default:
       return state;
   }

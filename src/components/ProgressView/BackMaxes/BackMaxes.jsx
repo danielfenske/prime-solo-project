@@ -30,13 +30,13 @@ function BackMaxes() {
     return (
         <>
             {backMaxesDetails ?
-                <div className="accordionContainer">
-                    <div className="accordionDetailsHeader" onClick={handleAccordionClick}>
-                        <h1 className="accordionHeader">BACK</h1>
-                        <ExpandMoreIcon fontSize="large" />
+                <div className='accordionContainer'>
+                    <div className='accordionDetailsHeader' onClick={handleAccordionClick}>
+                        <h1 className='accordionHeader'>BACK</h1>
+                        <ExpandMoreIcon fontSize='large' />
                     </div>
 
-                    <div className="accordionDetailsBody">
+                    <div className='accordionDetailsBody'>
                         {backMaxes && backMaxes.map((max) => {
                             return (
                                 <UserMax
@@ -49,9 +49,9 @@ function BackMaxes() {
                     </div>
                 </div>
                 :
-                <div className="accordionCover" onClick={handleAccordionClick}>
-                    <h1 className="accordionHeader">BACK</h1>
-                    <ExpandLessIcon fontSize="large" />
+                <div className='accordionCover' onClick={handleAccordionClick}>
+                    <h1 className='accordionHeader'>BACK</h1>
+                    <ExpandLessIcon fontSize='large' />
                 </div>
             }
         </>

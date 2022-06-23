@@ -28,36 +28,36 @@ function LoginForm() {
   }; // end login
 
   return (
-    <div className="loginFormContainer">
+    <div className='loginFormContainer'>
       <form onSubmit={login}>
         {errors.loginMessage && (
-          <p className="alert" role="alert">
+          <p className='alert' role='alert'>
             {errors.loginMessage}
           </p>
         )}
         <input
-          placeholder="enter username"
-          autoComplete="off"
-          type="text"
-          name="username"
+          placeholder='enter username'
+          autoComplete='off'
+          type='text'
+          name='username'
           required
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
 
         <input
-          placeholder="enter password"
-          autoComplete="off"
-          type="password"
-          name="password"
+          placeholder='enter password'
+          autoComplete='off'
+          type='password'
+          name='password'
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit" className="primaryButton smallButton">LOGIN</button>
+        <button type='submit' className='primaryButton smallButton'>LOGIN</button>
       </form>
       <div>
-        <p>new user?<button className="createActBtn" type="button" onClick={() => { history.push('/registration'); }}>
+        <p>new user?<button className='createActBtn' type='button' onClick={() => { history.push('/registration'); }}>
           create account
         </button></p>
       </div>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import EquipmentItem from "../../../EquipmentItem/EquipmentItem";
+import EquipmentItem from '../../../EquipmentItem/EquipmentItem';
 
 function EquipmentEdit({ equipmentList }) {
 
@@ -15,10 +15,10 @@ function EquipmentEdit({ equipmentList }) {
     }
 
     return (
-        <form className="modalFormBody" id="equipmentBody">
-            <h1 className="subHeaderText">Select all that apply.</h1>
-            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
-            <div className="equipmentBody">
+        <form className='modalFormBody' id='equipmentBody'>
+            <h1 className='subHeaderText'>Select all that apply.</h1>
+            <button type='submit' className='primaryButton smallButton updateButton' onClick={handleUpdate}>UPDATE</button>
+            <div className='equipmentBody'>
                 {
                     equipmentList && equipmentList.map((equipment) => {
                         return (

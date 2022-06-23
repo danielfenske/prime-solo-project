@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // equipmentList holds complete list of equipment 
 // users can select

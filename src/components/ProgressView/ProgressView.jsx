@@ -20,8 +20,8 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 300,
     height: 450,
-    overflow: "hidden",
-    overflowY: "scroll",
+    overflow: 'hidden',
+    overflowY: 'scroll',
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 2,
@@ -42,12 +42,12 @@ function ProgressView() {
     return (
         <>
             <TopNav/>
-            <div className="progressContainer">
-                <div className="progressHeader">
-                    <h1 className="headerText">Track your progress!</h1>
-                    <button className="primaryButton" onClick={handleOpen}>add max</button>
+            <div className='progressContainer'>
+                <div className='progressHeader'>
+                    <h1 className='headerText'>Track your progress!</h1>
+                    <button className='primaryButton' onClick={handleOpen}>add max</button>
                 </div>
-                <div className="progressBody">
+                <div className='progressBody'>
                     <ChestMaxes/>
                     <BackMaxes/>
                     <LegsMaxes/>
@@ -58,11 +58,11 @@ function ProgressView() {
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
-                    <div className="modalContainer">
+                    <div className='modalContainer'>
                         <ProgressForm />
                     </div>
                 </Box>

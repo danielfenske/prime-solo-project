@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Nav from '../Nav/Nav';
-import TopNav from'../TopNav/TopNav';
+import TopNav from '../TopNav/TopNav';
 
 // SASS/MUI imports
 import './HomeView.scss';
@@ -17,8 +17,8 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 300,
   height: 350,
-  overflow: "hidden",
-  overflowY: "scroll",
+  overflow: 'hidden',
+  overflowY: 'scroll',
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 2,
@@ -45,36 +45,42 @@ function HomeView() {
 
   return (
     <>
-      <TopNav/>
-      <div className="appContainer homeContainer">
-        <div className="homeHeader">
-          <h1 className="headerText">Welcome back, {userPreferences.name}!</h1>
-          <h1 className="subHeaderText homeViewText">Let's get to work. 💪</h1>
+      <div className='appContainer'>
+        <div className='appHeader'>
+          <TopNav />
+        </div>
+        <div className='homeContainer'>
+          <div className='homeHeader'>
+            <h1 className='headerText'>Welcome back, {userPreferences.name}!</h1>
+            <h1 className='subHeaderText homeViewText'>Let's get to work. 💪</h1>
+          </div>
         </div>
 
-        {userPreferences &&
-          <DailyInfoForm
-            daysPerWeek={userPreferences.days_per_week}
-            routine={userPreferences.routine}
-            handleOpen={handleOpen}
-          />
-        }
+        <div className='appFooter'>
+          {userPreferences &&
+            <DailyInfoForm
+              daysPerWeek={userPreferences.days_per_week}
+              routine={userPreferences.routine}
+              handleOpen={handleOpen}
+            />
+          }
+        </div>
       </div>
       {/* <Nav /> */}
 
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <div className="modalContainer">
+          <div className='modalContainer'>
             {phaseData && phaseData.map((phase, index) => {
               return (
-                <div className="phaseContainer" key={index}>
-                  <div className="phaseHeader"><h1 className="subHeaderText">{phase.phase}</h1></div>
-                  <div className="phaseFooter">
+                <div className='phaseContainer' key={index}>
+                  <div className='phaseHeader'><h1 className='subHeaderText'>{phase.phase}</h1></div>
+                  <div className='phaseFooter'>
                     <p>{phase.definition}</p>
                     <p><strong>{phase.sets} sets x {phase.reps} reps</strong></p>
                     <p>{phase.rest} (rest)</p>

@@ -39,22 +39,22 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
     if (routine === 'split') {
         return (
             <>
-                <form className="homeBody">
+                <form className='homeBody'>
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                        <h1 className='subHeaderText'>Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                         <Select
                             value={phase}
                             onChange={(event) => setPhase(event.target.value)}
                         >
-                            <MenuItem value="endurance">endurance</MenuItem>
-                            <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                            <MenuItem value="strength">strength</MenuItem>
-                            <MenuItem value="power">power</MenuItem>
-                            <MenuItem value="maintenance">maintenance</MenuItem>
+                            <MenuItem value='endurance'>endurance</MenuItem>
+                            <MenuItem value='hypertrophy'>hypertrophy</MenuItem>
+                            <MenuItem value='strength'>strength</MenuItem>
+                            <MenuItem value='power'>power</MenuItem>
+                            <MenuItem value='maintenance'>maintenance</MenuItem>
                         </Select>
                     </FormControl>
                     <FormControl fullWidth>
-                        <h1 className="subHeaderText">What are you lifting today?</h1>
+                        <h1 className='subHeaderText'>What are you lifting today?</h1>
                         <Select
                             value='push'
                             onChange={(event) => setDayOfWeek(event.target.value)}
@@ -66,8 +66,8 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
                         </Select>
                     </FormControl>
                 </form>
-                <div className="homeFooter">
-                    <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                <div className='homeFooter'>
+                    <button type='submit' className='primaryButton' onClick={handleSubmit}>Get Workout</button>
                 </div>
             </>
         )
@@ -76,22 +76,22 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
             case 4:
                 return (
                     <>
-                        <form className="homeBody">
+                        <form className='homeBody'>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                                <h1 className='subHeaderText'>Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                                 <Select
                                     value={phase}
                                     onChange={(event) => setPhase(event.target.value)}
                                 >
-                                    <MenuItem value="endurance">endurance</MenuItem>
-                                    <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                                    <MenuItem value="strength">strength</MenuItem>
-                                    <MenuItem value="power">power</MenuItem>
-                                    <MenuItem value="maintenance">maintenance</MenuItem>
+                                    <MenuItem value='endurance'>endurance</MenuItem>
+                                    <MenuItem value='hypertrophy'>hypertrophy</MenuItem>
+                                    <MenuItem value='strength'>strength</MenuItem>
+                                    <MenuItem value='power'>power</MenuItem>
+                                    <MenuItem value='maintenance'>maintenance</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">What day of the week are you on?</h1>
+                                <h1 className='subHeaderText'>What day of the week are you on?</h1>
                                 <Select
                                     value={dayOfWeek}
                                     onChange={(event) => setDayOfWeek(event.target.value)}
@@ -103,30 +103,30 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
                                 </Select>
                             </FormControl>
                         </form>
-                        <div className="homeFooter">
-                            <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                        <div className='homeFooter'>
+                            <button type='submit' className='primaryButton' onClick={handleSubmit}>Get Workout</button>
                         </div>
                     </>
                 )
             case 3:
                 return (
                     <>
-                        <form className="homeBody">
+                        <form className='homeBody'>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                                <h1 className='subHeaderText'>Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                                 <Select
                                     value={phase}
                                     onChange={(event) => setPhase(event.target.value)}
                                 >
-                                    <MenuItem value="endurance">endurance</MenuItem>
-                                    <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                                    <MenuItem value="strength">strength</MenuItem>
-                                    <MenuItem value="power">power</MenuItem>
-                                    <MenuItem value="maintenance">maintenance</MenuItem>
+                                    <MenuItem value='endurance'>endurance</MenuItem>
+                                    <MenuItem value='hypertrophy'>hypertrophy</MenuItem>
+                                    <MenuItem value='strength'>strength</MenuItem>
+                                    <MenuItem value='power'>power</MenuItem>
+                                    <MenuItem value='maintenance'>maintenance</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">What day of the week are you on?</h1>
+                                <h1 className='subHeaderText'>What day of the week are you on?</h1>
                                 <Select
                                     value={dayOfWeek}
                                     onChange={(event) => setDayOfWeek(event.target.value)}
@@ -137,8 +137,8 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
                                 </Select>
                             </FormControl>
                         </form>
-                        <div className="homeFooter">
-                            <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                        <div className='homeFooter'>
+                            <button type='submit' className='primaryButton' onClick={handleSubmit}>Get Workout</button>
                         </div>
                     </>
                 )
@@ -146,22 +146,22 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
             case 2:
                 return (
                     <>
-                        <form className="homeBody">
+                        <form className='homeBody'>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                                <h1 className='subHeaderText'>Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                                 <Select
                                     value={phase}
                                     onChange={(event) => setPhase(event.target.value)}
                                 >
-                                    <MenuItem value="endurance">endurance</MenuItem>
-                                    <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                                    <MenuItem value="strength">strength</MenuItem>
-                                    <MenuItem value="power">power</MenuItem>
-                                    <MenuItem value="maintenance">maintenance</MenuItem>
+                                    <MenuItem value='endurance'>endurance</MenuItem>
+                                    <MenuItem value='hypertrophy'>hypertrophy</MenuItem>
+                                    <MenuItem value='strength'>strength</MenuItem>
+                                    <MenuItem value='power'>power</MenuItem>
+                                    <MenuItem value='maintenance'>maintenance</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">What day of the week are you on?</h1>
+                                <h1 className='subHeaderText'>What day of the week are you on?</h1>
                                 <Select
                                     value={dayOfWeek}
                                     onChange={(event) => setDayOfWeek(event.target.value)}
@@ -171,30 +171,30 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
                                 </Select>
                             </FormControl>
                         </form>
-                        <div className="homeFooter">
-                            <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                        <div className='homeFooter'>
+                            <button type='submit' className='primaryButton' onClick={handleSubmit}>Get Workout</button>
                         </div>
                     </>
                 )
             default:
                 return (
                     <>
-                        <form className="homeBody">
+                        <form className='homeBody'>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
+                                <h1 className='subHeaderText'>Select phase <HelpIcon sx={{ color: '#0695fd' }} onClick={handleOpen} /></h1>
                                 <Select
                                     value={phase}
                                     onChange={(event) => setPhase(event.target.value)}
                                 >
-                                    <MenuItem value="endurance">endurance</MenuItem>
-                                    <MenuItem value="hypertrophy">hypertrophy</MenuItem>
-                                    <MenuItem value="strength">strength</MenuItem>
-                                    <MenuItem value="power">power</MenuItem>
-                                    <MenuItem value="maintenance">maintenance</MenuItem>
+                                    <MenuItem value='endurance'>endurance</MenuItem>
+                                    <MenuItem value='hypertrophy'>hypertrophy</MenuItem>
+                                    <MenuItem value='strength'>strength</MenuItem>
+                                    <MenuItem value='power'>power</MenuItem>
+                                    <MenuItem value='maintenance'>maintenance</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth>
-                                <h1 className="subHeaderText">What day of the week are you on?</h1>
+                                <h1 className='subHeaderText'>What day of the week are you on?</h1>
                                 <Select
                                     value={dayOfWeek}
                                     onChange={(event) => setDayOfWeek(event.target.value)}
@@ -203,8 +203,8 @@ function DailyInfoForm({ daysPerWeek, routine, handleOpen }) {
                                 </Select>
                             </FormControl>
                         </form>
-                        <div className="homeFooter">
-                            <button type="submit" className="primaryButton" onClick={handleSubmit}>Get Workout</button>
+                        <div className='homeFooter'>
+                            <button type='submit' className='primaryButton' onClick={handleSubmit}>Get Workout</button>
                         </div>
                     </>
                 )

@@ -21,9 +21,9 @@ function WorkoutView() {
     return (
         <>
             <TopNav/>
-            <div className="workoutContainer">
-                <div className="workoutContainer">
-                    <div className="workoutBody">
+            <div className='workoutContainer'>
+                <div className='workoutContainer'>
+                    <div className='workoutBody'>
                         {dailyWorkout && (dailyWorkout.map((exercise) => {
                             return (
                                 <Exercise

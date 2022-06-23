@@ -39,77 +39,77 @@ function MetricsForm() {
     }
 
     return (
-        <div className="appContainer formContainer">
+        <div className='appContainer formContainer'>
 
-            <div className="formHeader">
-                <div className="progressBar">
-                    <div className="metricsBar"></div>
+            <div className='formHeader'>
+                <div className='progressBar'>
+                    <div className='metricsBar'></div>
                 </div>
-                <h1 className="headerText">Tell us a little more about you.</h1>
+                <h1 className='headerText'>Tell us a little more about you.</h1>
             </div>
 
-            <form className="formBody">
+            <form className='formBody'>
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Name</h1>
+                    <h1 className='subHeaderText'>Name</h1>
                     <TextField
-                        autoComplete="off"
+                        autoComplete='off'
                         placeholder='enter name'
-                        variant="outlined"
-                        type="text"
+                        variant='outlined'
+                        type='text'
                         value={name}
                         required
                         onChange={(event) => setName(event.target.value)}
-                        size="small"
+                        size='small'
                     />
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Age</h1>
+                    <h1 className='subHeaderText'>Age</h1>
                     <TextField
-                        autoComplete="off"
+                        autoComplete='off'
                         placeholder='enter age'
-                        variant="outlined"
-                        type="number"
+                        variant='outlined'
+                        type='number'
                         value={age}
                         required
                         onChange={(event) => setAge(event.target.value)}
-                        size="small"
+                        size='small'
                     />
                 </FormControl>
 
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Weight (lbs)</h1>
+                    <h1 className='subHeaderText'>Weight (lbs)</h1>
                     <TextField
-                        autoComplete="off"
+                        autoComplete='off'
                         placeholder='enter weight'
-                        variant="outlined"
-                        type="number"
+                        variant='outlined'
+                        type='number'
                         value={weight}
                         required
                         onChange={(event) => setWeight(event.target.value)}
-                        size="small"
+                        size='small'
                     />
                 </FormControl>
 
                 <FormControl fullWidth>
-                    <h1 className="subHeaderText">Height (inches)</h1>
+                    <h1 className='subHeaderText'>Height (inches)</h1>
                     <TextField
-                        autoComplete="off"
+                        autoComplete='off'
                         placeholder='enter height'
-                        variant="outlined"
-                        type="number"
+                        variant='outlined'
+                        type='number'
                         value={height}
                         required
                         onChange={(event) => setHeight(event.target.value)}
-                        size="small"
+                        size='small'
                     />
                 </FormControl>
             </form>
 
-            <div className="formFooter">
-                <button type="submit" className="primaryButton" onClick={handleNextButton}>Next</button>
-                <button className="backButton" onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</button>
+            <div className='formFooter'>
+                <button type='submit' className='primaryButton' onClick={handleNextButton}>Next</button>
+                <button className='backButton' onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</button>
             </div>
         </div >
     )

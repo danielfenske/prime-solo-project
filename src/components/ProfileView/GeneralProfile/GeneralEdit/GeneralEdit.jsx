@@ -37,64 +37,64 @@ function GeneralEdit({userPreferences}) {
     }, []);
 
     return (
-        <form className="modalFormBody">
+        <form className='modalFormBody'>
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Name</h1>
+                <h1 className='subHeaderText'>Name</h1>
                 <TextField
-                    autoComplete="off"
+                    autoComplete='off'
                     placeholder='enter name'
-                    variant="outlined"
-                    type="text"
+                    variant='outlined'
+                    type='text'
                     value={name}
                     required
                     onChange={(event) => setName(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Age</h1>
+                <h1 className='subHeaderText'>Age</h1>
                 <TextField
-                    autoComplete="off"
+                    autoComplete='off'
                     placeholder='enter age'
-                    variant="outlined"
-                    type="number"
+                    variant='outlined'
+                    type='number'
                     value={age}
                     required
                     onChange={(event) => setAge(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
 
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Weight (lbs)</h1>
+                <h1 className='subHeaderText'>Weight (lbs)</h1>
                 <TextField
-                    autoComplete="off"
+                    autoComplete='off'
                     placeholder='enter weight'
-                    variant="outlined"
-                    type="number"
+                    variant='outlined'
+                    type='number'
                     value={weight}
                     required
                     onChange={(event) => setWeight(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Height (inches)</h1>
+                <h1 className='subHeaderText'>Height (inches)</h1>
                 <TextField
-                    autoComplete="off"
+                    autoComplete='off'
                     placeholder='enter height'
-                    variant="outlined"
-                    type="number"
+                    variant='outlined'
+                    type='number'
                     value={height}
                     required
                     onChange={(event) => setHeight(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
-            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
+            <button type='submit' className='primaryButton smallButton updateButton' onClick={handleUpdate}>UPDATE</button>
         </form>
     )
 }

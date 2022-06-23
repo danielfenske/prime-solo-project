@@ -37,60 +37,60 @@ function ProgressForm() {
     }
 
     return (
-        <form className="modalFormBody">
+        <form className='modalFormBody'>
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Exercise</h1>
+                <h1 className='subHeaderText'>Exercise</h1>
                 <TextField
                     autoComplete='off'
                     placeholder='enter exercise'
-                    type="text"
+                    type='text'
                     value={exercise}
                     required
                     onChange={(event) => setExercise(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Muscle Group</h1>
+                <h1 className='subHeaderText'>Muscle Group</h1>
                 <Select
-                    name="muscle group"
+                    name='muscle group'
                     value={muscleGroup}
                     onChange={(event) => setMuscleGroup(event.target.value)}
-                    size="small"
+                    size='small'
                 >
-                    <MenuItem value="chest">chest</MenuItem>
-                    <MenuItem value="back">back</MenuItem>
-                    <MenuItem value="legs">legs</MenuItem>
-                    <MenuItem value="arms">arms</MenuItem>
+                    <MenuItem value='chest'>chest</MenuItem>
+                    <MenuItem value='back'>back</MenuItem>
+                    <MenuItem value='legs'>legs</MenuItem>
+                    <MenuItem value='arms'>arms</MenuItem>
                 </Select>
             </FormControl>
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Weight</h1>
+                <h1 className='subHeaderText'>Weight</h1>
                 <TextField
                     autoComplete='off'
                     placeholder='enter weight'
-                    type="number"
+                    type='number'
                     value={weight}
                     required
                     onChange={(event) => setWeight(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Reps</h1>
+                <h1 className='subHeaderText'>Reps</h1>
                 <TextField
                     autoComplete='off'
                     placeholder='enter reps'
-                    type="number"
+                    type='number'
                     value={reps}
                     required
                     onChange={(event) => setReps(event.target.value)}
-                    size="small"
+                    size='small'
                 />
             </FormControl>
-            <button type="submit" className="primaryButton smallButton" onClick={handleAdd}>Add</button>
+            <button type='submit' className='primaryButton smallButton' onClick={handleAdd}>Add</button>
         </form>
     )
 }

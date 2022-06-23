@@ -28,18 +28,22 @@ function ProfileView() {
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_PREFERENCES' });
         dispatch({ type: 'FETCH_USER_EQUIPMENT_LIST' });
-        dispatch({type: 'FETCH_EQUIPMENT_LIST'});
+        dispatch({ type: 'FETCH_EQUIPMENT_LIST' });
     }, []);
 
     return (
         <>
-            <TopNav/>
-            <div className="profileContainer">
-                <div className="profileHeader">
-                    <img src={Logo} className="profileLogo" alt="QuickLift logo" />
-                    <h1 className="headerText">{userPreferences.name}'s Profile</h1>
+            <div className='appContainer'>
+                <div className='appHeader'>
+                    <TopNav />
                 </div>
-                <div className="profileBody">
+            </div>
+            <div className='appBody'>
+                <div className='profileHeader'>
+                    <img src={Logo} className='profileLogo' alt='QuickLift logo' />
+                    <h1 className='headerText'>{userPreferences.name}'s Profile</h1>
+                </div>
+                <div className='profileBody'>
                     <GeneralProfile
                         userPreferences={userPreferences}
                     />
@@ -52,9 +56,9 @@ function ProfileView() {
                     />
                     <AboutProfile />
                 </div>
-                <div className="profileFooter">
-                    <LogOutButton />
-                </div>
+            </div>
+            <div className='appFooter'>
+                <LogOutButton />
             </div>
         </>
     )

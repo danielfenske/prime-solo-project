@@ -25,13 +25,13 @@ function ChestMaxes() {
     return (
         <>
             {chestMaxesDetails ?
-                <div className="accordionContainer">
-                    <div className="accordionDetailsHeader" onClick={handleAccordionClick}>
-                        <h1 className="accordionHeader">CHEST</h1>
-                        <ExpandMoreIcon fontSize="large" />
+                <div className='accordionContainer'>
+                    <div className='accordionDetailsHeader' onClick={handleAccordionClick}>
+                        <h1 className='accordionHeader'>CHEST</h1>
+                        <ExpandMoreIcon fontSize='large' />
                     </div>
 
-                    <div className="accordionDetailsBody">
+                    <div className='accordionDetailsBody'>
                         {chestMaxes && chestMaxes.map((max) => {
                             return (
                                 <UserMax
@@ -44,9 +44,9 @@ function ChestMaxes() {
                     </div>
                 </div>
                 :
-                <div className="accordionCover" onClick={handleAccordionClick}>
-                    <h1 className="accordionHeader">CHEST</h1>
-                    <ExpandLessIcon fontSize="large" />
+                <div className='accordionCover' onClick={handleAccordionClick}>
+                    <h1 className='accordionHeader'>CHEST</h1>
+                    <ExpandLessIcon fontSize='large' />
                 </div>
             }
         </>

@@ -9,9 +9,14 @@
 
 // SHARED CONTAINERS
 .appContainer {
-  @include flexColumn(0px);
-  height: 90vh;
-  width: 100vw;
+  display: grid;
+
+  /* the header and footer take up the space that they need 
+  and the body of the app fills up the rest of the view */
+  grid-template-rows: max-content 1fr max-content;
+
+  /* App is at least as tall as the view height */
+  min-height: 100vh;
 }
 
 .formContainer {
