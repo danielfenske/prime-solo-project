@@ -22,20 +22,17 @@ router.post('/', async (req, res) => {
 
   let table;
   let daysQuery;
-  let targetWorkout;
 
   if (req.isAuthenticated()) {
 
     if (typeof dayOfWeek === 'string') {
       table = 'split_workouts';
       column = 'body_region';
-      targetWorkout = dayOfWeek;
 
     } else if (typeof dayOfWeek === 'number') {
 
       table = 'full_body_workouts';
       column = 'days_per_week';
-      dayOfWeek = Number(dayOfWeek);
 
       // pulls user's days_per_week integer in database to determine which templates they are eligible for
       daysQuery = await pool.query(
@@ -50,7 +47,7 @@ router.post('/', async (req, res) => {
     // example: user who exercises 2/week will be given two rows from full_body_workouts table
     const templatesQuery = await pool.query(
       `SELECT * FROM ${table} WHERE ${column} = $1 ORDER BY "id";`,
-      [targetWorkout]);
+      [dayOfWeek]);
 
 
     const workoutTemplates = templatesQuery.rows;

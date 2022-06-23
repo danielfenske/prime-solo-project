@@ -1,60 +1,49 @@
 @import "../Styles/Variables.scss";
 
-.profileContainer {
-  @include flexColumn(30px);
-  justify-content: flex-start;
-  background-color: $white;
-  overflow-y: scroll;
-  width: 100%;
-  height: 90vh;
-  .profileHeader {
+.profileLogo {
+  width: auto;
+  height: 150px;
+}
+
+.profileBody {
+  @include flexColumn(0px);
+  width: 90%;
+  .accordionContainer {
     @include flexColumn(15px);
-    padding-top: 30px;
-    .profileLogo {
-      width: 150px;
-      height: auto;
-    }
-  }
-  .profileBody {
-    @include flexColumn(0px);
     width: 90%;
-    .accordionContainer {
-      @include flexColumn(15px);
-      width: 90%;
-      .accordionDetailsHeader {
-        @include flexRow(0px);
-        justify-content: space-between;
-        border-top: 1px solid $darkGrey;
-        padding-top: 15px;
-        color: $primaryColor;
-        width: 100%;
-      }
-      .accordionDetailsBody {
-        @include flexRow(5px);
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        width: 90%;
-        padding-bottom: 15px;
-      }
-      .accordionItem {
-        background-color: $white;
-        color: $darkGrey;
-        border: 1px solid $darkGrey;
-        border-radius: 25px;
-        padding: 5px 10px;
-      }
-    }
-    .accordionCover {
+    .accordionDetailsHeader {
       @include flexRow(0px);
       justify-content: space-between;
       border-top: 1px solid $darkGrey;
-      font-size: $bodyText;
-      color: $darkGrey;
+      padding-top: 15px;
+      color: $primaryColor;
+      width: 100%;
+    }
+    .accordionDetailsBody {
+      @include flexRow(5px);
+      justify-content: flex-start;
+      flex-wrap: wrap;
       width: 90%;
-      padding: 15px 0px;
+      padding-bottom: 15px;
+    }
+    .accordionItem {
+      background-color: $white;
+      color: $darkGrey;
+      border: 1px solid $darkGrey;
+      border-radius: 25px;
+      padding: 5px 10px;
     }
   }
-  .profileFooter {
-    padding-bottom: 30px;
+  .accordionCover {
+    @include flexRow(0px);
+    justify-content: space-between;
+    border-top: 1px solid $darkGrey;
+    font-size: $bodyText;
+    color: $darkGrey;
+    width: 90%;
+    padding: 15px 0px;
   }
+}
+.profileFooter {
+  padding-bottom: 30px;
 }

@@ -32,7 +32,7 @@ function TopNav() {
     };
 
     return (
-        <>
+        <div className="appHeader">
             <div className='topNav'>
                 <h1 className='navHeaderText' onClick={() => history.push('/home')}>QuickLift</h1>
                 <MenuIcon onClick={handleOpen} className='navMenu' fontSize='large' />
@@ -50,7 +50,7 @@ function TopNav() {
                     />
                 </Box>
             </Modal>
-        </>
+        </div>
     )
 }
 

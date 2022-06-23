@@ -34,31 +34,27 @@ function ProfileView() {
     return (
         <>
             <div className='appContainer'>
-                <div className='appHeader'>
-                    <TopNav />
-                </div>
-            </div>
-            <div className='appBody'>
-                <div className='profileHeader'>
+                <TopNav />
+                <div className='appBody'>
                     <img src={Logo} className='profileLogo' alt='QuickLift logo' />
                     <h1 className='headerText'>{userPreferences.name}'s Profile</h1>
+                    <div className='profileBody'>
+                        <GeneralProfile
+                            userPreferences={userPreferences}
+                        />
+                        <RoutineProfile
+                            userPreferences={userPreferences}
+                        />
+                        <EquipmentProfile
+                            userEquipment={userEquipment}
+                            equipmentList={equipmentList}
+                        />
+                        <AboutProfile />
+                    </div>
                 </div>
-                <div className='profileBody'>
-                    <GeneralProfile
-                        userPreferences={userPreferences}
-                    />
-                    <RoutineProfile
-                        userPreferences={userPreferences}
-                    />
-                    <EquipmentProfile
-                        userEquipment={userEquipment}
-                        equipmentList={equipmentList}
-                    />
-                    <AboutProfile />
+                <div className='appFooter'>
+                    <LogOutButton />
                 </div>
-            </div>
-            <div className='appFooter'>
-                <LogOutButton />
             </div>
         </>
     )

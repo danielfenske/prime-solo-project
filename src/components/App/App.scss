@@ -19,6 +19,17 @@
   min-height: 100vh;
 }
 
+.appBody {
+  @include flexColumn(0px);
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.appFooter {
+  @include flexColumn(0px);
+  padding-bottom: 20px;
+}
+
 .formContainer {
   @include flexColumn(0px);
   justify-content: space-around;
