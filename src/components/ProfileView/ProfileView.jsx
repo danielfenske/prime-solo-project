@@ -9,7 +9,6 @@ import RoutineProfile from './RoutineProfile/RoutineProfile';
 import EquipmentProfile from './EquipmentProfile/EquipmentProfile';
 import AboutProfile from './AboutProfile/AboutProfile';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import Nav from '../Nav/Nav';
 import TopNav from '../TopNav/TopNav';
 
 // SASS/MUI imports
@@ -29,35 +28,34 @@ function ProfileView() {
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_PREFERENCES' });
         dispatch({ type: 'FETCH_USER_EQUIPMENT_LIST' });
-        dispatch({type: 'FETCH_EQUIPMENT_LIST'});
+        dispatch({ type: 'FETCH_EQUIPMENT_LIST' });
     }, []);
 
     return (
         <>
-            <TopNav/>
-            <div className="profileContainer">
-                <div className="profileHeader">
-                    <img src={Logo} className="profileLogo" alt="QuickLift logo" />
-                    <h1 className="headerText">{userPreferences.name}'s Profile</h1>
+            <div className='appContainer'>
+                <TopNav />
+                <div className='appBody'>
+                    <img src={Logo} className='profileLogo' alt='QuickLift logo' />
+                    <h1 className='headerText'>{userPreferences.name}'s Profile</h1>
+                    <div className='profileBody'>
+                        <GeneralProfile
+                            userPreferences={userPreferences}
+                        />
+                        <RoutineProfile
+                            userPreferences={userPreferences}
+                        />
+                        <EquipmentProfile
+                            userEquipment={userEquipment}
+                            equipmentList={equipmentList}
+                        />
+                        <AboutProfile />
+                    </div>
                 </div>
-                <div className="profileBody">
-                    <GeneralProfile
-                        userPreferences={userPreferences}
-                    />
-                    <RoutineProfile
-                        userPreferences={userPreferences}
-                    />
-                    <EquipmentProfile
-                        userEquipment={userEquipment}
-                        equipmentList={equipmentList}
-                    />
-                    <AboutProfile />
-                </div>
-                <div className="profileFooter">
+                <div className='appFooter'>
                     <LogOutButton />
                 </div>
             </div>
-            {/* <Nav /> */}
         </>
     )
 }

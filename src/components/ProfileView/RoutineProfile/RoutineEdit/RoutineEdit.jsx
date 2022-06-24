@@ -22,39 +22,39 @@ function RoutineEdit({ userPreferences }) {
     }
 
     return (
-        <form className="modalFormBody">
+        <form className='modalFormBody'>
             {routine === 'full_body' 
-                ? <img src={FullBodyImg} className="modalImageContainer" alt="man working out" />
-                : <img src={SplitImg} className="modalImageContainer" alt="three men working out" />
+                ? <img src={FullBodyImg} className='modalImageContainer' alt='man working out' />
+                : <img src={SplitImg} className='modalImageContainer' alt='three men working out' />
             }
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Lifting routine</h1>
+                <h1 className='subHeaderText'>Lifting routine</h1>
                 <Select
-                    name="routine"
+                    name='routine'
                     value={routine}
                     onChange={(event) => setRoutine(event.target.value)}
-                    size="small"
+                    size='small'
                 >
-                    <MenuItem value="full_body">full body</MenuItem>
-                    <MenuItem value="split">split</MenuItem>
+                    <MenuItem value='full_body'>full body</MenuItem>
+                    <MenuItem value='split'>split</MenuItem>
                 </Select>
             </FormControl>
 
             <FormControl fullWidth>
-                <h1 className="subHeaderText">Lifts per week</h1>
+                <h1 className='subHeaderText'>Lifts per week</h1>
                 <Select
-                    name="daysPerWeek"
+                    name='daysPerWeek'
                     value={daysPerWeek}
                     onChange={(event) => setDaysPerWeek(event.target.value)}
-                    size="small"
+                    size='small'
                 >
-                    <MenuItem value="1">one</MenuItem>
-                    <MenuItem value="2">two</MenuItem>
-                    <MenuItem value="3">three</MenuItem>
-                    <MenuItem value="4">four</MenuItem>
+                    <MenuItem value='1'>one</MenuItem>
+                    <MenuItem value='2'>two</MenuItem>
+                    <MenuItem value='3'>three</MenuItem>
+                    <MenuItem value='4'>four</MenuItem>
                 </Select>
             </FormControl>
-            <button type="submit" className="primaryButton smallButton updateButton" onClick={handleUpdate}>UPDATE</button>
+            <button type='submit' className='primaryButton smallButton updateButton' onClick={handleUpdate}>UPDATE</button>
         </form>
     )
 }

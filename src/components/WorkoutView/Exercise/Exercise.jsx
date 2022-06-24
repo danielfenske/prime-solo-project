@@ -44,18 +44,18 @@ function Exercise({ exercise }) {
 
     return (
         <>
-            <div className="exerciseContainer">
-                <div className="exerciseHeader">
-                    <h1 className="subHeaderText">{exercise.name}<HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} /></h1>
+            <div className='exerciseContainer'>
+                <div className='exerciseHeader'>
+                    <h1 className='subHeaderText'>{exercise.name}<HelpIcon onClick={handleOpen} sx={{ color: '#0695fd' }} /></h1>
                 </div>
                 
-                <div className="exerciseBody">
+                <div className='exerciseBody'>
                     {exercise.isComplete ? 
                     <Checkbox
                         sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)'  } }}
                         icon={<CheckCircleIcon />}
                         checkedIcon={<CheckCircleIcon />}
-                        className="checkBox"
+                        className='checkBox'
                         onClick={handleCheckbox}
                     />
                     :
@@ -63,11 +63,11 @@ function Exercise({ exercise }) {
                         sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
                         icon={<CircleOutlinedIcon />}
                         checkedIcon={<CircleOutlinedIcon />}
-                        className="checkBox"
+                        className='checkBox'
                         onClick={handleCheckbox}
                     />}
-                    <p className="details">{exercise.sets} x {exercise.reps}</p>
-                    <button className="swapButton">
+                    <p className='details'>{exercise.sets} x {exercise.reps}</p>
+                    <button className='swapButton'>
                         <SwapHorizontalCircleIcon
                             sx={{ fontSize: 32 }}
                             onClick={handleSwap}
@@ -78,13 +78,13 @@ function Exercise({ exercise }) {
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
-                    <div className="exerciseModal">
-                        <img src={exercise.gifUrl} alt="exercise gif" width="275" />
-                        <h1 className="subHeaderText">{exercise.name}</h1>
+                    <div className='exerciseModal'>
+                        <img src={exercise.gifUrl} alt='exercise gif' width='275' />
+                        <h1 className='subHeaderText'>{exercise.name}</h1>
                     </div>
                 </Box>
             </Modal>

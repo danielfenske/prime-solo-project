@@ -25,8 +25,8 @@ function RoutineProfile({ userPreferences }) {
         transform: 'translate(-50%, -50%)',
         width: 300,
         height: 475,
-        overflow: "hidden",
-        overflowY: "scroll",
+        overflow: 'hidden',
+        overflowY: 'scroll',
         bgcolor: 'background.paper',
         boxShadow: 24,
         p: 2,
@@ -35,18 +35,18 @@ function RoutineProfile({ userPreferences }) {
     return (
         <>
             {routineDetails ?
-                <div className="accordionContainer" onClick={() => setRoutineDetails(false)}>
-                    <div className="accordionDetailsHeader">
-                        <h1 className="accordionHeader">ROUTINE <EditIcon onClick={handleOpen} /></h1>
-                        <ExpandMoreIcon fontSize="large" />
+                <div className='accordionContainer' onClick={() => setRoutineDetails(false)}>
+                    <div className='accordionDetailsHeader'>
+                        <h1 className='accordionHeader'>ROUTINE <EditIcon onClick={handleOpen} /></h1>
+                        <ExpandMoreIcon fontSize='large' />
                     </div>
 
-                    <div className="accordionDetailsBody">
-                        <div className="accordionItem">
+                    <div className='accordionDetailsBody'>
+                        <div className='accordionItem'>
                             <p>{userPreferences.days_per_week} days / week</p>
                         </div>
 
-                        <div className="accordionItem">
+                        <div className='accordionItem'>
                             {userPreferences.routine === 'full_body' ?
                                 <p>full body</p>
                                 :
@@ -55,19 +55,19 @@ function RoutineProfile({ userPreferences }) {
                     </div>
                 </div>
                 :
-                <div className="accordionCover" onClick={() => setRoutineDetails(true)}>
-                    <h1 className="accordionHeader">ROUTINE</h1>
-                    <ExpandLessIcon fontSize="large" />
+                <div className='accordionCover' onClick={() => setRoutineDetails(true)}>
+                    <h1 className='accordionHeader'>ROUTINE</h1>
+                    <ExpandLessIcon fontSize='large' />
                 </div>
             }
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
-                    <div className="modalContainer">
+                    <div className='modalContainer'>
                         <RoutineEdit
                             userPreferences={userPreferences}
                         />

@@ -15,11 +15,11 @@ function ReceivedForm() {
     }
 
     return (
-        <div className="appContainer">
-            <div className="receivedContainer">
-                <h1 className="headerText">Thanks!</h1>
+        <div className='appContainer'>
+            <div className='receivedContainer'>
+                <h1 className='headerText'>Thanks!</h1>
                 <p>We have entered your information in our system.</p>
-                <img src={LifterImage} className="imgFrame" alt="Male lifting weights in a gym" />
+                <img src={LifterImage} className='imgFrame' alt='Male lifting weights in a gym' />
                 <button onClick={handleClick}>Get to work</button>
             </div>
         </div>

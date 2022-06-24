@@ -9,32 +9,38 @@
 
 // SHARED CONTAINERS
 .appContainer {
-  @include flexColumn(0px);
-  height: 90vh;
-  width: 100vw;
+  display: grid;
+
+  /* the header and footer take up the space that they need 
+  and the body of the app fills up the rest of the view */
+  grid-template-rows: max-content 1fr max-content;
+
+  /* App is at least as tall as the view height */
+  min-height: 100vh;
+}
+
+.appHeader {
+  @include flexColumn(15px);
+}
+
+#formHeader {
+  padding-top: 30px;
+}
+
+.appBody {
+  @include flexColumn(30px);
+  padding: 10px 30px;
+}
+
+.appFooter {
+  @include flexColumn(15px);
+  padding-bottom: 45px;
 }
 
 .formContainer {
-  @include flexColumn(0px);
-  justify-content: space-around;
-  height: 100vh;
-
-  .formHeader {
-    @include flexColumn(15px);
-    text-align: center;
-    width: 100%;
-  }
-
-  .formBody {
-    @include flexColumn(30px);
-    height: 60vh;
-    width: 65%;
-  }
-
-  .formFooter {
-    @include flexColumn(15px);
-    background-color: $white;
-  }
+  @include flexColumn(30px);
+  justify-content: flex-start;
+  width: 100%;
 }
 
 // COMPONENTS
@@ -42,12 +48,12 @@
   @include buttonFilled($white, $primaryColor);
 }
 
-.backButton {
-  @include buttonText($primaryColor);
+#submitBackButton {
+  color: $darkGrey;
 }
 
-.submitButton {
-  @include buttonFilled($white, $darkGrey);
+.backButton {
+  @include buttonText($primaryColor);
 }
 
 .smallButton {

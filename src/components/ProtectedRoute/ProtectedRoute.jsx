@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage';
 import {useSelector} from 'react-redux';
 
@@ -16,7 +16,7 @@ import {useSelector} from 'react-redux';
 function ProtectedRoute({ component, children, ...props }) {
   const user = useSelector((store) => store.user);
 
-  // Component may be passed in as a "component" prop,
+  // Component may be passed in as a 'component' prop,
   // or as a child component.
   const ProtectedComponent = component || (() => children);
 

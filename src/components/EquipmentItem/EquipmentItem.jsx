@@ -24,8 +24,8 @@ function EquipmentItem({ equipment }) {
         return (
             <div className='equipmentContainer'>
                 <img src={equipment.img_url} />
-                <h1 className="subHeaderText">{equipment.name}</h1>
-                <Checkbox className="checkbox"
+                <h1 className='subHeaderText'>{equipment.name}</h1>
+                <Checkbox className='checkbox'
                     sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
                     icon={<CheckCircleIcon />}
                     disabled
@@ -38,8 +38,8 @@ function EquipmentItem({ equipment }) {
         return (
             <div className='equipmentContainer'>
                 <img src={equipment.img_url} />
-                <h1 className="subHeaderText">{equipment.name}</h1>
-                <Checkbox className="checkbox"
+                <h1 className='subHeaderText'>{equipment.name}</h1>
+                <Checkbox className='checkbox'
                     sx={{ '& .MuiSvgIcon-root': { fontSize: 32, color: 'rgb(255, 255, 255)' } }}
                     icon={<CircleOutlinedIcon />}
                     checkedIcon={<CheckCircleIcon />}

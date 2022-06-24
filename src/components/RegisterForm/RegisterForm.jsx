@@ -23,36 +23,36 @@ function RegisterForm() {
 
   return (
 
-    <div className="loginFormContainer">
+    <div className='loginFormContainer'>
       <form onSubmit={registerUser}>
         {errors.registrationMessage && (
-          <p className="alert" role="alert">
+          <p className='alert' role='alert'>
             {errors.registrationMessage}
           </p>
         )}
         <input
-          placeholder="enter username"
-          autoComplete="off"
-          type="text"
-          name="username"
+          placeholder='enter username'
+          autoComplete='off'
+          type='text'
+          name='username'
           required
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
 
         <input
-          placeholder="enter password"
-          autoComplete="off"
-          type="password"
-          name="password"
+          placeholder='enter password'
+          autoComplete='off'
+          type='password'
+          name='password'
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit" className="primaryButton smallButton">REGISTER</button>
+        <button type='submit' className='primaryButton smallButton'>REGISTER</button>
       </form>
       <div>
-        <p>existing user?<button className="createActBtn" type="button" onClick={() => { history.push('/login'); }}>
+        <p>existing user?<button className='createActBtn' type='button' onClick={() => { history.push('/login'); }}>
           login
         </button></p>
       </div>

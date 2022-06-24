@@ -17,8 +17,8 @@ function UserMax({ max }) {
     }
 
     return (
-        <div className="maxContainer" key={max.id}>
-            <div className="maxDetails">
+        <div className='maxContainer' key={max.id}>
+            <div className='maxDetails'>
                 <div><p><strong>{max.exercise}</strong></p></div>
                 <div><p>{max.muscle_group}</p></div>
                 <div><p>{max.weight} lbs</p></div>
@@ -26,7 +26,7 @@ function UserMax({ max }) {
             </div>
             <DeleteIcon
                 sx={{fontSize: 30}}
-                className="trashIcon"
+                className='trashIcon'
                 onClick={handleDelete}
             />
         </div>

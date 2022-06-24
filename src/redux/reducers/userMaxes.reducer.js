@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // stores each list of user maxes and organizes by category
 const chestMaxes = (state = [], action) => {

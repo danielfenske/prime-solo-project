@@ -24,25 +24,25 @@ function TopNav() {
         transform: 'translate(-50%, -50%)',
         width: 1,
         height: 1,
-        overflow: "hidden",
-        overflowY: "scroll",
+        overflow: 'hidden',
+        overflowY: 'scroll',
         bgcolor: 'background.paper',
         boxShadow: 24,
         opacity: .95
     };
 
     return (
-        <>
-            <div className="topNav">
-                <h1 className="navHeaderText" onClick={() => history.push('/home')}>QuickLift</h1>
-                <MenuIcon onClick={handleOpen} className="navMenu" fontSize="large" />
+        <div className="appHeader">
+            <div className='topNav'>
+                <h1 className='navHeaderText' onClick={() => history.push('/home')}>QuickLift</h1>
+                <MenuIcon onClick={handleOpen} className='navMenu' fontSize='large' />
             </div>
 
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
                     <MenuView
@@ -50,7 +50,7 @@ function TopNav() {
                     />
                 </Box>
             </Modal>
-        </>
+        </div>
     )
 }
 
