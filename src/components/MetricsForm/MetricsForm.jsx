@@ -39,75 +39,77 @@ function MetricsForm() {
     }
 
     return (
-        <div className='appContainer formContainer'>
+        <div className='appContainer'>
 
-            <div className='formHeader'>
+            <div className='appHeader' id='formHeader'>
                 <div className='progressBar'>
                     <div className='metricsBar'></div>
                 </div>
                 <h1 className='headerText'>Tell us a little more about you.</h1>
             </div>
 
-            <form className='formBody'>
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Name</h1>
-                    <TextField
-                        autoComplete='off'
-                        placeholder='enter name'
-                        variant='outlined'
-                        type='text'
-                        value={name}
-                        required
-                        onChange={(event) => setName(event.target.value)}
-                        size='small'
-                    />
-                </FormControl>
+            <div className='appBody'>
+                <form className='formContainer'>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Name</h1>
+                        <TextField
+                            autoComplete='off'
+                            placeholder='enter name'
+                            variant='outlined'
+                            type='text'
+                            value={name}
+                            required
+                            onChange={(event) => setName(event.target.value)}
+                            size='small'
+                        />
+                    </FormControl>
 
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Age</h1>
-                    <TextField
-                        autoComplete='off'
-                        placeholder='enter age'
-                        variant='outlined'
-                        type='number'
-                        value={age}
-                        required
-                        onChange={(event) => setAge(event.target.value)}
-                        size='small'
-                    />
-                </FormControl>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Age</h1>
+                        <TextField
+                            autoComplete='off'
+                            placeholder='enter age'
+                            variant='outlined'
+                            type='number'
+                            value={age}
+                            required
+                            onChange={(event) => setAge(event.target.value)}
+                            size='small'
+                        />
+                    </FormControl>
 
 
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Weight (lbs)</h1>
-                    <TextField
-                        autoComplete='off'
-                        placeholder='enter weight'
-                        variant='outlined'
-                        type='number'
-                        value={weight}
-                        required
-                        onChange={(event) => setWeight(event.target.value)}
-                        size='small'
-                    />
-                </FormControl>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Weight (lbs)</h1>
+                        <TextField
+                            autoComplete='off'
+                            placeholder='enter weight'
+                            variant='outlined'
+                            type='number'
+                            value={weight}
+                            required
+                            onChange={(event) => setWeight(event.target.value)}
+                            size='small'
+                        />
+                    </FormControl>
 
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Height (inches)</h1>
-                    <TextField
-                        autoComplete='off'
-                        placeholder='enter height'
-                        variant='outlined'
-                        type='number'
-                        value={height}
-                        required
-                        onChange={(event) => setHeight(event.target.value)}
-                        size='small'
-                    />
-                </FormControl>
-            </form>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Height (inches)</h1>
+                        <TextField
+                            autoComplete='off'
+                            placeholder='enter height'
+                            variant='outlined'
+                            type='number'
+                            value={height}
+                            required
+                            onChange={(event) => setHeight(event.target.value)}
+                            size='small'
+                        />
+                    </FormControl>
+                </form>
+            </div>
 
-            <div className='formFooter'>
+            <div className='appFooter'>
                 <button type='submit' className='primaryButton' onClick={handleNextButton}>Next</button>
                 <button className='backButton' onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</button>
             </div>

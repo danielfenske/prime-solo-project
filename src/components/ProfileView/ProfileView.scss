@@ -2,15 +2,14 @@
 
 .profileLogo {
   width: auto;
-  height: 150px;
+  height: 100px;
 }
 
 .profileBody {
   @include flexColumn(0px);
-  width: 90%;
+  width: 100%;
   .accordionContainer {
     @include flexColumn(15px);
-    width: 90%;
     .accordionDetailsHeader {
       @include flexRow(0px);
       justify-content: space-between;
@@ -43,7 +42,4 @@
     width: 90%;
     padding: 15px 0px;
   }
-}
-.profileFooter {
-  padding-bottom: 30px;
 }

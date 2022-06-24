@@ -35,50 +35,52 @@ function RoutineForm() {
     }
 
     return (
-        <div className='appContainer formContainer'>
+        <div className='appContainer'>
 
-            <div className='formHeader'>
+            <div className='appHeader' id='formHeader'>
                 <div className='progressBar'>
                     <div className='routineBar'></div>
                 </div>
                 <h1 className='headerText'>What's your go-to routine?</h1>
             </div>
 
-            <form className='formBody'>
-                {routine === 'full_body' 
+            <div className='appBody'>
+                {routine === 'full_body'
                     ? <img src={FullBodyImg} className='imageContainer' alt='man working out' />
                     : <img src={SplitImg} className='imageContainer' alt='three men working out' />
                 }
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Lifting routine</h1>
-                    <Select
-                        name='routine'
-                        value={routine}
-                        onChange={(event) => setRoutine(event.target.value)}
-                        size='small'
-                    >
-                        <MenuItem value='full_body'>full body</MenuItem>
-                        <MenuItem value='split'>split</MenuItem>
-                    </Select>
-                </FormControl>
+                <div className='formContainer'>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Lifting routine</h1>
+                        <Select
+                            name='routine'
+                            value={routine}
+                            onChange={(event) => setRoutine(event.target.value)}
+                            size='small'
+                        >
+                            <MenuItem value='full_body'>full body</MenuItem>
+                            <MenuItem value='split'>split</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                <FormControl fullWidth>
-                    <h1 className='subHeaderText'>Lifts per week</h1>
-                    <Select
-                        name='daysPerWeek'
-                        value={daysPerWeek}
-                        onChange={(event) => setDaysPerWeek(event.target.value)}
-                        size='small'
-                    >
-                        <MenuItem value='1'>one</MenuItem>
-                        <MenuItem value='2'>two</MenuItem>
-                        <MenuItem value='3'>three</MenuItem>
-                        <MenuItem value='4'>four</MenuItem>
-                    </Select>
-                </FormControl>
-            </form>
+                    <FormControl fullWidth>
+                        <h1 className='subHeaderText'>Lifts per week</h1>
+                        <Select
+                            name='daysPerWeek'
+                            value={daysPerWeek}
+                            onChange={(event) => setDaysPerWeek(event.target.value)}
+                            size='small'
+                        >
+                            <MenuItem value='1'>one</MenuItem>
+                            <MenuItem value='2'>two</MenuItem>
+                            <MenuItem value='3'>three</MenuItem>
+                            <MenuItem value='4'>four</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+            </div>
 
-            <div className='formFooter'>
+            <div className='appFooter'>
                 <button className='primaryButton' onClick={handleNextButton}>Next</button>
                 <button className='backButton' onClick={handleBackButton}>Back</button>
             </div>

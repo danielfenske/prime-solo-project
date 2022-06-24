@@ -1,13 +1,11 @@
 @import "../Styles/Variables.scss";
 
-.formContainer {
-  .routineBar {
-    background-color: $primaryColor;
-    width: 50%;
-    height: 2vw;
-  }
-  .imageContainer {
-    width: 75%;
-    height: auto;
-  }
+.routineBar {
+  background-color: $primaryColor;
+  width: 50%;
+  height: 1vh;
+}
+.imageContainer {
+  width: auto;
+  height: 30vh;
 }
