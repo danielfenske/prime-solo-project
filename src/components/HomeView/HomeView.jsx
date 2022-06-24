@@ -10,10 +10,6 @@ import { Modal, Box } from '@mui/material';
 import { FormControl, Select, MenuItem } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 
-
-// import DaySelector
-import DailyInfoForm from './DailyInfoForm/DailyInfoForm';
-
 const style = {
   position: 'absolute',
   top: '50%',
