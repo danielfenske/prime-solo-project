@@ -5,7 +5,7 @@ const dummyExerciseData = [
         equipment: 'body weight',
         gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0001.gif',
         id: '0001',
-        name: '3/4 sit-up',
+        name: '3/4 sit-ups',
         target: 'abs'
     }
     ,
